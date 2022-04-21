@@ -1,6 +1,6 @@
-# CodeJam - UI5
+# SAP CodeJam - UI5
 
-This repository contains the material for a CodeJam on UI5.
+This repository contains the material for SAP CodeJam events on UI5.
 
 Please check the [prerequisites](/prerequisites.md) before the event an make sure you meet them.
 
@@ -42,7 +42,7 @@ You can find more information about this in the [SAPUI5 Documentation](https://s
 
 ## Support
 
-Support for the content in this repository is available during CodeJam events, for which this content has been designed. Otherwise, this content is provided 'as-is' with no other support.
+Support for the content in this repository is available during SAP CodeJam events, for which this content has been designed. Otherwise, this content is provided 'as-is' with no other support.
 
 ## Contributing
 If you wish to contribute code, offer fixes or improvements, please send a pull request. Due to legal reasons, contributors will be asked to accept a DCO when they create the first pull request to this project. This happens in an automated fashion during the submission process. SAP uses [the standard DCO text of the Linux Foundation](https://developercertificate.org/).
