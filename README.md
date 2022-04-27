@@ -40,9 +40,12 @@ The material in this repository aims to be beginner friendly. If you have never 
 
 The material includes additional explanations in collapsable sections (see example below), whenever a concept is used that web developers are probably already familiar with, but beginners might not be. You can decide for yourself whether you want to read or skip them. See this example:
 
-<details><summary>What is SAPUI5? 💬</summary>
+<details>
+<summary>What is SAPUI5? 💬</summary>
 
-<br>SAPUI5 is an HTML5 framework for creating cross-platform, enterprise-grade web applications in an efficient way.
+<br>
+
+SAPUI5 is an HTML5 framework for creating cross-platform, enterprise-grade web applications in an efficient way.
 
 See this [blog post](https://blogs.sap.com/2021/08/23/what-is-sapui5/) for more information.
 
