@@ -34,7 +34,7 @@ The material consists of a series of chapters. The chapters build on top of each
 1. [Deploying Our App](/chapters/chapter09) (Optional)
 1. [Further Improvements and Learning Material](/chapters/chapter10)
 
-## Is Previous Knowledge Required?
+## Previous Knowledge
 
 The material in this repository aims to be beginner friendly. If you have never built a (UI5) web app before, you will still be able to follow along. No prior knowledge is required, although it certainly helps to have experience in (web) development.
 
