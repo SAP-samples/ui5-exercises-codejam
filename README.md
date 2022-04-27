@@ -42,7 +42,7 @@ The material includes additional explanations in collapsable sections (see examp
 
 <details><summary>What is SAPUI5?</summary>
 
-SAPUI5 is an HTML5 framework for creating cross-platform, enterprise-grade web applications in an efficient way.
+<br>SAPUI5 is an HTML5 framework for creating cross-platform, enterprise-grade web applications in an efficient way.
 
 See this [blog post](https://blogs.sap.com/2021/08/23/what-is-sapui5/) for more information.
 
