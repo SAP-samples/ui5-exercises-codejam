@@ -1,3 +1,5 @@
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/ui5-exercises-codejam)](https://api.reuse.software/info/github.com/SAP-samples/ui5-exercises-codejam)
+
 # SAP CodeJam - UI5
 
 This repository contains the material for SAP CodeJam events on UI5.
