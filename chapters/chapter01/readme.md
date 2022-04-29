@@ -259,6 +259,20 @@ We defined our first XML view with a few UI5 controls. UI5 controls are reusable
 
 You might be wondering how you as a developer can find out which UI5 controls to use and what attributes and APIs they have. The official [SAPUI5 API Reference](https://sapui5.hana.ondemand.com/#/api) as well as the [Code Samples](https://sapui5.hana.ondemand.com/#/controls) are your go-to resources and contain all the information you will ever need.
 
+<details>
+<summary>What do the individual controls in our code do? 💬</summary>
+
+<br>
+
+- The [`<View />`](https://sapui5.hana.ondemand.com/#/api/sap.ui.core.mvc.View) control is our base class for the view. At the top of the file you can see that it is part of the `sap.ui.core.mvc` library, which we assign the xml namespace (abbreviated `xmlns`) `mvc` to. We always use controls by prefixing its namespace followed by a colon (`<mcv:View />`, we will cover what `mvc` stands for in [chapter 3](/chapters/chapter03#5-add-a-new-flexbox--to-the-appwebappviewappviewxml)), but each view can have one default namespace, that can be omitted. In our case we assigned the `sap.m` library to the default namespace.
+- The [`<App />`](https://sapui5.hana.ondemand.com/#/api/sap.m.App) control is the root element of a UI5 app. In the documentation we can see that its [default aggregation]((https://sapui5.hana.ondemand.com/#/api/sap.m.App%23aggregations)) is `<pages />`. This means that these are the expected children of the `<App />` control. Aggregations are always lowercase.
+- The [`<Page />`](https://sapui5.hana.ondemand.com/#/api/sap.m.Page) control is a container that holds one whole screen of an app. In the documentation we can see that its [default aggregation]((https://sapui5.hana.ondemand.com/#/api/sap.m.Page%23aggregations)) is `<content />` and that it can have a `title` text appearing in the page header bar.
+- The [`<Panel />`](https://sapui5.hana.ondemand.com/#/api/sap.m.Panel%23overview) control is a container for grouping and displaying information. In the documentation we can see that its [default aggregation]((https://sapui5.hana.ondemand.com/#/api/sap.m.Panel%23aggregations)) is `<content />`. We can also see that we can define a `headerText` that will be displayed at the top of it. 
+
+
+</details>
+
+
 ### 7. Run our app
 
 At this point we have already created a fully functional UI5 app. Let's start our app.
@@ -269,7 +283,9 @@ At this point we have already created a fully functional UI5 app. Let's start ou
 npm run dev 
 ```
 
-We ran the script to start our app locally, which is defined in our [package.json](/bookshop/package.json). We did this on root level of the `bookshop` project, as we want to start both our front and backend application. The SAP Cloud Application Model automatically looks for `html` files inside the `app/` directory and serves them on a web server (`localhost:4004` or something similar) alongside the service endpoints for the backend application (see [srv](/bookshop/srv/)).
+We ran the script to start our app locally, which is defined in our [package.json](/bookshop/package.json). We did this on root level of the `bookshop` project, as we want to start both our front and backend application. The SAP Cloud Application Model automatically looks for `html` files inside the `app/` directory and serves them on a web server alongside the service endpoints for the backend application (see [srv](/bookshop/srv/)). You can find the URL to access it in the terminal output. It will be [http://localhost:4004](http://localhost:4004) or something similar depending on your development environment.
+
+The server is set to restart once it detects a change in one of the files. This is very useful as we don't have to do this manually after we make a tiny change to our app. You can test this by editing the `title` attribute of the `<Page />` and reloading the page in the browser.
 
 ![http://localhost:4004](/chapters/chapter01/chapter01-result1.png)
 ![http://localhost:4004/webapp/index.html](/chapters/chapter01/chapter01-result2.png)
