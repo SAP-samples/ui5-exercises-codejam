@@ -19,13 +19,13 @@ At the end of this chapter we will have made our UI5 app interactive so that a u
 sap.ui.define([
     "sap/ui/core/mvc/Controller"
 ], function (Controller) {
-    "use strict";
+    "use strict"
     return Controller.extend("sap.codejam.controller.App", {
         onInit: function () {
             alert("I am about to initialize the view.")
         }
-    });
-});
+    })
+})
 ```
 
 We created our first controller file. We imported the `Controller` from the library, passed it to a function and extended it. To demonstrate how the controller works, we added an alert to the `onInit` method, which automatically gets triggered upon initialization of the view.
@@ -56,10 +56,10 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel"
 ], function (Controller, JSONModel) {
-    "use strict";
+    "use strict"
     return Controller.extend("sap.codejam.controller.App", {
         onInit: function () {
-            this.getView().setModel(new JSONModel({}), "userSelection");
+            this.getView().setModel(new JSONModel({}), "userSelection")
         },
         onSelect: function (oEvent) {
             let oModel = this.getView().getModel("userSelection")
@@ -68,8 +68,8 @@ sap.ui.define([
             oModel.setProperty("/selectedItemPath", selectedModelPath)
             oModel.setProperty("/selectedItemData", selectedModelData)
         }
-    });
-});
+    })
+})
 ```
 
 We imported the `JSONModel` from the library and instantiated a new one with the name `userSelection` in the `onInit` method of the controller. We also defined a new `onSelect` method for when a user clicks on a book in the table. Inside this method, we get the `userSelection` model and set the data of the selected item (as well as the path to it) as a new property of the model.
