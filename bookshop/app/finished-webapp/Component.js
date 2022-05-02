@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (UIComponent) {
     "use strict"
     return UIComponent.extend(
-        "sap.ui.demo.Component", {
+        "sap.codejam.Component", {
             metadata : {
                 "interfaces": [
                     "sap.ui.core.IAsyncContentCreation"
