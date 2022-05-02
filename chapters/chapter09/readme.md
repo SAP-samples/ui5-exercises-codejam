@@ -92,7 +92,7 @@ We defined all routes for our approuter. Each route has a source (based on a reg
                     "Authentication": "NoAuthentication",
                     "ProxyType": "Internet",
                     "Type": "HTTP",
-                    "URL": "URL OF REMOTE SERVICE"
+                    "URL": "https://cf-ic2022-ll-supporters-bookshop-srv.cfapps.eu10-004.hana.ondemand.com"
                 }
             ]
         }
