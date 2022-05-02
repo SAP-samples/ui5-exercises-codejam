@@ -177,7 +177,7 @@ We have set up our component by initializing the `UIComponent` from the UI5 libr
 <br>
 
 Our component set up is essentially a JavaScript module. We have defined it with the `sap.ui.define` method. This method takes two parameters (also see its [documentation](https://sapui5.hana.ondemand.com/sdk/#/api/sap.ui%23methods/sap.ui.define)):
-1. An array of dependencies from a UI5 library
+1. An array of dependencies from UI5 libraries
 1. A function that will be executed
 
 Our only dependency is the `UIComponent`, which we pass to the function. This function returns the `UIComponent`, but [extends](https://sapui5.hana.ondemand.com/sdk/#/api/sap.ui.core.UIComponent%23methods/sap.ui.core.UIComponent.extend) it with an new subclass that we call `sap.codejam.Component`. This subclass is enriched with a `metadata` parameter, which is an object that points to a `manifest.json` and makes sure that the `UIComponent` is created fully asynchronously (`"sap.ui.core.IAsyncContentCreation"`). The subclass is also enriched by an `init` function, which is automatically invoked by the framework when the component is instantiated. Inside this function, we make sure that the init function of the `UIComponent`'s parent is invoked (which is obligatory).
@@ -285,7 +285,7 @@ npm run dev
 
 We ran the script to start our app locally, which is defined in our [package.json](/bookshop/package.json). We did this on root level of the `bookshop` project, as we want to start both our front and backend application. The SAP Cloud Application Model automatically looks for `html` files inside the `app/` directory and serves them on a web server alongside the service endpoints for the backend application (see [srv](/bookshop/srv/)). You can find the URL to access it in the terminal output. It will be [http://localhost:4004](http://localhost:4004) or something similar depending on your development environment.
 
-The server is set to restart once it detects a change in one of the files. This is very useful as we don't have to do this manually after we make a tiny change to our app. You can test this by editing the `title` attribute of the `<Page />` and reloading the page in the browser.
+The server is set to restart once it detects a change in one of the files. This is very useful as we don't have to do this manually after we one or more changes to our app. You can test this by editing the `title` attribute of the `<Page />` and reloading the page in the browser.
 
 ![http://localhost:4004](/chapters/chapter01/chapter01-result1.png)
 ![http://localhost:4004/webapp/index.html](/chapters/chapter01/chapter01-result2.png)
