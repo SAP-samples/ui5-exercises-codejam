@@ -1,62 +1,35 @@
 {
-  "name": "bookshop",
-  "version": "1.0.0",
-  "description": "A simple CAP project.",
-  "repository": "<Add your repository here>",
-  "license": "UNLICENSED",
-  "private": true,
-  "dependencies": {
-    "@sap/cds": "^4.6.6",
-    "@sap/cds-dk": "^4",
-    "@sap/hana-client": "^2.6.61",
-    "@sap/xsenv": "^3.1.1",
-    "@sap/xssec": "^2.2.5",
-    "mbt": "^1.2.7",
-    "express": "^4",
-    "passport": "^0.4.1"
-  },
-  "devDependencies": {
-    "sqlite3": "^5.0.2"
-  },
-  "scripts": {
-    "start": "cds run",
-    "dev": "cds watch",
-    "build": "mbt build"
-  },
-  "cds": {
-    "hana": {
-      "deploy-format": "hdbtable"
+    "name": "bookshop",
+    "version": "1.0.0",
+    "description": "A simple self-contained bookshop service.",
+    "files": [
+        "app",
+        "srv",
+        "db",
+        "index.cds",
+        "index.js"
+    ],
+    "dependencies": {
+        "@sap/cds": ">=5.9",
+        "express": "^4.17.1",
+        "passport": ">=0.4.1",
+        "@sap/cds-dk": "^4",
+        "mbt": "^1.2",
+        "@sap/hana-client": "^2"
     },
-    "requires": {
-      "db": {
-        "kind": "sql"
-      }
+    "scripts": {
+        "start": "cds run",
+        "dev": "cds watch",
+        "build": "mbt build"
+    },
+    "cds": {
+        "hana": {
+            "deploy-format": "hdbtable"
+        },
+        "requires": {
+            "db": {
+                "kind": "sql"
+            }
+        }
     }
-  },
-  "eslintConfig": {
-    "extends": "eslint:recommended",
-    "env": {
-      "es2020": true,
-      "node": true,
-      "jest": true,
-      "mocha": true
-    },
-    "globals": {
-      "SELECT": true,
-      "INSERT": true,
-      "UPDATE": true,
-      "DELETE": true,
-      "CREATE": true,
-      "DROP": true,
-      "CDL": true,
-      "CQL": true,
-      "CXL": true,
-      "cds": true,
-      "sap": true
-    },
-    "rules": {
-      "no-console": "off",
-      "require-atomic-updates": "off"
-    }
-  }
 }
