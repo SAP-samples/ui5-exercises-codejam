@@ -103,7 +103,7 @@ We created a Table that displays the books from our bookshop data. Let's go thro
 - The `<items />` (rows) of our `<Table />` hold a [`<ColumnListItem />`](https://sapui5.hana.ondemand.com/#/api/sap.m.ColumnListItem), which serves as a wrapper for the `<cells />` of each row. The controls inside the `<cells />` aggregation have to match our `<columns />` with respect to the order of the content (book, author, genre, price, stock).
 - Check the [documentation](https://sapui5.hana.ondemand.com/#/api/sap.m.ColumnListItem%23controlProperties) to see what the `vAlign` and `type` attributes for the `<ColumnListItem />` do.
 - Inside the `<cells />` we display the actual data and make use of the data binding concept again. As our whole `<Table />` is bound to the `value` array of our data model, we can bind the controls inside the `<cells />` aggregation to properties of the items inside that array, such a the title and author.
-- For the controls inside the `<cells />` aggregation we selected controls that fit the kind of data that they display.
+- For the controls inside the `<cells />` aggregation we selected controls that fit the type of data that they display.
 
 You might want to check the documentation for the [`<ColumnListItems />`](https://sapui5.hana.ondemand.com/#/api/sap.m.ColumnListItem%23controlProperties) control to see what the attributes `vAlign` and `type` in our code mean.
 
