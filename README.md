@@ -16,6 +16,25 @@ The finished UI5 bookshop app already exists in the [bookshop/app/finished-webap
 
 After reading all chapters and following the instructions, you will be able to build your own UI5 applications leveraging the official [SAPUI5 API Reference](https://sapui5.hana.ondemand.com/#/api).
 
+## Previous Knowledge
+
+The material in this repository aims to be beginner friendly. If you have never built a (UI5) web app before, you will still be able to follow along. No prior knowledge is required, although it certainly helps to have experience in (web) development.
+
+The material includes additional explanations in collapsable sections (see example below), whenever a concept is used that web developers are probably already familiar with, but beginners might not be. You can decide for yourself whether you want to read or skip them. 
+
+See this example:
+
+<details>
+<summary>What is SAPUI5? 💬</summary>
+
+<br>
+
+> SAPUI5 is an HTML5 framework for creating cross-platform, enterprise-grade web applications in an efficient way.
+>
+> See this [blog post](https://blogs.sap.com/2021/08/23/what-is-sapui5/) for more information.
+
+</details>
+
 ## Material Organization
 
 The material consists of a series of chapters. The chapters build on top of each other and are meant to be completed in the given order. Each of the [chapters](/chapters/) has its own 'readme' file with explanations, instructions, code samples and screen shots.
@@ -33,23 +52,6 @@ The material consists of a series of chapters. The chapters build on top of each
 1. [Adding Custom CSS](/chapters/chapter08)
 1. [Deploying Our App](/chapters/chapter09) (Optional)
 1. [Further Improvements and Learning Material](/chapters/chapter10)
-
-## Previous Knowledge
-
-The material in this repository aims to be beginner friendly. If you have never built a (UI5) web app before, you will still be able to follow along. No prior knowledge is required, although it certainly helps to have experience in (web) development.
-
-The material includes additional explanations in collapsable sections (see example below), whenever a concept is used that web developers are probably already familiar with, but beginners might not be. You can decide for yourself whether you want to read or skip them. See this example:
-
-<details>
-<summary>What is SAPUI5? 💬</summary>
-
-<br>
-
-SAPUI5 is an HTML5 framework for creating cross-platform, enterprise-grade web applications in an efficient way.
-
-See this [blog post](https://blogs.sap.com/2021/08/23/what-is-sapui5/) for more information.
-
-</details>
 
 ## SAPUI5 vs. OpenUI5
 
