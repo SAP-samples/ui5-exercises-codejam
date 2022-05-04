@@ -151,7 +151,7 @@ In case you are wondering, we configured the root of our project, which is the `
 
 ```javascript
 sap.ui.define([
-    "sap/ui/core/UIComponent",
+    "sap/ui/core/UIComponent"
 ], function (UIComponent) {
     "use strict"
     return UIComponent.extend(
