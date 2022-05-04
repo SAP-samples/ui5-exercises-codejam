@@ -4,13 +4,13 @@ At the end of this chapter we will have added a new feature to our bookshop that
 
 ## Steps
 
-[1. Add input field button to our `app/webapp/view/App.view.xml`](#1-add-input-field-button-to-our-appwebappviewappviewxml)<br>
+[1. Add input field and button to our `app/webapp/view/App.view.xml`](#1-add-input-field-and-button-to-our-appwebappviewappviewxml)<br>
 [2. Modify the `userSelection` model](#2-modify-the-userselection-model)<br>
 [3. Add a new `onSubmitOrder` method to our `app/webapp/controller/App.controller.js`](#3-add-a-new-onsubmitorder-method-to-our-appwebappcontrollerappcontrollerjs)<br>
 [4. Reset `userSelection` model and `orderStatus` text](#4-reset-userselection-model-and-orderstatus-text)<br>
 [5. Test the new feature](#5-test-the-new-feature)<br>
 
-### 1. Add input field button to our `app/webapp/view/App.view.xml`
+### 1. Add input field and button to our `app/webapp/view/App.view.xml`
 
 We need an input field for the order quantity as well as an order button for our new feature.
 
@@ -97,7 +97,7 @@ onSubmitOrder: function () {
 }
 ```
 
-We added a new `onSubmitOrder` method to our controller which we already bound to the press event of the order button in step 1 of this chapter. The method gets the `userSelection` model and defines a new a new ajax request, which is an easy-to-use technique for accessing web servers (our CAP backend) from a web page (our UI5 frontend) with asynchronous HTTP requests. Ajax is part of the popular jQuery library, which is already included in UI5. The request is sent to the `/browser/submitOrder` endpoint of our backend application. It handles the subtraction of the ordered books in the database for us. After the request is sent it can go one of two ways:
+We added a new `onSubmitOrder` method to our controller which we already bound to the press event of the order button in [step 1](/chapters/chapter04#1-add-input-field-and-button-to-our-appwebappviewappviewxml) of this chapter. The method gets the `userSelection` model and defines a new a new Ajax request, which is an easy-to-use technique for accessing web servers (our CAP backend) from a web page (our UI5 frontend) with asynchronous HTTP requests. Ajax is part of the popular jQuery library, which is already included in UI5. The request is sent to the `/browser/submitOrder` endpoint of our backend application. It handles the subtraction of the ordered books in the database for us. After the request is sent it can go one of two ways:
 1. **done ✅** : The request is successful, we get the new `stock` of the book in the response. In that case we display a success message in the `<ObjectStatus />` control that we added in step 1 of this chapter and set its state to `Success`, which makes it turn green. We also update both our default model and our `userSelection` model with the new `stock`. Because of the data binding the stock in the table will then automatically be updated.
 1. **fail ❌** : The request was unsuccessful, we get an error message in response. In that case we display `Error` and set the state of the  `<ObjectStatus />` to `Error` as well, which makes it turn red.
 
