@@ -28,10 +28,7 @@
     },
     "requires": {
       "db": {
-        "kind": "sql",
-        "credentials": {
-          "database": "my.db"
-        }
+        "kind": "sql"
       }
     }
   },
