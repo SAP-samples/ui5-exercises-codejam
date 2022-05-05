@@ -6,11 +6,11 @@ Please note: This step is optional and not specific to UI5, but rather covers th
 
 To be able to complete this chapter you need to fulfill ***all*** of the following requirements:
 - You need to have an account on the SAP Business Technology platform (SAP BTP) with the Cloud Foundry Environment enabled. Learn more about how to get an account [here](https://developers.sap.com/group.btp-setup.html). You also need at least 2 units of Cloud Foundry Runtime assigned to your subaccount and available to consume.
-- You need to have the [Cloud Foundry Command Line Interface](https://docs.cloudfoundry.org/cf-cli/) installed in your development environment. Ff you work in the SAP Business Application Studio or in a devcontainer using the [provided configuration](/.devcontainer) this is already taken care of. You can verify your installation by running `cf -v`.
+- You need to have the [Cloud Foundry Command Line Interface](https://docs.cloudfoundry.org/cf-cli/) installed in your development environment. If you work in the SAP Business Application Studio or in a devcontainer using the [provided configuration](/.devcontainer) this is already taken care of. You can verify your installation by running `cf -v`.
 
 ## Deploying Our App
 
-At the end of this chapter we will have deployed our UI5 to the Cloud Foundry Environment on the SAP BTP. To keep it as simple as possible, we will not deploy the backend application of this project that we used for local development, but consume a remote service instead.
+By the end of this chapter, we will have deployed our UI5 to the Cloud Foundry Environment on the SAP BTP. To keep it as simple as possible, we will not deploy the backend application of this project that we used for local development, but consume a remote service instead.
 
 ## Steps
 
@@ -75,7 +75,7 @@ An approuter requires an `xs-app.json` file defining all the routes it should ha
 }
 ```
 
-We defined all routes for our approuter. Each route has a source (based on a regular expression) and additional  properties that define it. The most important route is the second one (`^(.*)$`), which states that all incoming requests will be proxied to our local `webapp/` directory. This in combination with `index.html` as our `welcomeFile` makes users get to the UI5 app when accessing the approuter. The `/browse(.*)` route makes sure that requests to the backend (see the `capBooks` data source in our `app/webapp/manifest.json`) will be proxied to a destination called `browse-bookshop`. Let us define this destination in the next step.
+We defined all routes for our approuter. Each route has a source (based on a regular expression) and additional properties that define it. The most important route is the second one (`^(.*)$`), which states that all incoming requests will be proxied to our local `webapp/` directory. This in combination with `index.html` as our `welcomeFile` makes users get to the UI5 app when accessing the approuter. The `/browse(.*)` route makes sure that requests to the backend (see the `capBooks` data source in our `app/webapp/manifest.json`) will be proxied to a destination called `browse-bookshop`. Let us define this destination in the next step.
 
 ### 3. Create a new `app/remote-destination.json` file to define a destination
 
