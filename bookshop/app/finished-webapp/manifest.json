@@ -27,6 +27,7 @@
                 "dataSource": "capBooks",
                 "autoExpandSelect": true,
                 "settings":{
+                    "operationMode" : "Server",
                     "synchronizationMode" : "None"
                 }
             },

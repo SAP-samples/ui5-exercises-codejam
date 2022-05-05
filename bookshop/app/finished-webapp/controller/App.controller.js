@@ -27,20 +27,14 @@ sap.ui.define([
             })
         },
         onSearch: function (oEvent) {
-            var aFilter = [];
-            var sQuery = oEvent.getParameter("newValue");
+            let aFilter = []
+            let sQuery = oEvent.getParameter("newValue")
             if (sQuery) {
-                aFilter.push(new Filter("title", FilterOperator.Contains, sQuery));
+                aFilter.push(new Filter("title", FilterOperator.Contains, sQuery))
             }
-            var oList = this.byId("booksTable");
-            var oBinding = oList.getBinding("items");
-            oBinding.filter(aFilter);
-
-            let oModel = this.getView().getModel("userSelection")
-            oModel.setProperty("/selectedItemPath", {})
-            oModel.setProperty("/selectedItemData", {})
-            this.getView().byId("orderStatus").setText("")
-            oModel.setProperty("/itemSelected", false)
+            let oList = this.byId("booksTable")
+            let oBinding = oList.getBinding("items")
+            oBinding.filter(aFilter)
         }
     });
 });
