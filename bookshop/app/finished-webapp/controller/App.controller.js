@@ -7,61 +7,24 @@ sap.ui.define([
     "use strict";
     return Controller.extend("sap.codejam.controller.App", {
         onInit: function () {
-            this.getView().setModel(new JSONModel({
-                itemSelected: false,
-                selectedQuantity: 1
-            }), "userSelection")
+
         },
         onSelect: function (oEvent) {
-            let oModel = this.getView().getModel("userSelection")
-            let selectedModelPath = oEvent.getSource().getBindingContext().sPath
-            let selectedModelData = oEvent.getSource().getModel().getProperty(selectedModelPath)
-            oModel.setProperty("/selectedItemPath", selectedModelPath)
-            oModel.setProperty("/selectedItemData", selectedModelData)
-
-            oModel.setProperty("/selectedQuantity", 1)
-            this.getView().byId("orderStatus").setText("")
-            oModel.setProperty("/itemSelected", true)
+            let form = this.getView().byId("bookdetails"),
+                contextPath = oEvent.getSource().getBindingContextPath();
+            form.bindElement(contextPath);
+            this.getView().byId("orderBtn").setEnabled(true);
         },
-        onSubmitOrder: function () {
-            let oView = this.getView()
-            let userSelectionData = oView.getModel("userSelection").getData()
-        
-            let reqSettings = {
-                "url": "/browse/submitOrder",
-                "method": "POST",
-                "timeout": 0,
-                "headers": {
-                    "Content-Type": "application/json"
-                },
-                "data": JSON.stringify({
-                    "book": userSelectionData.selectedItemData.ID,
-                    "quantity": userSelectionData.selectedQuantity
-                }),
-            }
-        
-            let i18nModel = oView.getModel("i18n")
-            jQuery.ajax(reqSettings)
-                .done(function (response) {
-                    console.log(response)
-                    oView.byId("orderStatus")
-                        .setText(
-                            `${i18nModel.getProperty("orderSuccessful")} 
-                            (${userSelectionData.selectedItemData.title}, 
-                            ${userSelectionData.selectedQuantity} 
-                            ${i18nModel.getProperty("pieces")})`
-                        )
-                    oView.byId("orderStatus").setState("Success")
+        onSubmitOrder: function (oEvent) {
+            let selectedBookID = oEvent.getSource().getParent().getParent().getBindingContext().getObject().ID,
+                quantity = this.getView().byId("stepInput").getValue();
+            let oAction = oEvent.getSource().getParent().getObjectBinding();
+            oAction.setParameter("book", selectedBookID);
+            oAction.setParameter("quantity", quantity);
             
-                    let userSelectedPath = oView.getModel("userSelection").getProperty("/selectedItemPath")
-                    oView.getModel().setProperty(userSelectedPath + "/stock", response.stock)
-                    oView.getModel("userSelection").setProperty("/selectedItemData/stock", response.stock)
-                })
-                .fail(function(response) {
-                    console.log(response)
-                    oView.byId("orderStatus").setText(`${i18nModel.getProperty("Error")}`)
-                    oView.byId("orderStatus").setState("Error")
-                })
+            oAction.execute().then(oResult => {
+                console.log(oResult)
+            })
         },
         onSearch: function (oEvent) {
             var aFilter = [];
@@ -72,7 +35,7 @@ sap.ui.define([
             var oList = this.byId("booksTable");
             var oBinding = oList.getBinding("items");
             oBinding.filter(aFilter);
-        
+
             let oModel = this.getView().getModel("userSelection")
             oModel.setProperty("/selectedItemPath", {})
             oModel.setProperty("/selectedItemData", {})

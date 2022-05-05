@@ -8,8 +8,11 @@
         },
         "dataSources": {
             "capBooks": {
-                "uri": "/browse/Books?$expand=genre",
-                "type": "JSON"
+                "uri": "/browse/",
+                "type" : "OData",
+                "settings" : {
+                    "odataVersion" : "4.0"
+                }
             }  
         }
     },
@@ -21,7 +24,11 @@
         },
         "models": {
             "": {
-                "dataSource": "capBooks"
+                "dataSource": "capBooks",
+                "autoExpandSelect": true,
+                "settings":{
+                    "synchronizationMode" : "None"
+                }
             },
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",

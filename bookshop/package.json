@@ -1,35 +1,41 @@
 {
-    "name": "bookshop",
-    "version": "1.0.0",
-    "description": "A simple self-contained bookshop service.",
-    "files": [
-        "app",
-        "srv",
-        "db",
-        "index.cds",
-        "index.js"
-    ],
-    "dependencies": {
-        "@sap/cds": ">=5.9",
-        "express": "^4.17.1",
-        "passport": ">=0.4.1",
-        "@sap/cds-dk": "^4",
-        "mbt": "^1.2",
-        "@sap/hana-client": "^2"
+  "name": "bookshop",
+  "version": "1.0.0",
+  "description": "A simple self-contained bookshop service.",
+  "files": [
+    "app",
+    "srv",
+    "db",
+    "index.cds",
+    "index.js"
+  ],
+  "dependencies": {
+    "@sap/cds": ">=5.9",
+    "express": "^4.17.1",
+    "passport": ">=0.4.1",
+    "@sap/cds-dk": "^4",
+    "mbt": "^1.2",
+    "@sap/hana-client": "^2"
+  },
+  "scripts": {
+    "start": "cds run",
+    "dev": "cds watch",
+    "build": "mbt build"
+  },
+  "cds": {
+    "hana": {
+      "deploy-format": "hdbtable"
     },
-    "scripts": {
-        "start": "cds run",
-        "dev": "cds watch",
-        "build": "mbt build"
-    },
-    "cds": {
-        "hana": {
-            "deploy-format": "hdbtable"
-        },
-        "requires": {
-            "db": {
-                "kind": "sql"
-            }
+    "requires": {
+      "db": {
+        "kind": "sql",
+        "credentials": {
+          "database": "my.db"
         }
+      }
     }
+  },
+  "devDependencies": {
+    "sqlite3": "^5.0.7"
+  }
 }

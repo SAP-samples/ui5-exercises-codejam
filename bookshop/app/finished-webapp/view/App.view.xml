@@ -13,7 +13,7 @@
                     <SearchField liveChange=".onSearch"/>
                     <Table
                         id="booksTable"
-                        items="{/value}">
+                        items="{/Books}">
                         <columns>
                             <Column>
                                 <Text text="{i18n>Book}" />
@@ -58,21 +58,22 @@
                             </ColumnListItem>
                         </items>
                     </Table>
-                    <FlexBox direction="Column" class="sapUiMediumMarginTop">
-                        <FlexBox alignItems="Center" justifyContent="End" class="orderControls" >
+                    <FlexBox direction="Column" class="sapUiMediumMarginTop" id="bookdetails">
+                        <FlexBox alignItems="Center" justifyContent="End" class="orderControls" binding="{/submitOrder(...)}" >
                             <ObjectStatus id="orderStatus" text="" />
-                            <Button text="Order" press=".onSubmitOrder" />
+                            <Button id="orderBtn" text="Order" press=".onSubmitOrder" enabled="false" />
                             <StepInput
-                                value="{userSelection>/selectedQuantity}"
-                                min="0"
+                                value="{$Parameter/quantity}"
+                                min="1"
                                 textAlign="Center"
+                                id="stepInput"
                                 class="sapUiSmallMarginRight"
-                                max="{userSelection>/selectedItemData/stock}" />                        
+                                max="{stock}" />                        
                         </FlexBox>
                         <FlexBox direction="Column" >
-                            <Title text="{userSelection>/selectedItemData/title}" />
+                            <Title text="{title}" />
                             <Text 
-                                text="{userSelection>/selectedItemData/descr}"
+                                text="{descr}"
                                 class="sapUiSmallMarginTop" />
                         </FlexBox>
                     </FlexBox>
