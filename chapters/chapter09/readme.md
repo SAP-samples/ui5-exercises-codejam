@@ -15,7 +15,7 @@ By the end of this chapter, we will have deployed our UI5 to the Cloud Foundry E
 ## Steps
 
 [1. Wrap the UI5 app into a Node.js based application using the `@sap/approuter` package](#1-wrap-the-ui5-app-into-a-nodejs-based-application-using-the-sapapprouter-package)<br>
-[2. Define routes for the approuter in an `app/webapp/xs-app.json` file](#2-define-routes-for-the-approuter-in-an-appwebappxs-appjson-file)<br>
+[2. Define routes for the approuter in an `app/xs-app.json` file](#2-define-routes-for-the-approuter-in-an-appxs-appjson-file)<br>
 [3. Create a new `app/remote-destination.json` file to define a destination](#3-create-a-new-appremote-destinationjson-file-to-define-a-destination)<br>
 [4. Create an `app/mta.yaml` file to describe the build process](#4-create-an-appmtayaml-file-to-describe-the-build-process)<br>
 [5. Navigate into the `app` directory](#5-navigate-into-the-app-directory)<br>
@@ -49,7 +49,7 @@ We want to wrap our UI5 app into a Node.js based application that uses the `@sap
 
 We initialized a Node.js based application inside our `app` directory. It uses the `@sap/approuter` package which makes it a so called 'standalone approuter'.
     
-### 2. Define routes for the approuter in an `app/webapp/xs-app.json` file
+### 2. Define routes for the approuter in an `app/xs-app.json` file
 
 An approuter requires an `xs-app.json` file defining all the routes it should handle.
 
