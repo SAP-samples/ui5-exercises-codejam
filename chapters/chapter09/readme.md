@@ -110,7 +110,7 @@ We can now put all the pieces together.
 
 ```yaml
 _schema-version: '3.1'
-ID: bookshop
+ID: bookshop-approuter
 version: 1.0.0
 parameters:
   enable-parallel-deployments: true
