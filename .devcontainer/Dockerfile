@@ -5,13 +5,11 @@ ARG VARIANT="16-buster"
 FROM mcr.microsoft.com/vscode/devcontainers/javascript-node:0-${VARIANT}
 
 # Prepare for apt-based install of Cloud Foundry CLI by adding Cloud Foundry Foundation public key & package repository
-# (see https://docs.cloudfoundry.org/cf-cli/install-go-cli.html#pkg-linux).
-RUN wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add - ; \
-    echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
-
-# Install extra tools for CAP development & deployment.
-# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    # && apt-get -y install --no-install-recommends sqlite cf-cli
+# (see https://docs.cloudfoundry.org/cf-cli/install-go-cli.html).
+RUN wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
+RUN echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+RUN sudo apt-get update
+RUN sudo apt-get install cf7-cli
 
 # Install global node modules for SAP CAP and frontend development.
-RUN su node -c "npm install -g @ui5/cli @sap/cds-dk yo @sapui5/generator-sapui5-templates @sap/generator-base-mta-module @sap/generator-cap-project @sap/generator-fiori mbt typescript"
+RUN su node -c "npm install -g @ui5/cli @sap/cds-dk yo mbt"
