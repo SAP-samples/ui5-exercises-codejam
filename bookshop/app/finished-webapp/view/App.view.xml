@@ -61,13 +61,27 @@
                     <FlexBox direction="Column" class="sapUiMediumMarginTop">
                         <FlexBox alignItems="Center" justifyContent="End" class="orderControls" >
                             <ObjectStatus id="orderStatus" text="" />
-                            <Button text="Order" press=".onSubmitOrder" />
+                            <Button 
+                                text="Order"
+                                press=".onSubmitOrder"
+                                enabled="{= 
+                                    ${userSelection>/itemSelected} === true 
+                                        ? ${userSelection>/selectedItemData/stock} === 0 
+                                            || ${userSelection>/selectedQuantity} === 0
+                                            ? false 
+                                            : true 
+                                        : false}" />
                             <StepInput
                                 value="{userSelection>/selectedQuantity}"
                                 min="0"
                                 textAlign="Center"
-                                class="sapUiSmallMarginRight"
-                                max="{userSelection>/selectedItemData/stock}" />                        
+                                max="{userSelection>/selectedItemData/stock}"
+                                enabled="{= 
+                                    ${userSelection>/itemSelected} === true 
+                                        ? ${userSelection>/selectedItemData/stock} === 0 
+                                            ? false 
+                                            : true 
+                                        : false}" />                        
                         </FlexBox>
                         <FlexBox direction="Column" >
                             <Title text="{userSelection>/selectedItemData/title}" />
