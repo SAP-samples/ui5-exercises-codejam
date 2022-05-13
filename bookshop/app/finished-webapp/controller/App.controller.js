@@ -16,6 +16,7 @@ sap.ui.define([
             this.getView().byId("orderBtn").setEnabled(true);
         },
         onSubmitOrder: function (oEvent) {
+            let oView = this.getView()
             let selectedBookID = oEvent.getSource().getParent().getParent().getBindingContext().getObject().ID,
                 quantity = this.getView().byId("stepInput").getValue();
             let oAction = oEvent.getSource().getParent().getObjectBinding();
@@ -24,6 +25,7 @@ sap.ui.define([
             
             oAction.execute().then(
                 function() {
+                    oAction.getModel().refresh()
                     let oResult = oAction.getBoundContext().getObject()
             })
         },
