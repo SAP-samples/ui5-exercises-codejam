@@ -4,35 +4,54 @@ sap.ui.define([
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator"
 ], function (Controller, JSONModel, Filter, FilterOperator) {
-    "use strict";
+    "use strict"
     return Controller.extend("sap.codejam.controller.App", {
         onSelect: function (oEvent) {
-            this.onDeselect()
+            this.onReset()
+                
             let form = this.getView().byId("bookDetails"),
-                contextPath = oEvent.getSource().getBindingContextPath();
-            form.bindElement(contextPath);
+                contextPath = oEvent.getSource().getBindingContextPath()
+            form.bindElement(contextPath)
 
+            let stepInput = this.getView().byId("stepInput")
             let contextStock = oEvent.getSource().getBindingContext().getProperty("stock")
-            this.getView().byId("stepInput").setMax(contextStock)
-            this.getView().byId("orderBtn").setEnabled(true);
-            this.getView().byId("stepInput").setEnabled(true);
+            stepInput.setMax(contextStock)
+            stepInput.setEnabled(true)
+
+            this.checkForStock(contextStock)
         },
-        onDeselect: function () {
-            this.getView().byId("bookDetails").unbindElement();
-            this.getView().byId("orderBtn").setEnabled(false);
-            this.getView().byId("stepInput").setEnabled(false);
-            this.getView().byId("stepInput").setValue(1)
-            this.getView().byId("stepInput").setValueState("None")
+        onReset: function () {
+            let oView = this.getView()
+            oView.byId("bookDetails").unbindElement()
+            oView.byId("orderControls").getObjectBinding().getParameterContext().setProperty("orderStatus", "")
+            let stepInput = oView.byId("stepInput")
+            stepInput.setEnabled(false)
+            stepInput.setValue(1)
+            stepInput.setValueState("None")
+
+            this.checkForStock()
+        },
+        checkForStock: function (contextStock) {
+            let stepInput = this.getView().byId("stepInput")
+
+            if (!contextStock || stepInput.getValue() > contextStock) {
+                this.getView().byId("orderBtn").setEnabled(false)
+            } else {
+                this.getView().byId("orderBtn").setEnabled(true)
+            }
         },
         onSubmitOrder: function (oEvent) {
             let oView = this.getView()
-            let selectedBookID = oEvent.getSource().getParent().getParent().getBindingContext().getObject().ID,
-                selectedBookTitle = oEvent.getSource().getParent().getParent().getBindingContext().getObject().title,
-                quantity = this.getView().byId("stepInput").getValue();
-            let oAction = oEvent.getSource().getParent().getObjectBinding();
-            oAction.setParameter("book", selectedBookID);
-            oAction.setParameter("quantity", quantity);
-            
+            let selectedBookID = oEvent.getSource().getParent().getParent().getBindingContext().getProperty("ID"),
+                selectedBookTitle = oEvent.getSource().getParent().getParent().getBindingContext().getProperty("title"),
+                stock = oEvent.getSource().getParent().getParent().getBindingContext().getProperty("stock"),
+                quantity = this.getView().byId("stepInput").getValue()
+            let oAction = oEvent.getSource().getParent().getObjectBinding()
+            oAction.setParameter("book", selectedBookID)
+            oAction.setParameter("quantity", quantity)
+
+            this.checkForStock(stock - quantity)
+
             oAction.execute().then(
                 function () {
                     oAction.getModel().refresh()
@@ -47,7 +66,8 @@ sap.ui.define([
                     oParameterContext.setProperty("orderStatus", oText)
                     oView.byId("orderStatus").setState("Success")
                     
-                    //let oResult = oAction.getBoundContext().getObject()
+                    let oResult = oAction.getBoundContext().getObject()
+
                 },
                 function (oError) {
                     let oParameterContext = oAction.getParameterContext()
@@ -57,7 +77,7 @@ sap.ui.define([
             )
         },
         onSearch: function (oEvent) {
-            this.onDeselect()
+            this.onReset()
             let aFilter = []
             let sQuery = oEvent.getParameter("newValue")
             if (sQuery) {
@@ -67,5 +87,5 @@ sap.ui.define([
             let oBinding = oList.getBinding("items")
             oBinding.filter(aFilter)
         }
-    });
-});
+    })
+})

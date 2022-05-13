@@ -67,6 +67,7 @@
                                 textAlign="Center"
                                 id="stepInput"
                                 class="sapUiSmallMarginRight"
+                                validationMode="LiveChange"
                                 enabled="false" />                        
                         </FlexBox>
                         <FlexBox direction="Column" >
