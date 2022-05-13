@@ -66,10 +66,10 @@
                                 min="1"
                                 textAlign="Center"
                                 id="stepInput"
-                                class="sapUiSmallMarginRight" />                        
+                                class="sapUiSmallMarginRight"
+                                enabled="false" />                        
                         </FlexBox>
                         <FlexBox direction="Column" >
-                            <Text text="{stock}" />
                             <Title text="{title}" />
                             <Text 
                                 text="{descr}"

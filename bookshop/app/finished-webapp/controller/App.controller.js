@@ -7,14 +7,22 @@ sap.ui.define([
     "use strict";
     return Controller.extend("sap.codejam.controller.App", {
         onSelect: function (oEvent) {
+            this.onDeselect()
             let form = this.getView().byId("bookDetails"),
                 contextPath = oEvent.getSource().getBindingContextPath();
             form.bindElement(contextPath);
 
             let contextStock = oEvent.getSource().getBindingContext().getProperty("stock")
             this.getView().byId("stepInput").setMax(contextStock)
-            
             this.getView().byId("orderBtn").setEnabled(true);
+            this.getView().byId("stepInput").setEnabled(true);
+        },
+        onDeselect: function () {
+            this.getView().byId("bookDetails").unbindElement();
+            this.getView().byId("orderBtn").setEnabled(false);
+            this.getView().byId("stepInput").setEnabled(false);
+            this.getView().byId("stepInput").setValue(1)
+            this.getView().byId("stepInput").setValueState("None")
         },
         onSubmitOrder: function (oEvent) {
             let oView = this.getView()
@@ -26,7 +34,7 @@ sap.ui.define([
             oAction.setParameter("quantity", quantity);
             
             oAction.execute().then(
-                function() {
+                function () {
                     oAction.getModel().refresh()
 
                     let oParameterContext = oAction.getParameterContext()
@@ -41,7 +49,7 @@ sap.ui.define([
                     
                     //let oResult = oAction.getBoundContext().getObject()
                 },
-                function(oError) {
+                function (oError) {
                     let oParameterContext = oAction.getParameterContext()
                     oParameterContext.setProperty("orderStatus", oError.error.message)
                     oView.byId("orderStatus").setState("Error")
@@ -49,6 +57,7 @@ sap.ui.define([
             )
         },
         onSearch: function (oEvent) {
+            this.onDeselect()
             let aFilter = []
             let sQuery = oEvent.getParameter("newValue")
             if (sQuery) {
