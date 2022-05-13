@@ -10,7 +10,7 @@ By the end of this chapter, we will have added a Table to our UI5 app that displ
 
 ### 1. Add a new `dataSource` and `model` to our `app/webapp/manifest.json`
 
-Models are another major part of UI5 development. We use models to store data in our app. Models are not bound to or represented by a specific file, but are dynamic objects that can be consumed and modified by different parts of the app. They can be created via the `manifest.json` file or via a controller (which we will do in [chapter 03](/chapters/chapter03#3-add-a-new-userselection-model-and-an-onselect-method-to-our-controller)).
+Models are another major part of UI5 development. We use models to store data in our app ("data layer"). Models are not bound to or represented by a specific file, but are dynamic objects that can be consumed and modified by different parts of the app. They can be created via the `manifest.json` file or via a controller (which we will do in [chapter 03](/chapters/chapter03#3-add-a-new-userselection-model-and-an-onselect-method-to-our-controller)).
 
 ➡️ Paste the following code into the `app/webapp/manifest.json`:
 
