@@ -13,35 +13,21 @@
 
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
-		"dbaeumer.vscode-eslint",
 		"sapse.vscode-cds",
 		"sapse.sap-ux-fiori-tools-extension-pack",
-        "sapos.yeoman-ui",
-        "hookyqr.beautify",
-        "coenraads.bracket-pair-colorizer-2",
-        "eamodio.gitlens",
-        "yzhang.markdown-all-in-one",
-        "fivepointseven.node-version",
-        "bengreenier.vscode-node-readme",
-        "christian-kohler.path-intellisense",
-        "humao.rest-client",
-        "saposs.sap-hana-driver-for-sqltools",
-        "sapse.vsc-extension-sa",
-        "mtxr.sqltools",
-        "pflannery.vscode-versionlens",
-        "visualstudioexptteam.vscodeintellicode",
-        "vscode-icons-team.vscode-icons",
-        "saposs.xml-toolkit",
-        "dotjoshjohnson.xml",
-		"SAPSE.hana-database-explorer"
+        	"hookyqr.beautify",
+        	"yzhang.markdown-all-in-one",
+        	"mechatroner.rainbow-csv", 
+        	"saposs.sap-hana-driver-for-sqltools",
+        	"saposs.xml-toolkit"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [ 4004, 3010 ],
+	"forwardPorts": [ 4004 ],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "yarn install",
+	// "postCreateCommand": "npm install",
 
-	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "node"
 }
