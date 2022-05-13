@@ -22,8 +22,9 @@ sap.ui.define([
             oAction.setParameter("book", selectedBookID);
             oAction.setParameter("quantity", quantity);
             
-            oAction.execute().then(oResult => {
-                
+            oAction.execute().then(
+                function() {
+                    let oResult = oAction.getBoundContext().getObject()
             })
         },
         onSearch: function (oEvent) {
