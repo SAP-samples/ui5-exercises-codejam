@@ -10,6 +10,10 @@ sap.ui.define([
             let form = this.getView().byId("bookDetails"),
                 contextPath = oEvent.getSource().getBindingContextPath();
             form.bindElement(contextPath);
+
+            let contextStock = oEvent.getSource().getBindingContext().getProperty("stock")
+            this.getView().byId("stepInput").setMax(contextStock)
+            
             this.getView().byId("orderBtn").setEnabled(true);
         },
         onSubmitOrder: function (oEvent) {
@@ -37,8 +41,10 @@ sap.ui.define([
                     
                     //let oResult = oAction.getBoundContext().getObject()
                 },
-                function() {
-                    console.log("error")
+                function(oError) {
+                    let oParameterContext = oAction.getParameterContext()
+                    oParameterContext.setProperty("orderStatus", oError.error.message)
+                    oView.byId("orderStatus").setState("Error")
                 }
             )
         },
