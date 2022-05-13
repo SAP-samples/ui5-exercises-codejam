@@ -58,7 +58,7 @@
                             </ColumnListItem>
                         </items>
                     </Table>
-                    <FlexBox direction="Column" class="sapUiMediumMarginTop" id="bookdetails">
+                    <FlexBox direction="Column" class="sapUiMediumMarginTop" id="bookDetails">
                         <FlexBox alignItems="Center" justifyContent="End" class="orderControls" binding="{/submitOrder(...)}" >
                             <ObjectStatus id="orderStatus" text="{stock}" />
                             <Button id="orderBtn" text="Order" press=".onSubmitOrder" enabled="false" />

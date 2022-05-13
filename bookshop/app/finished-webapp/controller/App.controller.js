@@ -10,7 +10,7 @@ sap.ui.define([
 
         },
         onSelect: function (oEvent) {
-            let form = this.getView().byId("bookdetails"),
+            let form = this.getView().byId("bookDetails"),
                 contextPath = oEvent.getSource().getBindingContextPath();
             form.bindElement(contextPath);
             this.getView().byId("orderBtn").setEnabled(true);
