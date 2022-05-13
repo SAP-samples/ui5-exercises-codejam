@@ -72,7 +72,7 @@ sap.ui.define([
 })
 ```
 
-We imported the `JSONModel` from the library and instantiated a new one with the name `userSelection` in the `onInit` method of the controller. We also defined a new `onSelect` method for when a user clicks on a book in the table. Inside this method, we get the `userSelection` model and set the data of the selected item (as well as the path to it) as a new property of the model.
+We imported the `JSONModel` from the library and instantiated a new one with the name `userSelection` in the `onInit` method of the controller. We can use this model to store data that is used to control the state of certain UI elements. We also defined a new `onSelect` method for when a user clicks on a book in the table. Inside this method, we get the `userSelection` model and set the data of the selected item (as well as the path to it) as a new property of the model.
 
 ### 4. Bind the new `onSelect` method to the `<ColumnListItem />`
 
@@ -87,7 +87,7 @@ We can now use our new method in our `app/webapp/view/App.view.xml` by binding i
     type="Active">
 ```
 
-We bound the `onSelect` method to the press event of the `<ColumnListItem />` which means it will be executed when a user clicks on a book in our table. Notice how we prefixed a dot to the method name, which is a naming convention for custom methods that live in a controller.
+We bound the `onSelect` method to the press event of the `<ColumnListItem />` which means it will be executed when a user clicks on a book in our table. Notice how we prefixed a dot to the method name, which is a naming convention for custom methods that live in a controller. The dot will be omitted when interpreted by the framework.
 
 ### 5. Add a new `<FlexBox />` to the `app/webapp/view/App.view.xml`
 
