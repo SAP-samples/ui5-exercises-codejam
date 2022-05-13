@@ -6,9 +6,6 @@ sap.ui.define([
 ], function (Controller, JSONModel, Filter, FilterOperator) {
     "use strict";
     return Controller.extend("sap.codejam.controller.App", {
-        onInit: function () {
-
-        },
         onSelect: function (oEvent) {
             let form = this.getView().byId("bookDetails"),
                 contextPath = oEvent.getSource().getBindingContextPath();
@@ -18,6 +15,7 @@ sap.ui.define([
         onSubmitOrder: function (oEvent) {
             let oView = this.getView()
             let selectedBookID = oEvent.getSource().getParent().getParent().getBindingContext().getObject().ID,
+                selectedBookTitle = oEvent.getSource().getParent().getParent().getBindingContext().getObject().title,
                 quantity = this.getView().byId("stepInput").getValue();
             let oAction = oEvent.getSource().getParent().getObjectBinding();
             oAction.setParameter("book", selectedBookID);
@@ -26,8 +24,23 @@ sap.ui.define([
             oAction.execute().then(
                 function() {
                     oAction.getModel().refresh()
-                    let oResult = oAction.getBoundContext().getObject()
-            })
+
+                    let oParameterContext = oAction.getParameterContext()
+                    let oText = 
+                        "Order successful ("
+                        + selectedBookTitle
+                        + ", "
+                        + oParameterContext.getProperty("quantity")
+                        + " pcs.)"
+                    oParameterContext.setProperty("orderStatus", oText)
+                    oView.byId("orderStatus").setState("Success")
+                    
+                    //let oResult = oAction.getBoundContext().getObject()
+                },
+                function() {
+                    console.log("error")
+                }
+            )
         },
         onSearch: function (oEvent) {
             let aFilter = []

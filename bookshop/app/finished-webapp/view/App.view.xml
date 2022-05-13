@@ -60,7 +60,8 @@
                     </Table>
                     <FlexBox direction="Column" class="sapUiMediumMarginTop" id="bookDetails">
                         <FlexBox alignItems="Center" justifyContent="End" class="orderControls" binding="{/submitOrder(...)}" >
-                            <ObjectStatus id="orderStatus" text="{stock}" />
+                            <Text text="{title}" />
+                            <ObjectStatus id="orderStatus" text="{ path: '$Parameter/orderStatus', targetType: 'any' }" />
                             <Button id="orderBtn" text="Order" press=".onSubmitOrder" enabled="false" />
                             <StepInput  
                                 min="1"
