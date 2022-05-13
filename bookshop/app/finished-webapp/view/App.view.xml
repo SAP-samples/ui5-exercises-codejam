@@ -60,10 +60,9 @@
                     </Table>
                     <FlexBox direction="Column" class="sapUiMediumMarginTop" id="bookdetails">
                         <FlexBox alignItems="Center" justifyContent="End" class="orderControls" binding="{/submitOrder(...)}" >
-                            <ObjectStatus id="orderStatus" text="" />
+                            <ObjectStatus id="orderStatus" text="{stock}" />
                             <Button id="orderBtn" text="Order" press=".onSubmitOrder" enabled="false" />
-                            <StepInput
-                                value="{$Parameter/quantity}"
+                            <StepInput  
                                 min="1"
                                 textAlign="Center"
                                 id="stepInput"

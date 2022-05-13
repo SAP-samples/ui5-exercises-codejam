@@ -23,7 +23,7 @@ sap.ui.define([
             oAction.setParameter("quantity", quantity);
             
             oAction.execute().then(oResult => {
-                console.log(oResult)
+                
             })
         },
         onSearch: function (oEvent) {
