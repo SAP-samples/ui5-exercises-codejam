@@ -12,7 +12,10 @@
                 "type" : "OData",
                 "settings" : {
                     "odataVersion" : "4.0"
-                }
+                },
+                "parameters": {
+                    "expand": "genre"
+                 }
             }  
         }
     },

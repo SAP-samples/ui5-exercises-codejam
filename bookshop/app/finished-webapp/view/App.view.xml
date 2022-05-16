@@ -13,7 +13,7 @@
                     <SearchField liveChange=".onSearch"/>
                     <Table
                         id="booksTable"
-                        items="{/Books}">
+                        items="{ path: '/Books', parameters: { $expand: 'genre' } }">
                         <columns>
                             <Column>
                                 <Text text="{i18n>Book}" />
