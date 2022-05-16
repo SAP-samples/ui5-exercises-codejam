@@ -2,8 +2,11 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
-    "sap/m/MessageToast"
-], function (Controller, Filter, FilterOperator, MessageToast) {
+    "sap/m/MessageToast",
+    "sap/m/Dialog",
+    "sap/m/Button",
+    "sap/m/Text"
+], function (Controller, Filter, FilterOperator, MessageToast, Dialog, Button, Text) {
     "use strict"
     return Controller.extend("sap.codejam.controller.App", {
         onSelect: function (oEvent) {
@@ -38,17 +41,18 @@ sap.ui.define([
             this.getView().byId("orderBtn").setEnabled(true)
         },
         onSubmitOrder: function (oEvent) {
-            let oView = this.getView()
-            let selectedBookID = oEvent.getSource().getParent().getParent().getBindingContext().getProperty("ID"),
-                selectedBookTitle = oEvent.getSource().getParent().getParent().getBindingContext().getProperty("title"),
-                stock = oEvent.getSource().getParent().getParent().getBindingContext().getProperty("stock"),
+            let oBindingContext = oEvent.getSource().getParent().getParent().getBindingContext()
+            let selectedBookID = oBindingContext.getProperty("ID"),
+                selectedBookTitle = oBindingContext.getProperty("title"),
+                stock = oBindingContext.getProperty("stock"),
                 quantity = this.getView().byId("stepInput").getValue()
             let oAction = oEvent.getSource().getParent().getObjectBinding()
             oAction.setParameter("book", selectedBookID)
             oAction.setParameter("quantity", quantity)
 
             this.checkIfStockExceeds(stock - quantity)
-
+            
+            let that = this
             oAction.execute().then(
                 function () {
                     oAction.getModel().refresh()
@@ -60,16 +64,25 @@ sap.ui.define([
                         + ", "
                         + oParameterContext.getProperty("quantity")
                         + " pcs.)"
-                    oParameterContext.setProperty("orderStatus", oText)
-                    oView.byId("orderStatus").setState("Success")
                     
                     MessageToast.show(oText)
                     //let oResult = oAction.getBoundContext().getObject()
                 },
                 function (oError) {
-                    let oParameterContext = oAction.getParameterContext()
-                    oParameterContext.setProperty("orderStatus", oError.error.message)
-                    oView.byId("orderStatus").setState("Error")
+                    that.oErrorMessageDialog = new Dialog({
+                        type: "Standard",
+                        title: "Error",
+                        state: "Error",
+                        content: new Text({ text: oError.error.message })
+                        .addStyleClass("sapUiTinyMargin"),
+                        beginButton: new Button({
+                            text: "OK",
+                            press: function () {
+                                that.oErrorMessageDialog.close()
+                            }.bind(this)
+                        })
+                    })
+                    that.oErrorMessageDialog.open();
                 }
             )
         },

@@ -59,13 +59,12 @@
                         </items>
                     </Table>
                     <FlexBox direction="Column" class="sapUiMediumMarginTop" id="bookDetails">
-                        <FlexBox alignItems="Center" justifyContent="End" id="orderControls" class="orderControls" binding="{/submitOrder(...)}" >
-                            <ObjectStatus id="orderStatus" text="{ path: '$Parameter/orderStatus', targetType: 'any' }" />
+                        <FlexBox alignItems="Center" justifyContent="End" class="orderControls" binding="{/submitOrder(...)}" >
                             <Button id="orderBtn" text="Order" press=".onSubmitOrder" enabled="false" />
-                            <StepInput  
+                            <StepInput 
+                                id="stepInput"
                                 min="1"
                                 textAlign="Center"
-                                id="stepInput"
                                 class="sapUiSmallMarginRight"
                                 validationMode="LiveChange"
                                 validationError=".disableOrderBtn"
