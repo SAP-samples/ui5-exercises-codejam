@@ -68,6 +68,8 @@
                                 id="stepInput"
                                 class="sapUiSmallMarginRight"
                                 validationMode="LiveChange"
+                                validationError=".disableOrderBtn"
+                                change=".enableOrderBtn"
                                 enabled="false" />                        
                         </FlexBox>
                         <FlexBox direction="Column" >

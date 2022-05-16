@@ -1,14 +1,12 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/model/json/JSONModel",
     "sap/ui/model/Filter",
-    "sap/ui/model/FilterOperator"
-], function (Controller, JSONModel, Filter, FilterOperator) {
+    "sap/ui/model/FilterOperator",
+    "sap/m/MessageToast"
+], function (Controller, Filter, FilterOperator, MessageToast) {
     "use strict"
     return Controller.extend("sap.codejam.controller.App", {
         onSelect: function (oEvent) {
-            this.onReset()
-                
             let form = this.getView().byId("bookDetails"),
                 contextPath = oEvent.getSource().getBindingContextPath()
             form.bindElement(contextPath)
@@ -16,29 +14,28 @@ sap.ui.define([
             let stepInput = this.getView().byId("stepInput")
             let contextStock = oEvent.getSource().getBindingContext().getProperty("stock")
             stepInput.setMax(contextStock)
-            stepInput.setEnabled(true)
 
-            this.checkForStock(contextStock)
+            this.checkIfStockExceeds(contextStock)
         },
-        onReset: function () {
-            let oView = this.getView()
-            oView.byId("bookDetails").unbindElement()
-            oView.byId("orderControls").getObjectBinding().getParameterContext().setProperty("orderStatus", "")
-            let stepInput = oView.byId("stepInput")
-            stepInput.setEnabled(false)
-            stepInput.setValue(1)
-            stepInput.setValueState("None")
-
-            this.checkForStock()
-        },
-        checkForStock: function (contextStock) {
+        checkIfStockExceeds: function (contextStock) {
             let stepInput = this.getView().byId("stepInput")
-
-            if (!contextStock || stepInput.getValue() > contextStock) {
+            
+            if (contextStock == 0) {
+                stepInput.setEnabled(false)
                 this.getView().byId("orderBtn").setEnabled(false)
+            } else if (stepInput.getValue() > contextStock) {
+                stepInput.setValue(contextStock)
+                stepInput.setEnabled(true)
             } else {
+                stepInput.setEnabled(true)
                 this.getView().byId("orderBtn").setEnabled(true)
             }
+        },
+        disableOrderBtn: function () {
+            this.getView().byId("orderBtn").setEnabled(false)
+        },
+        enableOrderBtn: function () {
+            this.getView().byId("orderBtn").setEnabled(true)
         },
         onSubmitOrder: function (oEvent) {
             let oView = this.getView()
@@ -50,7 +47,7 @@ sap.ui.define([
             oAction.setParameter("book", selectedBookID)
             oAction.setParameter("quantity", quantity)
 
-            this.checkForStock(stock - quantity)
+            this.checkIfStockExceeds(stock - quantity)
 
             oAction.execute().then(
                 function () {
@@ -66,8 +63,8 @@ sap.ui.define([
                     oParameterContext.setProperty("orderStatus", oText)
                     oView.byId("orderStatus").setState("Success")
                     
-                    let oResult = oAction.getBoundContext().getObject()
-
+                    MessageToast.show(oText)
+                    //let oResult = oAction.getBoundContext().getObject()
                 },
                 function (oError) {
                     let oParameterContext = oAction.getParameterContext()
@@ -77,7 +74,6 @@ sap.ui.define([
             )
         },
         onSearch: function (oEvent) {
-            this.onReset()
             let aFilter = []
             let sQuery = oEvent.getParameter("newValue")
             if (sQuery) {
