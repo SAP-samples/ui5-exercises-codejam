@@ -128,4 +128,14 @@ Feel free to try other language codes in case you provided translation files for
 
 ![http://localhost:4004/webapp/index.html?sap-ui-language=de](/chapters/chapter07/chapter07-result.png)
 
+<br>
+<details><summary>Further Questions to Discuss 🤔</summary>
+
+<br>
+
+- Why are the i18n capabilities of UI5 considered one of its strength? What makes them so powerful?
+
+</details>
+<br>
+
 Continue to [Chapter 8 - Adding Custom CSS](/chapters/chapter08)

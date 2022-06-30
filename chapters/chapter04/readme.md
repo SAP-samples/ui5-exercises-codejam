@@ -126,4 +126,14 @@ You will notice that it's not possible to set the quantity to be higher than the
 
 ![http://localhost:4004/webapp/index.html](/chapters/chapter04/chapter04-result.png)
 
+<br>
+<details><summary>Further Questions to Discuss 🤔</summary>
+
+<br>
+
+- What other options are there to send requests to the backend from your UI5 application?
+
+</details>
+<br>
+
 Continue to [Chapter 5 - Adding a 'Search' Feature to Our Bookshop](/chapters/chapter05)

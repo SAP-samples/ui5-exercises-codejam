@@ -292,4 +292,15 @@ The server is set to restart once it detects a change in one of the files. This 
 ![http://localhost:4004](/chapters/chapter01/chapter01-result1.png)
 ![http://localhost:4004/webapp/index.html](/chapters/chapter01/chapter01-result2.png)
 
+<br>
+<details><summary>Further Questions to Discuss 🤔</summary>
+
+<br>
+
+- What other options are there to scaffold UI5 based applications?
+- What other tools/packages can you use to run and develop UI5 applications (instead of utilizing the @sap/cds server)?
+
+</details>
+<br>
+
 Continue to [Chapter 2 - Creating and Consuming Our First Model](/chapters/chapter02)

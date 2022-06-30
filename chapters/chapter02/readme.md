@@ -117,4 +117,15 @@ This is what our view now looks like (`<Table />` collapsed in the screen shot):
 
 ![http://localhost:4004/webapp/index.html](/chapters/chapter02/chapter02-result.png)
 
+<br>
+<details><summary>Further Questions to Discuss 🤔</summary>
+
+<br>
+
+- We used a JSON model for our UI5 application? What other type of model could we have used?
+- Besides storing local data, what else can you use UI5 models for?
+
+</details>
+<br>
+
 Continue to - [Chapter 3 - Creating and Extending our First Controller](/chapters/chapter03)

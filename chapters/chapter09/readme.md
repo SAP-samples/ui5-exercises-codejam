@@ -208,4 +208,15 @@ If the build was successful and finished with no errors, we can test our booksho
 
 We successfully deployed our UI5 app to the Cloud Foundry Environment as part of a multitarget application. It consumes a remote service as the data source when running in the cloud (during local development we used a local backend application), so don't be surprised if the stock amounts suddenly decrease. Someone else might be using the same remote service at the same time.
 
+<br>
+<details><summary>Further Questions to Discuss 🤔</summary>
+
+<br>
+
+- What other options are there to deploy UI5 applications to the SAP Business Technology Platform?
+- We used a standalone approuter to deploy the application. What is the difference between this standalone approuter and a managed approuter?
+
+</details>
+<br>
+
 Continue to [Chapter 10 - Further Improvements and Learning Material](/chapters/chapter10)

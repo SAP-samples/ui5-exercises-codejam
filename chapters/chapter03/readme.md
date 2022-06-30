@@ -120,4 +120,15 @@ We added two `<FlexBox />` controls to display the data as they make it very eas
 
 ![http://localhost:4004/webapp/index.html](/chapters/chapter03/chapter03-result.png)
 
+<br>
+<details><summary>Further Questions to Discuss 🤔</summary>
+
+<br>
+
+- How does the Model-view-controller (MVC) concept work and what makes it so useful?
+- How can you debug a UI5 based application?
+
+</details>
+<br>
+
 Continue to - [Chapter 4 - Adding an 'Order' Feature to Our Bookshop](/chapters/chapter04)

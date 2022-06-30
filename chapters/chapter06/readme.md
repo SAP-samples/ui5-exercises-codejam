@@ -111,4 +111,14 @@ You will see that the `stock` is color coded based on the thresholds we defined.
 
 ![http://localhost:4004/webapp/index.html](/chapters/chapter06/chapter06-result.png)
 
+<br>
+<details><summary>Further Questions to Discuss 🤔</summary>
+
+<br>
+
+- What are options are there to implement custom formatting in a UI5 application?
+
+</details>
+<br>
+
 Continue to [Chapter 7 - Adding i18n Features](/chapters/chapter07)

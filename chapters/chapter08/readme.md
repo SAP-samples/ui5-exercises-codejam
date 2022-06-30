@@ -68,4 +68,15 @@ You will see that all items inside the `<FlexBox />` that we applied the new cla
 
 ![http://localhost:4004/webapp/index.html?sap-ui-language=de](/chapters/chapter08/chapter08-result.png)
 
+<br>
+<details><summary>Further Questions to Discuss 🤔</summary>
+
+<br>
+
+- What guidelines are there when it comes to custom CSS in UI5?
+- What other themes exist for Fiori based application? What is the newest one? How can you change the theme of a UI5 application?
+
+</details>
+<br>
+
 Continue to [Chapter 9 - Deploying Our App](/chapters/chapter09)
