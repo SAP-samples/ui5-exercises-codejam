@@ -113,7 +113,7 @@ We loaded the UI5 framework into our project and configured a few attributes suc
 
 ### 3. Add `ComponentSupport` to our `app/webapp/index.html` file
 
-At this point we could theoretically already start instantiating UI5 elements (also called ***controls***), but because we want to make sure our project scales well, we will follow one of the best practices and wrap our app into a ***component*** first. A component is an independent and reusable part. This makes our app independent from the environment it's running in. In our case the component will be started from the `index.html`, but because it is encapsulated and reuseable, the same component could also be started from another `html` file that is powering a Fiori Launchpad for example. A UI5 component most of the times contains a whole UI5 app, so it's a little different from components you may now from other frameworks. If you want to reuse smaller UI parts, such as a single button or dialog, UI5 offers the concept of [fragments](https://ui5.sap.com/sdk/#/topic/4da72985139b4b83b5f1c1e0c0d2ed5a), which we will not cover in this project.
+At this point we could theoretically already start instantiating UI5 elements (also called ***controls***), but because we want to make sure our project scales well, we will follow one of the best practices and wrap our app into a ***component*** first. A component is an independent and reusable part. This makes our app independent from the environment it's running in. In our case the component will be started from the `index.html`, but because it is encapsulated and reuseable, the same component could also be started from another `html` file that is powering a Fiori Launchpad for example. A UI5 component most of the times contains a whole UI5 app, so it's a little different from components you may know from other frameworks. If you want to reuse smaller UI parts, such as a single button or dialog, UI5 offers the concept of [fragments](https://ui5.sap.com/sdk/#/topic/4da72985139b4b83b5f1c1e0c0d2ed5a), which we will not cover in this project.
 
 We need to add the `ComponentSupport` to the bootstrapping of our app and add a component to our html `<body />`.
 
@@ -153,7 +153,7 @@ We used the `data-sap-ui-oninit` attribute in our bootstrapping to specify that 
 
 ### 4. Create an `app/webapp/Component.js` file
 
-Our `index.html` is now actively looking for a `Component.js` file on root level of our UI5 app. This is an important naming convention, so don't change the name of this file.
+Our `index.html` is now actively looking for a `Component.js` file on root level of our UI5 app. This is an important naming convention, so it is important not to change the name of this file.
 
 In case you are wondering, we configured the root of our project, which is the `app/webapp/` directory, during the bootstrapping in [step 2](/chapters/chapter01#2-create-an-appwebappindexhtml-file) of this chapter.
 
@@ -190,7 +190,7 @@ We have set up our component by initializing the `UIComponent` from the UI5 libr
 
 <br>
 
-> Our component set up is essentially a JavaScript module. We have defined it with the `sap.ui.define` method. This method takes two parameters (also see its [documentation](https://ui5.sap.com/sdk/#/api/sap.ui%23methods/sap.ui.define)):
+> Our component set up is essentially a [JavaScript module (in the AMD format)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules). We have defined it with the `sap.ui.define` method. This method takes two parameters (also see its [documentation](https://ui5.sap.com/sdk/#/api/sap.ui%23methods/sap.ui.define)):
 > 1. An array of dependencies from UI5 libraries
 > 1. A function that will be executed
 >
@@ -238,8 +238,6 @@ The `manifest.json` is our application descriptor file and holds metadata about 
 </details>
 
 At this point we successfully scaffolded our UI5 project: We have an `app/webapp/index.html` file serving as the entry point and holding our component, which references our `manifest.json`, which describes our application. We can now go ahead and populate our app with actual content that is visible to the user. This is what out project's structure looks like at the moment:
-
-Screenshot updaten mit reuse und license
 
 ![The project's structure](/chapters/chapter01/chapter01-01.png)
 
