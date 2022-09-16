@@ -1,4 +1,4 @@
-# Chapter 6 - Adding a 'Search' Feature to Our Bookshop
+# Chapter 5 - Adding a 'Search' Feature to Our Bookshop
 
 At the end of this chapter we will have added a new feature to our bookshop that enables users to search for books in the table.
 
