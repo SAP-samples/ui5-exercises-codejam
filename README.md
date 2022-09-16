@@ -8,7 +8,7 @@ Please check the [prerequisites](/prerequisites.md) before the event an make sur
 
 ## Overview
 
-The material in this repository introduces you to the core principles of UI5, an enterprise-ready web development framework used to build apps that follow the Fiori design guidelines. This repository is a step-by-step guide explaining how to build a frontend web application using UI5. The finished app is a bookshop app, where users can browse and order books. The app sits on top of the well-known [bookshop](https://github.com/SAP-samples/cloud-cap-samples/tree/main/bookshop) backend application built with the Node.js flavour of the SAP Cloud Application Programming Model (CAP).
+The material in this repository introduces you to the core principles of UI5, an enterprise-ready web development framework used to build apps that follow the Fiori design guidelines. This repository is a step-by-step guide explaining how to build a frontend web application using UI5. The finished app is a bookshop app, where users can browse and order books. The app sits on top of the well-known [bookshop](https://github.com/SAP-samples/cloud-cap-samples/tree/main/bookshop) backend application built with the Node.js flavour of the [SAP Cloud Application Programming Model (CAP)](https://cap.cloud.sap/docs/).
 
 ![The finished app](/finished-app.png)
 
