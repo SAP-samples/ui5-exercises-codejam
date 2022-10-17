@@ -1,0 +1,11 @@
+specVersion: '2.6'
+metadata:
+  name: perf-webapp
+type: application
+framework:
+  name: OpenUI5
+  version: "1.107.1"
+  libraries:
+    - name: sap.m
+    - name: sap.ui.core
+    - name: themelib_sap_horizon

@@ -1,0 +1,38 @@
+{
+    "sap.app": {
+        "id": "codejam",
+        "type": "application",
+        "title": "CodeJam Bookshop",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "dataSources": {
+            "capBooks": {
+                "uri": "/browse/Books?$expand=genre",
+                "type": "JSON"
+            }  
+        }
+    },
+    "sap.ui5": {
+        "rootView": {
+            "viewName": "sap.codejam.view.App",
+            "type": "XML",
+            "id": "app"
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "sap.codejam.i18n.i18n"
+                }
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        }
+    }
+}
