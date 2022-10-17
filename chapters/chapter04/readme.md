@@ -14,7 +14,7 @@ At the end of this chapter we will have added a new feature to our bookshop that
 
 We need an input field for the order quantity as well as an order button for our new feature.
 
-➡️ Paste the following code snippet as the first child in the existing outer `<FlexBox />` that we created in our `app/webapp/view/App.view.xml` in the previous chapter (replacing the inner `<FlexBox />`):
+➡️ Paste the following code snippet as the first child in the existing outer `<FlexBox />` that we created in our `app/webapp/view/App.view.xml` in the previous chapter:
 
 ```xml
 <FlexBox alignItems="Center" justifyContent="End" >

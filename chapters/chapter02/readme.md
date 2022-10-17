@@ -95,10 +95,14 @@ We can now go ahead an consume the newly created model in our `app/webapp/view/A
 </Table>
 ```
 
+This is what our view now looks like (`<Table />` collapsed in the screen shot):
+
+![View with Table](/chapters/chapter02/chapter02-01.png)
+
 We created a Table that displays the books from our bookshop data. Let's go through the code step by step to better understand how we did it:
 
 - We created a new [`<Table />`](https://sapui5.hana.ondemand.com/#/api/sap.m.Table) that holds `<columns />` and `<items />` (rows) as its aggregations.
-- The `<Table />` has an `items` attribute where we want to reference the `value` array of our bookshop data as it holds the book items (check it out at [http://localhost:4004/browse/Books?$expand=genre](http://localhost:4004/browse/Books?$expand=genre)). For that we make use of a concept called ***data binding***. Data binding is very important in UI5 and requires a special syntax. We use curly brackets `{}` to tell the framework we will be using a model and then use a slash `/` to enter the json structure of our default model, which is our bookshop data (see step 1). Then we specify that our items live in the `value` array. Putting all the pieces together we end up with `items="{/value}"` as our data binding syntax.
+- The `<Table />` has an `items` attribute where we want to reference the `value` array of our bookshop data as it holds the book items (check the raw data here and h [http://localhost:4004/browse/Books?$expand=genre](http://localhost:4004/browse/Books?$expand=genre)). For that we make use of a concept called ***data binding***. Data binding is very important in UI5 and requires a special syntax. We use curly brackets `{}` to tell the framework we will be using a model and then use a slash `/` to enter the json structure of our default model, which is our bookshop data (see step 1). Then we specify that our items live in the `value` array. Putting all the pieces together we end up with `items="{/value}"` as our data binding syntax.
 - The `<columns />` aggregation inside the `<Table />` holds several [`<Column />`](https://sapui5.hana.ondemand.com/#/api/sap.m.Column) controls that each hold a [`<Text />`](https://sapui5.hana.ondemand.com/#/api/sap.m.Text) control. These are the texts in the header row of our `<Table />`.
 - The `<items />` (rows) of our `<Table />` hold a [`<ColumnListItem />`](https://sapui5.hana.ondemand.com/#/api/sap.m.ColumnListItem), which serves as a wrapper for the `<cells />` of each row. The controls inside the `<cells />` aggregation have to match our `<columns />` with respect to the order of the content (book, author, genre, price, stock).
 - Check the [documentation](https://sapui5.hana.ondemand.com/#/api/sap.m.ColumnListItem%23controlProperties) to see what the `vAlign` and `type` attributes for the `<ColumnListItem />` do.
@@ -106,10 +110,6 @@ We created a Table that displays the books from our bookshop data. Let's go thro
 - For the controls inside the `<cells />` aggregation we selected controls that fit the type of data that they display.
 
 You might want to check the documentation for the [`<ColumnListItems />`](https://sapui5.hana.ondemand.com/#/api/sap.m.ColumnListItem%23controlProperties) control to see what the attributes `vAlign` and `type` in our code mean.
-
-This is what our view now looks like (`<Table />` collapsed in the screen shot):
-
-![View with Table](/chapters/chapter02/chapter02-01.png)
 
 ### 3. Inspect our app in the browser
 

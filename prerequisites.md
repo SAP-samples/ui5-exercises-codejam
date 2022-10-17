@@ -2,7 +2,7 @@
 
 To be able to follow the instructions in this repository you need to fulfill ***one*** of the following requirements:
 
-- **Option 1:** You have access to an instance of the SAP Business Application Studio with the role collection `Business_Application_Studio_Developer` assigned to you in the SAP Business Technology Platform Cockpit. Create a new dev space of type `Full Stack Cloud Application` to get started.
+- **Option 1:** You have access to an [SAP BTP Account](https://developers.sap.com/tutorials/hcp-create-trial-account.html) with an instance of the SAP Business Application Studio and the role collection `Business_Application_Studio_Developer` assigned to you in the SAP Business Technology Platform Cockpit. Create a new dev space of type `Full Stack Cloud Application` to get started.
 
 - **Option 2:** You can use your local machine and have following tools installed:
   - [Node.js](https://nodejs.org/en/) (version 14 or higher) including `npm`
