@@ -37,3 +37,5 @@ bookshop/app/package.json
 bookshop/app/package-lock.json
 bookshop/app/remote-destination.json
 bookshop/app/xs-app.json
+
+dist/

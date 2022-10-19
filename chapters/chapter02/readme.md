@@ -36,6 +36,13 @@ Models are another major part of UI5 development. We use models to store data in
             "type": "XML",
             "id": "app"
         },
+        "dependencies": {
+            "minUI5Version": "1.107.1",
+            "libs": {
+                "sap.ui.core": {},
+                "sap.m": {}
+            }
+        },
         "models": {
             "": {
                 "dataSource": "capBooks"

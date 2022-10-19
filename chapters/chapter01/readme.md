@@ -223,6 +223,13 @@ The `manifest.json` is our application descriptor file and holds metadata about 
             "type": "XML",
             "id": "app"
         },
+        "dependencies": {
+            "minUI5Version": "1.107.1",
+            "libs": {
+                "sap.ui.core": {},
+                "sap.m": {}
+            }
+        },
         "models": {}
     }
 }
