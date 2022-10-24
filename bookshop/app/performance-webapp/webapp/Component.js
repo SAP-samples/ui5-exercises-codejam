@@ -1,6 +1,8 @@
 sap.ui.define([
     "sap/ui/core/UIComponent",
-    "sap/ui/model/json/JSONModel"
+    "sap/ui/model/json/JSONModel",
+    "sap/ui/core/date/Gregorian",
+    "sap/ui/core/ComponentSupport"
 ], function (UIComponent, JSONModel) {
     "use strict"
     return UIComponent.extend(

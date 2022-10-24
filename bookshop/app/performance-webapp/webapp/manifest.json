@@ -1,6 +1,6 @@
 {
     "sap.app": {
-        "id": "codejam",
+        "id": "sap.codejam",
         "type": "application",
         "title": "CodeJam Bookshop",
         "applicationVersion": {
@@ -27,13 +27,14 @@
             }
         },
         "models": {
-            "": {
-                "dataSource": "capBooks"
-            },
-            "i18n": {
-                "type": "sap.ui.model.resource.ResourceModel",
-                "settings": {
-                    "bundleName": "sap.codejam.i18n.i18n"
+            "models": {
+                "i18n": {
+                    "type": "sap.ui.model.resource.ResourceModel",
+                    "settings": {
+                        "bundleName": "sap.codejam.i18n.i18n",
+                        "supportedLocales": ["en", "de"],
+                        "fallbackLocale": "en"
+                    }
                 }
             }
         },
