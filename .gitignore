@@ -39,3 +39,5 @@ bookshop/app/remote-destination.json
 bookshop/app/xs-app.json
 
 dist/
+
+package-lock.json
