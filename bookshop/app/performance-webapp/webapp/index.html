@@ -2,20 +2,12 @@
 <html>
 
 <head>
-    <script
-        id="sap-ui-bootstrap"
-        src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
-        data-sap-ui-theme="sap_horizon"
-        data-sap-ui-libs="sap.m"
-        data-sap-ui-compatVersion="edge"
-        data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
-        data-sap-ui-resourceroots='{
-            "sap.codejam": "./"
-        }'>
-    </script>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="boot.js" defer></script>
+    <script id="sap-ui-bootstrap" src="resources/sap-ui-custom.js" defer></script>
 </head>
 
-<body class="sapUiBody" id="content">
+<body class="sapUiBody loading" id="content">
     <div
         data-sap-ui-component
         data-name="sap.codejam"

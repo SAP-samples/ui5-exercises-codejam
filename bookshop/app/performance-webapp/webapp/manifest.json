@@ -37,13 +37,6 @@
                     }
                 }
             }
-        },
-        "resources": {
-            "css": [
-                {
-                    "uri": "css/style.css"
-                }
-            ]
         }
     }
 }
