@@ -14,8 +14,8 @@ We restructure the UI5 project so we can introduce the UI5 Tooling, which we wil
 1. Run `npm install @ui5/cli --save-dev` to add the UI5 Tooling as a dependency.
 1. Run `npm install @ui5/cli --global` to make the `ui5` command globally available.
 1. Run `ui5 init` to initialize the UI5 project (or make the UI5 Tooling aware of the existing project in this case).
-1. Run `ui5 use OpenUI5 && ui5 add sap.ui.core sap.m themelib_sap_horizon` to add libraries to the `ui5.yaml`.
 1. Copy all contents from `finished-webapp/` into `performance-webapp/webapp/`.
+1. Run `ui5 use OpenUI5 && ui5 add sap.ui.core sap.m themelib_sap_horizon` to add libraries to the `ui5.yaml`.
 1. If we where to run the application via `ui5 serve` now, we wouldn't get any data, as the project now runs independently from the CAP-based backend. Let's add some data to `init` method of the `Component.js` file manually, so backend connectivity will not be a factor when measuring performance:
     ```js
     sap.ui.define([
@@ -95,6 +95,7 @@ Requests that result in a `404 - Not Found` status are costly when it comes to p
     ```
 1. Rename `i18n.properties` to `i18n_en.properties` to match the `manifest.json`.
 1. Delete the data source and default model that we no longer use in the `manifest.json`.
+1. In the network trace we can see that a `Component-preload.js` as well as a `Component.js` are being loaded, which is unnecessary. This is because the `sap.app.id` in the `manifest.json` does not match the `data-sap-ui-resourceroots` in the `index.html`. Change the `sap.app.id` in the `manifest.json` to `sap.codejam` (previously `codejam`).
 1. Fine tuning: We can add dummy dependencies to the `Component.js` so that these (large) files are not requested separately: 
     ```js
     ,
@@ -103,7 +104,7 @@ Requests that result in a `404 - Not Found` status are costly when it comes to p
     ```
 1. Fine tuning: We can remove the 👋-emoji in the `App.view.xml` to avoid loading (unnecessary) additional fonts.
 
-    🚨➡️ Lighthouse score ~57
+    🚨➡️ Lighthouse score ~64
 
 ## Step 5 - Add Splash Screen
 
