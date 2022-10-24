@@ -13,7 +13,7 @@
         "@sap/cds": ">=5.9",
         "express": "^4.17.1",
         "passport": ">=0.4.1",
-        "@sap/cds-dk": "^4",
+        "@sap/cds-dk": "^6",
         "mbt": "^1.2",
         "@sap/hana-client": "^2"
     },
