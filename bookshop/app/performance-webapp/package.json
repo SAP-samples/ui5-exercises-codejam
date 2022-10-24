@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:dist": "serve dist"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@ui5/cli": "^2.14.13"
+    "@ui5/cli": "^2.14.13",
+    "serve": "^14.0.1"
   }
 }
