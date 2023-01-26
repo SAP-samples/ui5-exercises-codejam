@@ -6,7 +6,7 @@ Please note: This step is optional and not specific to UI5, but rather covers th
 
 To be able to complete this chapter you need to fulfill ***all*** of the following requirements:
 - You need to have an account on the SAP Business Technology platform (SAP BTP) with the Cloud Foundry Environment enabled. Learn more about how to get an account [here](https://developers.sap.com/group.btp-setup.html). You also need at least 2 units of Cloud Foundry Runtime assigned to your subaccount and available to consume.
-- You need to have the [Cloud Foundry Command Line Interface](https://docs.cloudfoundry.org/cf-cli/) installed in your development environment. Ff you work in the SAP Business Application Studio or in a devcontainer using the [provided configuration](/.devcontainer) this is already taken care of. You can verify your installation by running `cf -v`.
+- You need to have the [Cloud Foundry Command Line Interface](https://docs.cloudfoundry.org/cf-cli/) installed in your development environment. If you work in the SAP Business Application Studio or in a devcontainer using the [provided configuration](/.devcontainer) this is already taken care of. You can verify your installation by running `cf -v`.
 
 ## Deploying Our App
 
