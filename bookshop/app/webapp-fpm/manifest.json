@@ -28,8 +28,8 @@
             "routes": [
                 {
 					"pattern": ":?query:",
-					"name": "Main",
-					"target": "Main"
+					"name": "mainPage",
+					"target": "mainPage"
 				},
                 {
 					"pattern": "/Books({key}):?query:",
@@ -38,9 +38,9 @@
 				}
             ],
             "targets": {
-                "Main": {
+                "mainPage": {
 					"type": "Component",
-					"id": "Main",
+					"id": "mainPage",
 					"name": "sap.fe.core.fpm",
 					"options": {
 						"settings": {
