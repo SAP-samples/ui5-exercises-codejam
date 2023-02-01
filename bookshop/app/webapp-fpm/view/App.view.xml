@@ -1,0 +1,17 @@
+<mvc:View
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    controllerName="sap.codejam.controller.App"
+    xmlns:macros="sap.fe.macros">
+
+<App id="Main">
+    <pages>
+        <Page title="{i18n>Bookshop}">
+            <content>
+                <macros:Table metaPath="@com.sap.vocabularies.UI.v1.LineItem" id="myTable" />
+            </content>
+        </Page>
+    </pages>
+</App>
+
+</mvc:View>
