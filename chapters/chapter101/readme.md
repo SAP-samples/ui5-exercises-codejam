@@ -21,7 +21,7 @@ At the end of this chapter we will have enabled the Fiori Elements Flexible Prog
 
 ### 1. Duplicate your existing application
 
-Duplicate your existing UI5 application to
+Duplicate your existing UI5 application living in `app/webapp/` into a new `app/fpm-webapp/` directory.
 
 ### 1. Extend the `sap/fe/core/AppComponent` instead of the `sap/ui/core/UIComponent`
 
