@@ -7,7 +7,7 @@
             "version": "1.0.0"
         },
         "dataSources": {
-            "capBooks": {
+            "capService": {
                 "uri": "/browse/",
                 "type" : "OData",
                 "settings" : {
@@ -71,7 +71,7 @@
         },
         "models": {
             "": {
-				"dataSource": "capBooks",
+				"dataSource": "capService",
 				"settings": {
 					"synchronizationMode": "None",
 					"operationMode": "Server",

@@ -5,11 +5,16 @@ sap.ui.define([
     return AppComponent.extend(
         "sap.codejam.Component", {
             metadata : {
+                "interfaces": [
+                    "sap.ui.core.IAsyncContentCreation"
+                    ],
                     manifest: "json"
             },
             init : function () {
-                AppComponent.prototype.init.apply(this)
-                this.getRouter().initialize();
+                AppComponent.prototype.init.apply(
+                    this,
+                    arguments
+                    )
             }
-        })
     })
+})

@@ -7,7 +7,7 @@
             "version": "1.0.0"
         },
         "dataSources": {
-            "capBooks": {
+            "capService": {
                 "uri": "/browse/",
                 "type" : "OData",
                 "settings" : {
@@ -17,6 +17,13 @@
         }
     },
     "sap.ui5": {
+        "dependencies": {
+			"minUI5Version": "1.60.0",
+			"libs": {
+				"sap.ui.core": {},
+                "sap.m": {}
+			}
+		},
         "rootView": {
             "viewName": "sap.codejam.view.App",
             "type": "XML",
@@ -24,12 +31,13 @@
         },
         "models": {
             "": {
-                "dataSource": "capBooks",
-                "autoExpandSelect": true,
-                "settings":{
-                    "operationMode" : "Server",
-                    "synchronizationMode" : "None"
-                }
+				"dataSource": "capService",
+				"settings": {
+					"synchronizationMode": "None",
+					"operationMode": "Server",
+					"autoExpandSelect": true,
+					"earlyRequests": true
+				}
             },
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
