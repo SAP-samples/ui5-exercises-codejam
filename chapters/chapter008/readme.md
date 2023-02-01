@@ -26,7 +26,7 @@ At the end of this chapter we will have added custom CSS to our UI5 app that mak
 
 This is what our application descriptor now looks like:
 
-![manifest.json with css resource model](/chapters/chapter08/chapter08-01.png)
+![manifest.json with css resource model](/chapters/chapter008/chapter008-01.png)
 
 We added a new `css` resource to our application descriptor and pointed it to a css file that we are about to create next.
 
@@ -58,7 +58,7 @@ We can now apply the css class `orderControls` to our `app/webapp/view/App.view.
 
 This is what our view now looks like (a few controls collapsed in the screen shot):
 
-![View with custom css class](/chapters/chapter08/chapter08-02.png)
+![View with custom css class](/chapters/chapter008/chapter008-02.png)
 
 ### 4. Inspect the new styling
 
@@ -66,6 +66,6 @@ This is what our view now looks like (a few controls collapsed in the screen sho
 
 You will see that all items inside the `<FlexBox />` that we applied the new class to now have a gap of 20 pixels between each other.
 
-![http://localhost:4004/webapp/index.html?sap-ui-language=de](/chapters/chapter08/chapter08-result.png)
+![http://localhost:4004/webapp/index.html?sap-ui-language=de](/chapters/chapter008/chapter008-result.png)
 
-Continue to [Chapter 9 - Deploying Our App](/chapters/chapter09)
+Continue to [Chapter 9 - Deploying Our App](/chapters/chapter009)

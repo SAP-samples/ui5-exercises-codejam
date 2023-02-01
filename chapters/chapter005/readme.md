@@ -20,7 +20,7 @@ At the end of this chapter we will have added a new feature to our bookshop that
 
 This is what our view now looks like (a few controls collapsed in the screen shot):
 
-![View with SearchField](/chapters/chapter05/chapter05-01.png)
+![View with SearchField](/chapters/chapter005/chapter005-01.png)
 
 We added a new `<SearchField />` control to our view. It comes with a `liveChange` event that gets triggered on every keystroke the user submits in the field. We bound an `onSearch` method to that event which we will define in the next step. The great thing about the `liveChange` event is that the user doesn't have to actively click the search icon or hit enter to trigger the search.
 
@@ -66,7 +66,7 @@ sap.ui.define([
 
 This is what our controller now looks like (a few methods collapsed in the screen shot):
 
-![Controller with onSearch method](/chapters/chapter05/chapter05-02.png)
+![Controller with onSearch method](/chapters/chapter005/chapter005-02.png)
 
 We added a new `onSearch` method to our controller that gets the `newValue` from the `<SearchField />` (where it was triggered from) and filters for matching book titles in our `booksTable`. The `onSearch` method also resets the `userSelection` model as well as the `orderStatus` message to make sure the user cannot see the description or order status of a book that might not even by displayed in the table any longer after a new search is triggered.
 
@@ -76,6 +76,6 @@ We added a new `onSearch` method to our controller that gets the `newValue` from
 
 You'll notice how the search is instantly triggered after a keystroke is submitted in the `<SearchField />`:
 
-![http://localhost:4004/webapp/index.html](/chapters/chapter05/chapter05-result.png)
+![http://localhost:4004/webapp/index.html](/chapters/chapter005/chapter005-result.png)
 
-Continue to [Chapter 6 - Adding Custom Formatting](/chapters/chapter06):
+Continue to [Chapter 6 - Adding Custom Formatting](/chapters/chapter006):

@@ -26,7 +26,7 @@ At the end of this chapter we will have added custom formatting to the `stock` c
 
 This is what our view now looks like (a few controls collapsed in the screen shot):
 
-![View with ObjectStatus for stock](/chapters/chapter06/chapter06-01.png)
+![View with ObjectStatus for stock](/chapters/chapter006/chapter006-01.png)
 
 We replaced the `<Text />` control with an `<ObjectStatus />` which allows us to set a `state` attribute. For the state we use a concept called ***formatting***. 'Formatting' means that we style our content based on conditions. The code for our `state` attribute looks complicated, because it is written as an inline if-statement, but translating it into pseudo code makes it a lot more readable:
 
@@ -57,7 +57,7 @@ oModel.setProperty("/itemSelected", false)
 
 This is what our controller now looks like after all the changes (`onSubmitOrder` method collapsed in the screen shot):
 
-![Controller with itemSelected property](/chapters/chapter06/chapter06-02.png)
+![Controller with itemSelected property](/chapters/chapter006/chapter006-02.png)
 
 We added a new `itemSelected` property to the `userSelection` model and made sure it gets updated accordingly when a user selects a book (set to `true`) or searches for another book (set to `false`).
 
@@ -109,6 +109,6 @@ In case you want to learn more about custom formatting in UI5: There is also a w
 
 You will see that the `stock` is color coded based on the thresholds we defined. You will also see that the `<Button />` and `<StepInput />` controls are disabled by default if no book is selected. Try and set the `selectedQuantity` to match the `stock` of a book and submit an order. After that, the `<Button />` and `<StepInput />` control will be disabled based on our formatting, because no more books are available.
 
-![http://localhost:4004/webapp/index.html](/chapters/chapter06/chapter06-result.png)
+![http://localhost:4004/webapp/index.html](/chapters/chapter006/chapter006-result.png)
 
-Continue to [Chapter 7 - Adding i18n Features](/chapters/chapter07)
+Continue to [Chapter 7 - Adding i18n Features](/chapters/chapter007)

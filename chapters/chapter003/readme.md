@@ -108,7 +108,7 @@ Now that we have a model that holds the data of the selected book, we can create
 
 This is what our view now looks like (`<Table />` collapsed in the screen shot):
 
-![View with Table](/chapters/chapter03/chapter03-01.png)
+![View with Table](/chapters/chapter003/chapter003-01.png)
 
 We added two `<FlexBox />` controls to display the data as they make it very easy to align content vertically ("Column") or horizontally ("Row"). Inside the inner `<FlexBox />` we added controls for the actual data (title and description text). We made use of the data binding concept again and bound our control to our newly created `userSelection` model (see step 3). We also assigned a predefined CSS class that adds a small margin at the top to the `<Text />` control.
 
@@ -118,6 +118,6 @@ We added two `<FlexBox />` controls to display the data as they make it very eas
 
 ➡️ Move over to the browser and refresh the page. Select any book to see its description:
 
-![http://localhost:4004/webapp/index.html](/chapters/chapter03/chapter03-result.png)
+![http://localhost:4004/webapp/index.html](/chapters/chapter003/chapter003-result.png)
 
-Continue to - [Chapter 4 - Adding an 'Order' Feature to Our Bookshop](/chapters/chapter04)
+Continue to - [Chapter 4 - Adding an 'Order' Feature to Our Bookshop](/chapters/chapter004)

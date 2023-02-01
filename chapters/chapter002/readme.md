@@ -10,7 +10,7 @@ By the end of this chapter, we will have added a Table to our UI5 app that displ
 
 ### 1. Add a new `dataSource` and `model` to our `app/webapp/manifest.json`
 
-Models are another major part of UI5 development. We use models to store data in our app ("data layer"). Models are not bound to or represented by a specific file, but are dynamic objects that can be consumed and modified by different parts of the app. They can be created via the `manifest.json` file or via a controller (which we will do in [chapter 03](/chapters/chapter03#3-add-a-new-userselection-model-and-an-onselect-method-to-our-controller)).
+Models are another major part of UI5 development. We use models to store data in our app ("data layer"). Models are not bound to or represented by a specific file, but are dynamic objects that can be consumed and modified by different parts of the app. They can be created via the `manifest.json` file or via a controller (which we will do in [chapter 03](/chapters/chapter003#3-add-a-new-userselection-model-and-an-onselect-method-to-our-controller)).
 
 ➡️ Paste the following code into the `app/webapp/manifest.json`:
 
@@ -45,7 +45,7 @@ Models are another major part of UI5 development. We use models to store data in
 }
 ```
 
-We defined a new model with an empty string as its name, which makes it the default model of the app. The `dataSource` for the model is `capBooks`, which is a new data `dataSource` we created that links to our backend application that is being served on the same domain as our UI5 app (see [chapter 1 - step 7](/chapters/chapter01#7-run-our-app)). We can inspect the data at [http://localhost:4004/browse/Books?$expand=genre](http://localhost:4004/browse/Books?$expand=genre).
+We defined a new model with an empty string as its name, which makes it the default model of the app. The `dataSource` for the model is `capBooks`, which is a new data `dataSource` we created that links to our backend application that is being served on the same domain as our UI5 app (see [chapter 1 - step 7](/chapters/chapter001#7-run-our-app)). We can inspect the data at [http://localhost:4004/browse/Books?$expand=genre](http://localhost:4004/browse/Books?$expand=genre).
 
 ### 2. Add a new `<Table />` to our `app/webapp/view/App.view.xml` that consumes the model
 
@@ -109,12 +109,12 @@ You might want to check the documentation for the [`<ColumnListItems />`](https:
 
 This is what our view now looks like (`<Table />` collapsed in the screen shot):
 
-![View with Table](/chapters/chapter02/chapter02-01.png)
+![View with Table](/chapters/chapter002/chapter002-01.png)
 
 ### 3. Inspect our app in the browser
 
 ➡️ Move over to the browser and refresh the page to see our Table:
 
-![http://localhost:4004/webapp/index.html](/chapters/chapter02/chapter02-result.png)
+![http://localhost:4004/webapp/index.html](/chapters/chapter002/chapter002-result.png)
 
-Continue to - [Chapter 3 - Creating and Extending our First Controller](/chapters/chapter03)
+Continue to - [Chapter 3 - Creating and Extending our First Controller](/chapters/chapter003)

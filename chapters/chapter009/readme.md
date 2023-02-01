@@ -145,7 +145,7 @@ We described the build process for our multitarget application. Our UI5 app is n
 
 This is what our project's structure now looks like:
 
-![The project's structure](/chapters/chapter09/chapter09-01.png)
+![The project's structure](/chapters/chapter009/chapter009-01.png)
 
 Don't worry about the error you might receive which says that certain dependencies are not yet installed. We will take care of that in the next steps.
 
@@ -203,9 +203,9 @@ If the build was successful and finished with no errors, we can test our booksho
 
 ➡️ Go into the SAP BTP Cockpit and navigate to the space you deployed the project into. Click on `bookshop-approuter` and open the route displayed at the top. You should see your bookshop running in the cloud.
 
-![SAP BTP Cockpit](/chapters/chapter09/chapter09-result1.png)
-![Bookshop in the cloud](/chapters/chapter09/chapter09-result2.png)
+![SAP BTP Cockpit](/chapters/chapter009/chapter009-result1.png)
+![Bookshop in the cloud](/chapters/chapter009/chapter009-result2.png)
 
 We successfully deployed our UI5 app to the Cloud Foundry Environment as part of a multitarget application. It consumes a remote service as the data source when running in the cloud (during local development we used a local backend application), so don't be surprised if the stock amounts suddenly decrease. Someone else might be using the same remote service at the same time.
 
-Continue to [Chapter 10 - Further Improvements and Learning Material](/chapters/chapter10)
+Continue to [Chapter 10 - Further Improvements and Learning Material](/chapters/chapter010)

@@ -31,7 +31,7 @@ We need an input field for the order quantity as well as an order button for our
 
 This is what our view now looks like (`<Table />` collapsed in the screen shot):
 
-![View with updated FlexBox](/chapters/chapter04/chapter04-01.png)
+![View with updated FlexBox](/chapters/chapter004/chapter004-01.png)
 
 We added a new `<FlexBox />` with the attributes `justifyContent="End" alignItems="Center"` which makes sure all of its children will be centered vertically and displayed at the end of the box horizontally (which is the right side of the browser window in this case). We bound the `value` attribute of the `<StepInput />` to a new `selectedQuantity` property of the `userSelection` model, which we are going to define a default for in the next step. Our `<Button />` already triggers an `onSubmitOrder` method which we also have not yet defined.
 
@@ -97,7 +97,7 @@ onSubmitOrder: function () {
 }
 ```
 
-We added a new `onSubmitOrder` method to our controller which we already bound to the press event of the order button in [step 1](/chapters/chapter04#1-add-input-field-and-button-to-our-appwebappviewappviewxml) of this chapter. The method gets the `userSelection` model and defines a new a new Ajax request, which is an easy-to-use technique for accessing web servers (our CAP backend) from a web page (our UI5 frontend) with asynchronous HTTP requests. Ajax is part of the popular jQuery library, which is already included in UI5. The request is sent to the `/browser/submitOrder` endpoint of our backend application. It handles the subtraction of the ordered books in the database for us. After the request is sent it can go one of two ways:
+We added a new `onSubmitOrder` method to our controller which we already bound to the press event of the order button in [step 1](/chapters/chapter004#1-add-input-field-and-button-to-our-appwebappviewappviewxml) of this chapter. The method gets the `userSelection` model and defines a new a new Ajax request, which is an easy-to-use technique for accessing web servers (our CAP backend) from a web page (our UI5 frontend) with asynchronous HTTP requests. Ajax is part of the popular jQuery library, which is already included in UI5. The request is sent to the `/browser/submitOrder` endpoint of our backend application. It handles the subtraction of the ordered books in the database for us. After the request is sent it can go one of two ways:
 1. **done ✅** : The request is successful, we get the new `stock` of the book in the response. In that case we display a success message in the `<ObjectStatus />` control that we added in step 1 of this chapter and set its state to `Success`, which makes it turn green. We also update both our default model and our `userSelection` model with the new `stock`. Because of the data binding the stock in the table will then automatically be updated.
 1. **fail ❌** : The request was unsuccessful, we get an error message in response. In that case we display `Error` and set the state of the  `<ObjectStatus />` to `Error` as well, which makes it turn red.
 
@@ -114,7 +114,7 @@ this.getView().byId("orderStatus").setText("")
 
 This is what our controller looks like after all the changes:
 
-![Controller](/chapters/chapter04/chapter04-02.png)
+![Controller](/chapters/chapter004/chapter004-02.png)
 
 ### 5. Test the new feature
 
@@ -124,6 +124,6 @@ We can now test our new feature and order one or more books.
 
 You will notice that it's not possible to set the quantity to be higher than the stock, because we set the max value to be the stock in step 1 of this chapter. You will also notice that the data is persisted in the database after submitting an order. It will only be reset when the database is stopped.
 
-![http://localhost:4004/webapp/index.html](/chapters/chapter04/chapter04-result.png)
+![http://localhost:4004/webapp/index.html](/chapters/chapter004/chapter004-result.png)
 
-Continue to [Chapter 5 - Adding a 'Search' Feature to Our Bookshop](/chapters/chapter05)
+Continue to [Chapter 5 - Adding a 'Search' Feature to Our Bookshop](/chapters/chapter005)

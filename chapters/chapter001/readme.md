@@ -94,9 +94,9 @@ We loaded the UI5 framework into our project and configured a few attributes suc
 > - We specify an `id` for the `<script />` element, which is used by the framework to find out where it was initialized from.
 > - The `src` attribute defines where the JavaScript code for the script tag lives. This JavaScript code is the UI5 framework. As you can see, we are loading OpenUI5. You can visit [https://openui5.hana.ondemand.com/resources/sap-ui-core.js](https://openui5.hana.ondemand.com/resources/sap-ui-core.js) and see the code that makes up the framework.
 > - With the `data-sap-ui-theme` attribute we specify which UI5 theme we want to use. This is the  parameter we can modify to change the looks of our app. You can read more about Theming in the [SAPUI5 Documentation](https://sapui5.hana.ondemand.com/sdk/#/topic/497c27a8ee26426faacd2b8a1751794a).
-> - With the `data-sap-ui-libs` attribute, which is technically optional, but should always be used, we specify which UI5 library we want to preload before our app is initialized. This drastically improves the performance of our app. We can always load other libraries into our views and controllers on demand (see examples in [step 6](/chapters/chapter01#6-create-an-appwebappviewappviewxml-file-our-first-view) of the current chapter).
+> - With the `data-sap-ui-libs` attribute, which is technically optional, but should always be used, we specify which UI5 library we want to preload before our app is initialized. This drastically improves the performance of our app. We can always load other libraries into our views and controllers on demand (see examples in [step 6](/chapters/chapter001#6-create-an-appwebappviewappviewxml-file-our-first-view) of the current chapter).
 > - With the `data-sap-ui-compatVersion` attribute we specify which version of certain UI5 features we want to use in case of incompatibilities. Since this concept has been abandoned the [SAPUI5 Documentation](https://sapui5.hana.ondemand.com/sdk/#/topic/9feb96da02c2429bb1afcf6534d77c79.html) suggests to set this value to `edge`.
-> - With the `data-sap-ui-resourceroots` attribute we define a namespace for a certain location in our project. In our case we gave the root of our project (`./`) the namespace `sap.codejam`. We will use this namespace to reference our project root in other places of our code (e.g. in [step 5](/chapters/chapter01#5-create-an-appwebappmanifestjson-file) of the current chapter).
+> - With the `data-sap-ui-resourceroots` attribute we define a namespace for a certain location in our project. In our case we gave the root of our project (`./`) the namespace `sap.codejam`. We will use this namespace to reference our project root in other places of our code (e.g. in [step 5](/chapters/chapter001#5-create-an-appwebappmanifestjson-file) of the current chapter).
 
 
 </details>
@@ -145,7 +145,7 @@ We used the `data-sap-ui-oninit` attribute in our bootstrapping to specify that 
 
 Our `index.html` is now actively looking for a `Component.js` file on root level of our UI5 app. This is an important naming convention, so don't change the name of this file.
 
-In case you are wondering, we configured the root of our project, which is the `app/webapp/` directory, during the bootstrapping in [step 2](/chapters/chapter01#2-create-an-appwebappindexhtml-file) of this chapter.
+In case you are wondering, we configured the root of our project, which is the `app/webapp/` directory, during the bootstrapping in [step 2](/chapters/chapter001#2-create-an-appwebappindexhtml-file) of this chapter.
 
 ➡️ Create a new `app/webapp/Component.js` file and paste the following code into it:
 
@@ -229,7 +229,7 @@ The `manifest.json` is our application descriptor file and holds metadata about 
 
 At this point we successfully scaffolded our UI5 project: We have an `app/webapp/index.html` file serving as the entry point and holding our component, which references our `manifest.json`, which describes our application. We can now go ahead and populate our app with actual content that is visible to the user. This is what out project's structure looks like at the moment:
 
-![The project's structure](/chapters/chapter01/chapter01-01.png)
+![The project's structure](/chapters/chapter001/chapter001-01.png)
 
 ### 6. Create an `app/webapp/view/App.view.xml` file (our first view)
 
@@ -267,7 +267,7 @@ You might be wondering how you as a developer can find out which UI5 controls to
 
 <br>
 
-> - The [`<View />`](https://sapui5.hana.ondemand.com/#/api/sap.ui.core.mvc.View) control is our base class for the view. At the top of the file you can see that it is part of the `sap.ui.core.mvc` library. We assign this library to an xml namespace (abbreviated `xmlns`) that we call `mvc` (we will cover what `mvc` stands for in [chapter 3](/chapters/chapter03#5-add-a-new-flexbox--to-the-appwebappviewappviewxml)). We always use controls by prefixing its namespace (the library it is from) followed by a colon (e.g. `<mcv:View />`). Each view can have one default namespace, that can be omitted. In our case we assigned the `sap.m` library to the default namespace.
+> - The [`<View />`](https://sapui5.hana.ondemand.com/#/api/sap.ui.core.mvc.View) control is our base class for the view. At the top of the file you can see that it is part of the `sap.ui.core.mvc` library. We assign this library to an xml namespace (abbreviated `xmlns`) that we call `mvc` (we will cover what `mvc` stands for in [chapter 3](/chapters/chapter003#5-add-a-new-flexbox--to-the-appwebappviewappviewxml)). We always use controls by prefixing its namespace (the library it is from) followed by a colon (e.g. `<mcv:View />`). Each view can have one default namespace, that can be omitted. In our case we assigned the `sap.m` library to the default namespace.
 > - The [`<App />`](https://sapui5.hana.ondemand.com/#/api/sap.m.App) control is the root element of a UI5 app. In the documentation we can see that its [default aggregation](https://sapui5.hana.ondemand.com/#/api/sap.m.App%23aggregations) is `<pages />`. This means that these are the expected children of the `<App />` control. Aggregations are always lowercase.
 > - The [`<Page />`](https://sapui5.hana.ondemand.com/#/api/sap.m.Page) control is a container that holds one whole screen of an app. In its documentation we can see that it can have a `title` text that appears in the page header bar. We can also see that its [default aggregation](https://sapui5.hana.ondemand.com/#/api/sap.m.Page%23aggregations) is `<content />`.
 > - The [`<Panel />`](https://sapui5.hana.ondemand.com/#/api/sap.m.Panel%23overview) control is a container for grouping and displaying information. In its documentation we can see that we can define a `headerText` that will be displayed at the top of it. We can also see that its [default aggregation](https://sapui5.hana.ondemand.com/#/api/sap.m.Panel%23aggregations) is `<content />`.
@@ -289,7 +289,7 @@ We ran the script to start our app locally, which is defined in our [package.jso
 
 The server is set to restart once it detects a change in one of the files. This is very useful as we don't have to do this manually after we one or more changes to our app. You can test this by editing the `title` attribute of the `<Page />`, saving the file, and reloading the page in the browser.
 
-![http://localhost:4004](/chapters/chapter01/chapter01-result1.png)
-![http://localhost:4004/webapp/index.html](/chapters/chapter01/chapter01-result2.png)
+![http://localhost:4004](/chapters/chapter001/chapter001-result1.png)
+![http://localhost:4004/webapp/index.html](/chapters/chapter001/chapter001-result2.png)
 
-Continue to [Chapter 2 - Creating and Consuming Our First Model](/chapters/chapter02)
+Continue to [Chapter 2 - Creating and Consuming Our First Model](/chapters/chapter002)

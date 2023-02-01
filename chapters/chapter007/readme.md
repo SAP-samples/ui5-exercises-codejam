@@ -29,7 +29,7 @@ At the end of this chapter we will have added internationalization (i18n) featur
 
 This is what our application descriptor now looks like:
 
-![manifest.json with i18n model](/chapters/chapter07/chapter07-01.png)
+![manifest.json with i18n model](/chapters/chapter007/chapter007-01.png)
 
 We added a new `i18n` model which is of type `ResourceModel` (special type for `i18n` models). It points to an `i18n` directory and file, which we are about to create next.
 
@@ -71,7 +71,7 @@ Error=Fehler
 
 This is what our project's structure now looks like:
 
-![The project's structure](/chapters/chapter07/chapter07-02.png)
+![The project's structure](/chapters/chapter007/chapter007-02.png)
 
 We added a new file that contains the German translations for the texts we want to use in our app. This makes it possible for our app to be displayed in German as well. You can add support for other languages as well if you want. Simply add a language code (for example `de`) prefixed with an underscore to the file name (like we did with `i18n_de.properties`).
 
@@ -126,6 +126,6 @@ We can now test our app in another language.
 
 Feel free to try other language codes in case you provided translation files for other languages. You can learn more about languages in UI5 and other options to set them in the [SAPUI5 Documentation](https://sapui5.hana.ondemand.com/#/topic/91f21f176f4d1014b6dd926db0e91070).
 
-![http://localhost:4004/webapp/index.html?sap-ui-language=de](/chapters/chapter07/chapter07-result.png)
+![http://localhost:4004/webapp/index.html?sap-ui-language=de](/chapters/chapter007/chapter007-result.png)
 
-Continue to [Chapter 8 - Adding Custom CSS](/chapters/chapter08)
+Continue to [Chapter 8 - Adding Custom CSS](/chapters/chapter008)
