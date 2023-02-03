@@ -8,17 +8,25 @@ It is necessary to decide before starting to develop a new application which of 
 
 ![SAP Fiori Tools Application Generator](fiori-tools.png)
 
-However, the situation is not exactly black and white, as the SAP Fiori elements flexible programming model provides building blocks (macros), which are metadata-driven UI controls that can be used in any (freestyle) SAPUI5 application. This flexible programming model (FPM) is perfect for our use case, as we already have a working freestyle UI5 application and solely want to enhance it - while learning about SAP Fiori elements and OData annotations along the way. 
+However, the situation is not exactly black and white, as the [SAP Fiori elements flexible programming model](https://sapui5.hana.ondemand.com/test-resources/sap/fe/core/fpmExplorer/index.html#/overview/introduction) provides building blocks (macros), which are metadata-driven UI controls that can be used in any (freestyle) SAPUI5 application. This flexible programming model is perfect for our use case, as we already have a working freestyle UI5 application and solely want to enhance it - while learning about SAP Fiori elements and OData annotations along the way. The instructions given in this chapter basically align with the [the official documentation](https://sapui5.hana.ondemand.com/test-resources/sap/fe/core/fpmExplorer/index.html#/buildingBlocks/guidance/guidanceCustomApps), but are more detailed and more specific to our use case.
 
-At the end of this chapter we will have enabled the Fiori Elements Flexible Programming Model for our custom UI5 application.
+At the end of this chapter we will have enabled the Fiori elements flexible programming model for our custom UI5 application.
 
 ## Steps
 
 [1. Dublicate your existing application](#1-duplicate-your-existing-application)<br>
 [2. Extend the `sap/fe/core/AppComponent` instead of the `sap/ui/core/UIComponent`](#2-extend-the-sapfecoreappcomponent-instead-of-the-sapuicoreuicomponent)<br>
+[3. Add routing to the `app/webapp-fpm/manifest.json`](#3-add-routing-to-the-appwebapp-fpmmanifestjson)<br>
+[4. Remove the `rootView` from the `app/webapp-fpm/manifest.json`](#4-remove-the-rootview-from-the-appwebapp-fpmmanifestjson)<br>
+[5. Add dependencies to the `app/webapp-fpm/manifest.json`](#5-add-dependencies-to-the-appwebapp-fpmmanifestjson)<br>
+[6. Use SAPUI5 instead of OpenUI5](#6-use-sapui5-instead-of-openui5)<br>
+[7. Rebuild the `app/webapp-fpm/view/App.view.xml`](#7-rebuild-the-appwebapp-fpmviewappviewxml)<br>
+[8. Use the `sap/fe/core/PageController` instead of the `sap/ui/core/mvc/Controller`](#8-use-the-sapfecorepagecontroller-instead-of-the-sapuicoremvccontroller)<br>
+[9. Add OData annotations](#9-add-odata-annotations)<br>
+[10. Test the new app](#10-test-the-new-app)<br>
 
 
-### 1. Duplicate your existing application
+### 1. Duplicate the existing application
 
 ➡️ Duplicate your existing UI5 application living in `app/webapp/` into a new `app/webapp-fpm/` directory.
 
@@ -67,11 +75,6 @@ We now use and extend the `sap/fe/core/AppComponent` instead of the `sap/ui/core
             "pattern": ":?query:",
             "name": "mainPage",
             "target": "mainPage"
-        },
-        {
-            "pattern": "/Books({key}):?query:",
-            "name": "detailPage",
-            "target": "detailPage"
         }
     ],
     "targets": {
@@ -83,23 +86,6 @@ We now use and extend the `sap/fe/core/AppComponent` instead of the `sap/ui/core
                 "settings": {
                     "viewName": "sap.codejam.view.App",
                     "entitySet": "Books",
-                    "navigation": {
-                        "Books": {
-                            "detail": {
-                                "route": "detailPage"
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "detailPage": {
-            "type": "Component",
-            "id": "detailPage",
-            "name": "sap.fe.templates.ObjectPage",
-            "options": {
-                "settings": {
-                    "entitySet": "Books",
                     "navigation": {}
                 }
             }
@@ -108,14 +94,12 @@ We now use and extend the `sap/fe/core/AppComponent` instead of the `sap/ui/core
 },
 ```
 
-We added a new `sap.ui5.routing` section to our application descriptor file in which we define all  `routes` (think "pages") our application contains. This wasn't necessary up until this point as we only had one `rootView`, but that will change shortly. Let's go through the additions step by step:
+We added a new `sap.ui5.routing` section to our application descriptor file in which we define all `routes` (think "pages") our application contains. Currently we have just one route and target, but that will change shortly. Let's go through the additions step by step:
 
-- Each of the routes has a `pattern` to access it, which we can attach to the URL of our application.
-- Each route also has a `name` and a `target`, which points to one of the objects we define in the `targets` section.
+- We describe a `pattern` for our route, which allows us to access it by attaching it to the URL of our application.
+- Our route also has a `name` and a `target`, which points to the `mainPage` object we define in the `targets` section.
 - The `targets` section is where we provide content information for the pages of our app. If we where to follow a freestyle UI5 approach, we could directly point to an xml file at this point, but within the SAP Fiori elements framework we specify the type as `Component` and use `sap.fe` templates for the pages.
-- For our `mainPage` we use the `sap.fe.core.fpm` template component, which allows us to point to our own `sap.codejam.view.App` xml view, but have it run inside the SAP Fiori elements flexible programming model. We define the main `entitySet` (coming from the backend OData service) we want to use on the page. In the `navigation` section we define how users will be routed when clicking on of the `Books` items.
-- For our `detailPage` we use the official SAP Fiori elements object page template (`sap.fe.templates.ObjectPage`) instead of pointing to a custom view. 
-
+- For our `mainPage` we use the `sap.fe.core.fpm` template component, which allows us to point to our own `sap.codejam.view.App` xml view, but have it run inside the SAP Fiori elements flexible programming model. We define the main `entitySet` (coming from the backend OData service) we want to use on the page. We leave the `navigation` section empty for now, as we currently only have one route.
 
 ### 4. Remove the `rootView` from the `app/webapp-fpm/manifest.json`
 
@@ -171,11 +155,6 @@ This is what our `app/webapp-fpm/manifest.json` now looks like:
 					"pattern": ":?query:",
 					"name": "mainPage",
 					"target": "mainPage"
-				},
-                {
-					"pattern": "/Books({key}):?query:",
-					"name": "detailPage",
-					"target": "detailPage"
 				}
             ],
             "targets": {
@@ -186,23 +165,6 @@ This is what our `app/webapp-fpm/manifest.json` now looks like:
 					"options": {
 						"settings": {
                             "viewName": "sap.codejam.view.App",
-							"entitySet": "Books",
-							"navigation": {
-                                "Books": {
-									"detail": {
-										"route": "detailPage"
-									}
-								}
-                            }
-						}
-					}
-				},
-                "detailPage": {
-					"type": "Component",
-					"id": "detailPage",
-					"name": "sap.fe.templates.ObjectPage",
-					"options": {
-						"settings": {
 							"entitySet": "Books",
 							"navigation": {}
 						}
@@ -259,7 +221,7 @@ This is what our `app/webapp-fpm/manifest.json` now looks like:
 
 We moved from OpenUI5 to SAPUI5, because SAP Fiori elements are not available and not part of OpenUI5. Check the [base readme](/README.md#sapui5-vs-openui5) to learn more about the differences between SAPUI5 and OpenUI5.
 
-### 7. 
+### 7. Rebuild the `app/webapp-fpm/view/App.view.xml`
 
 ➡️ Replace the content of the `app/webapp-fpm/view/App.view.xml` with the following code:
 
@@ -283,9 +245,24 @@ We moved from OpenUI5 to SAPUI5, because SAP Fiori elements are not available an
 </mvc:View>
 ```
 
-We removed almost all the content of our app view and replaced it with a `<macros:Table />`, which is a so called [**building block**]() that we can use in SAP Fiori elements flexible programming model enabled applications. We pass it a `metaPath` pointing to specific **OData annotations**. As described [earlier](/chapters/chapter101/readme.md#chapter-101---sap-fiori-elements-flexible-programming-model), these are mandatory when using SAP Fiori elements, but don't exist just yet - we will implement them in the next step.
+We removed almost all the content of our app view and replaced it with a `<macros:Table />`, which is a so called **building block** that we can use in SAP Fiori elements flexible programming model enabled applications. We pass it a `metaPath` pointing to specific **OData annotations** using the [SAP UI vocabulary](https://github.com/SAP/odata-vocabularies/blob/main/vocabularies/UI.md). As described [earlier](/chapters/chapter101/readme.md#chapter-101---sap-fiori-elements-flexible-programming-model), these are mandatory when using SAP Fiori elements, but don't exist just yet - we will implement them in the next step.
 
-### 8. Adding OData annotations
+### 8. Use the `sap/fe/core/PageController` instead of the `sap/ui/core/mvc/Controller`
+
+➡️ Replace the content of the `app/webapp-fpm/controller/App.controller.js` with the following code:
+
+```javascript
+sap.ui.define([
+    "sap/fe/core/PageController"
+], function (PageController) {
+    "use strict"
+    return PageController.extend("sap.codejam.controller.App", {})
+})
+```
+
+Similar to what we did in [step 3](/chapters/chapter101/readme.md#2-extend-the-sapfecoreappcomponent-instead-of-the-sapuicoreuicomponent) we now use the `PageController` provided by SAP Fiori elements instead of the core UI5 controller. This is to make sure our controller code runs within the SAP Fiori elements framework and has access to its [extension APIs](https://ui5.sap.com/#/api/sap.fe.core.PageController%23methods/getExtensionAPI). The `sap/fe/core/PageController` itself extends the `sap/ui/core/mvc/Controller`.
+
+### 9. Add OData annotations
 
 ➡️ Create the following `app/cat-service.cds` file:
 
@@ -294,14 +271,6 @@ using {CatalogService} from '../srv/cat-service';
 
 annotate CatalogService.Books with @(
     UI: {
-        Identification: [ {Value: title} ],
-        SelectionFields: [ title ],
-        HeaderInfo: {
-            TypeName      : 'Book',
-            TypeNamePlural: 'Books',
-            Title: {Value: title},
-            Description: {Value: author}
-        },
         LineItem: [
             {
                 $Type: 'UI.DataField',
@@ -331,60 +300,25 @@ annotate CatalogService.Books with @(
         ]
     }
 );
-
-annotate CatalogService.Books with @(
-    UI: { 
-        FieldGroup#GeneratedGroup1: {
-            $Type: 'UI.FieldGroupType',
-            Data : [
-                {
-                    $Type: 'UI.DataField',
-                    Label: 'Title',
-                    Value: title
-                },
-                {
-                    $Type: 'UI.DataField',
-                    Label: 'Author',
-                    Value: author
-                },
-                {
-                    $Type: 'UI.DataField',
-                    Label: 'Genre',
-                    Value: genre.name
-                },
-                {
-                    $Type: 'UI.DataField',
-                    Label: 'Price',
-                    Value: price
-                },
-                {
-                    $Type: 'UI.DataField',
-                    Label: 'Stock',
-                    Value: stock
-                },
-                {
-                    $Type: 'UI.DataField',
-                    Label: 'Description',
-                    Value: descr
-                }
-            ]
-        },
-        Facets: [
-            {
-                $Type : 'UI.ReferenceFacet',
-                ID    : 'GeneratedFacet1',
-                Label : 'General Information',
-                Target: '@UI.FieldGroup#GeneratedGroup1'
-            }
-        ]
-    }
-);
 ```
 
+We added CDS based OData annotations to our project, which is one of the superpowers of the SAP Cloud Application Programming Model. It automatically picks up and reads our newly created annotations file and serves the provided information in the service metadata document (`http://localhost:4004/browse/$metadata`). This is the document our SAP Fiori elements application interprets and uses to build the UI. Let's go through our annotations step by step:
 
+- We import our `CatalogService` from the `srv/` directory and annotate its `Books` entity.
+- We use the [UI vocabulary](https://github.com/SAP/odata-vocabularies/blob/main/vocabularies/UI.md) developed by SAP to describe how we want our entity to be displayed in user interfaces. Generally a vocabulary is a collection of terms we can use to describe and give meaning to OData services.
+- We describe a `LineItem`, which is a collection (array) of data fields (think "columns") suitable to be visualized in a table or list.
+- The objects of the `LineItem` array are of type `UI.DataField` and therefore simply represent a piece of data. Each data field (think "column") has a `Label` and a `Value`, the latter comes directly from our Books entity.
 
+You can learn more about the structure of annotations in this [document](https://github.com/SAP-samples/odata-basics-handsonsapdev/blob/annotations/bookshop/README.md).
 
+### 10. Test the new app
 
-![http://localhost:4004/webapp/index.html](/chapters/chapter06/chapter06-result.png)
+➡️ Restart the CAP server in case it is not running (`npm run dev`) and go to [http://localhost:4004/webapp-fpm/index.html](http://localhost:4004/webapp-fpm/index.html) in your browser.
 
-Continue to [Chapter 7 - Adding i18n Features](/chapters/chapter07)
+![http://localhost:4004](result-01.png)
+
+![http://localhost:4004/webapp-fpm/index.html](result-02.png)
+
+We enabled the SAP Fiori elements flexible programming model for our custom SAPUI5 application and use the Table building block, powered by OData annotations. You might have to resize your browser window to see all the columns of the Table. We will continue to fine tune and work on our application in the following chapters.
+
+Continue to [Chapter 102 - Adding an Object Page](/chapters/chapter102)
