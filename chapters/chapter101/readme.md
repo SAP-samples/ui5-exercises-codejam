@@ -14,43 +14,376 @@ At the end of this chapter we will have enabled the Fiori Elements Flexible Prog
 
 ## Steps
 
-[1. Extend the `sap/fe/core/AppComponent` instead of the `sap/ui/core/UIComponent`](#1-extend-the-sapfecoreappcomponent-instead-of-the-sapuicoreuicomponent)<br>
-[2. Add an `itemSelected` property to the `userSelection` model](#2-add-an-itemselected-property-to-the-userselection-model)<br>
-[3. Add an `enabled` attribute to the order `<Button />` and `<StepInput />`](#3-add-an-enabled-attribute-to-the-order-button--and-stepinput)<br>
-[4. Inspect and test the new formatting](#4-inspect-and-test-the-new-formatting)<br>
+[1. Dublicate your existing application](#1-duplicate-your-existing-application)<br>
+[2. Extend the `sap/fe/core/AppComponent` instead of the `sap/ui/core/UIComponent`](#2-extend-the-sapfecoreappcomponent-instead-of-the-sapuicoreuicomponent)<br>
+
 
 ### 1. Duplicate your existing application
 
-Duplicate your existing UI5 application living in `app/webapp/` into a new `app/fpm-webapp/` directory.
+➡️ Duplicate your existing UI5 application living in `app/webapp/` into a new `app/webapp-fpm/` directory.
 
-### 1. Extend the `sap/fe/core/AppComponent` instead of the `sap/ui/core/UIComponent`
+![New project structure](dublicate-webapp.png)
 
-➡️ Replace the `<Text />` control for the `stock` in the `<ColumnListItem />`  in our `app/webapp/view/App.view.xml` with the following control:
+We dublicated our existing application to preserve the progress we made in the previous chapters. The structural changes we are about to make to our application require us to delete parts of the application (and thus the progress we made).
+
+### 2. Extend the `sap/fe/core/AppComponent` instead of the `sap/ui/core/UIComponent`
+
+➡️ Replace the content of the existing `app/webapp-fpm/Component.js` with the following code:
+
+```javascript
+sap.ui.define([
+    "sap/fe/core/AppComponent",
+], function (AppComponent) {
+    "use strict"
+    return AppComponent.extend(
+        "sap.codejam.Component", {
+            metadata : {
+                "interfaces": [
+                    "sap.ui.core.IAsyncContentCreation"
+                    ],
+                    manifest: "json"
+            },
+            init : function () {
+                AppComponent.prototype.init.apply(
+                    this,
+                    arguments
+                    )
+            }
+    })
+})
+```
+
+We now use and extend the `sap/fe/core/AppComponent` instead of the `sap/ui/core/UIComponent` to make sure our [component](/chapters/chapter001/readme.md#4-create-an-appwebappcomponentjs-file) runs within the SAP Fiori elements framework.
+
+
+### 3. Add routing to the `app/webapp-fpm/manifest.json`
+
+➡️ Add the following code to the `sap.ui5` section of the `app/webapp-fpm/manifest.json`:
+
+```json
+"routing": {
+    "routes": [
+        {
+            "pattern": ":?query:",
+            "name": "mainPage",
+            "target": "mainPage"
+        },
+        {
+            "pattern": "/Books({key}):?query:",
+            "name": "detailPage",
+            "target": "detailPage"
+        }
+    ],
+    "targets": {
+        "mainPage": {
+            "type": "Component",
+            "id": "mainPage",
+            "name": "sap.fe.core.fpm",
+            "options": {
+                "settings": {
+                    "viewName": "sap.codejam.view.App",
+                    "entitySet": "Books",
+                    "navigation": {
+                        "Books": {
+                            "detail": {
+                                "route": "detailPage"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "detailPage": {
+            "type": "Component",
+            "id": "detailPage",
+            "name": "sap.fe.templates.ObjectPage",
+            "options": {
+                "settings": {
+                    "entitySet": "Books",
+                    "navigation": {}
+                }
+            }
+        }
+    }
+},
+```
+
+We added a new `sap.ui5.routing` section to our application descriptor file in which we define all  `routes` (think "pages") our application contains. This wasn't necessary up until this point as we only had one `rootView`, but that will change shortly. Let's go through the additions step by step:
+
+- Each of the routes has a `pattern` to access it, which we can attach to the URL of our application.
+- Each route also has a `name` and a `target`, which points to one of the objects we define in the `targets` section.
+- The `targets` section is where we provide content information for the pages of our app. If we where to follow a freestyle UI5 approach, we could directly point to an xml file at this point, but within the SAP Fiori elements framework we specify the type as `Component` and use `sap.fe` templates for the pages.
+- For our `mainPage` we use the `sap.fe.core.fpm` template component, which allows us to point to our own `sap.codejam.view.App` xml view, but have it run inside the SAP Fiori elements flexible programming model. We define the main `entitySet` (coming from the backend OData service) we want to use on the page. In the `navigation` section we define how users will be routed when clicking on of the `Books` items.
+- For our `detailPage` we use the official SAP Fiori elements object page template (`sap.fe.templates.ObjectPage`) instead of pointing to a custom view. 
+
+
+### 4. Remove the `rootView` from the `app/webapp-fpm/manifest.json`
+
+➡️ Remove the entire `rootView` section (inside `sap.ui5`) from the `app/webapp-fpm/manifest.json` file.
+
+It was mandatory to remove the `rootView` from our application descriptor as we now have a dedicated `sap.ui5.routing` section and want the SAP Fiori elements framework to handle the routing, including embedding our views.
+
+### 5. Add dependencies to the `app/webapp-fpm/manifest.json`
+
+➡️ Add the following code to the `sap.ui5.dependencies.libs` section of the `app/webapp-fpm/manifest.json`:
+
+```json
+"sap.fe.templates": {},
+"sap.fe.macros": {},
+```
+
+We added SAP Fiori elements related libraries to our dependencies to make sure they are preloaded by the SAPUI5 (performance optimizations) and are available at runtime.
+
+This is what our `app/webapp-fpm/manifest.json` now looks like:
+
+```json
+{
+    "sap.app": {
+        "id": "codejam",
+        "type": "application",
+        "title": "CodeJam Bookshop",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "dataSources": {
+            "capService": {
+                "uri": "/browse/",
+                "type" : "OData",
+                "settings" : {
+                    "odataVersion" : "4.0"
+                }
+            }  
+        }
+    },
+    "sap.ui5": {
+        "dependencies": {
+			"minUI5Version": "1.60.0",
+			"libs": {
+                "sap.ui.core": {},
+                "sap.m": {},
+                "sap.fe.macros": {},
+                "sap.fe.templates": {}
+			}
+		},
+        "routing": {
+            "routes": [
+                {
+					"pattern": ":?query:",
+					"name": "mainPage",
+					"target": "mainPage"
+				},
+                {
+					"pattern": "/Books({key}):?query:",
+					"name": "detailPage",
+					"target": "detailPage"
+				}
+            ],
+            "targets": {
+                "mainPage": {
+					"type": "Component",
+					"id": "mainPage",
+					"name": "sap.fe.core.fpm",
+					"options": {
+						"settings": {
+                            "viewName": "sap.codejam.view.App",
+							"entitySet": "Books",
+							"navigation": {
+                                "Books": {
+									"detail": {
+										"route": "detailPage"
+									}
+								}
+                            }
+						}
+					}
+				},
+                "detailPage": {
+					"type": "Component",
+					"id": "detailPage",
+					"name": "sap.fe.templates.ObjectPage",
+					"options": {
+						"settings": {
+							"entitySet": "Books",
+							"navigation": {}
+						}
+					}
+				}
+            }
+        },
+        "models": {
+            "": {
+				"dataSource": "capService",
+				"settings": {
+					"synchronizationMode": "None",
+					"operationMode": "Server",
+					"autoExpandSelect": true,
+					"earlyRequests": true
+				}
+			},
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "sap.codejam.i18n.i18n"
+                }
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        }
+    }
+}
+```
+
+### 6. Use SAPUI5 instead of OpenUI5
+
+➡️ Replace `openui5` with `sapui5` in the `app/webapp-fpm/index.html` so the bootstrapping (the script tag) looks like this:
+
+```html
+<script
+    id="sap-ui-bootstrap"
+    src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+    data-sap-ui-theme="sap_horizon"
+    data-sap-ui-async="true"
+    data-sap-ui-libs="sap.m"
+    data-sap-ui-compatVersion="edge"
+    data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
+    data-sap-ui-resourceroots='{
+        "sap.codejam": "./"
+    }'>
+</script>
+```
+
+We moved from OpenUI5 to SAPUI5, because SAP Fiori elements are not available and not part of OpenUI5. Check the [base readme](/README.md#sapui5-vs-openui5) to learn more about the differences between SAPUI5 and OpenUI5.
+
+### 7. 
+
+➡️ Replace the content of the `app/webapp-fpm/view/App.view.xml` with the following code:
 
 ```xml
-<ObjectStatus 
-    text="{stock}"
-    state="{=
-        ${stock} >= 20
-            ? 'Success'
-        : ${stock} > 0
-            ? 'Warning'
-        : 'Error'}" />
+<mvc:View
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    controllerName="sap.codejam.controller.App"
+    xmlns:macros="sap.fe.macros">
+
+<App id="Main">
+    <pages>
+        <Page title="{i18n>Bookshop}">
+            <content>
+                <macros:Table metaPath="@com.sap.vocabularies.UI.v1.LineItem" id="booksTable" />
+            </content>
+        </Page>
+    </pages>
+</App>
+
+</mvc:View>
 ```
 
-This is what our view now looks like (a few controls collapsed in the screen shot):
+We removed almost all the content of our app view and replaced it with a `<macros:Table />`, which is a so called [**building block**]() that we can use in SAP Fiori elements flexible programming model enabled applications. We pass it a `metaPath` pointing to specific **OData annotations**. As described [earlier](/chapters/chapter101/readme.md#chapter-101---sap-fiori-elements-flexible-programming-model), these are mandatory when using SAP Fiori elements, but don't exist just yet - we will implement them in the next step.
 
-![View with ObjectStatus for stock](/chapters/chapter06/chapter06-01.png)
+### 8. Adding OData annotations
 
-We replaced the `<Text />` control with an `<ObjectStatus />` which allows us to set a `state` attribute. For the state we use a concept called ***formatting***. 'Formatting' means that we style our content based on conditions. The code for our `state` attribute looks complicated, because it is written as an inline if-statement, but translating it into pseudo code makes it a lot more readable:
+➡️ Create the following `app/cat-service.cds` file:
 
-```text
-is the stock higher or equal to 20?
-    if yes: set state to 'Success'
-    if no: is the stock is higher than 0?
-        if yes: set state to 'Warning'
-        if no: set state to 'Error'
+```cds
+using {CatalogService} from '../srv/cat-service';
+
+annotate CatalogService.Books with @(
+    UI: {
+        Identification: [ {Value: title} ],
+        SelectionFields: [ title ],
+        HeaderInfo: {
+            TypeName      : 'Book',
+            TypeNamePlural: 'Books',
+            Title: {Value: title},
+            Description: {Value: author}
+        },
+        LineItem: [
+            {
+                $Type: 'UI.DataField',
+                Label: 'Book',
+                Value: title
+            },
+            {
+                $Type: 'UI.DataField',
+                Label: 'Author',
+                Value: author
+            },
+            {
+                $Type: 'UI.DataField',
+                Label: 'Genre',
+                Value: genre.name
+            },
+            {
+                $Type: 'UI.DataField',
+                Label: 'Price',
+                Value: price
+            },
+            {
+                $Type: 'UI.DataField',
+                Label: 'Stock',
+                Value: stock
+            }
+        ]
+    }
+);
+
+annotate CatalogService.Books with @(
+    UI: { 
+        FieldGroup#GeneratedGroup1: {
+            $Type: 'UI.FieldGroupType',
+            Data : [
+                {
+                    $Type: 'UI.DataField',
+                    Label: 'Title',
+                    Value: title
+                },
+                {
+                    $Type: 'UI.DataField',
+                    Label: 'Author',
+                    Value: author
+                },
+                {
+                    $Type: 'UI.DataField',
+                    Label: 'Genre',
+                    Value: genre.name
+                },
+                {
+                    $Type: 'UI.DataField',
+                    Label: 'Price',
+                    Value: price
+                },
+                {
+                    $Type: 'UI.DataField',
+                    Label: 'Stock',
+                    Value: stock
+                },
+                {
+                    $Type: 'UI.DataField',
+                    Label: 'Description',
+                    Value: descr
+                }
+            ]
+        },
+        Facets: [
+            {
+                $Type : 'UI.ReferenceFacet',
+                ID    : 'GeneratedFacet1',
+                Label : 'General Information',
+                Target: '@UI.FieldGroup#GeneratedGroup1'
+            }
+        ]
+    }
+);
 ```
+
+
+
+
 
 ![http://localhost:4004/webapp/index.html](/chapters/chapter06/chapter06-result.png)
 
