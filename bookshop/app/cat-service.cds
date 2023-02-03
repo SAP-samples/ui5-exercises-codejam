@@ -2,7 +2,7 @@ using {CatalogService} from '../srv/cat-service';
 
 annotate CatalogService.Books with @(
     UI: {
-        Identification: [ {Value: title} ],
+        Identification: [ {Value: ID} ],
         SelectionFields: [ title ],
         HeaderInfo: {
             TypeName      : 'Book',
