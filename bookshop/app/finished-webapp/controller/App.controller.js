@@ -1,72 +1,58 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/model/Filter",
-    "sap/ui/model/FilterOperator",
     "sap/m/MessageToast",
     "sap/m/Dialog",
     "sap/m/Button",
-    "sap/m/Text"
-], function (Controller, Filter, FilterOperator, MessageToast, Dialog, Button, Text) {
+    "sap/m/Text",
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator",
+], function (Controller, MessageToast, Dialog, Button, Text, Filter, FilterOperator) {
     "use strict"
     return Controller.extend("sap.codejam.controller.App", {
         onSelect: function (oEvent) {
-            let form = this.getView().byId("bookDetails"),
-                contextPath = oEvent.getSource().getBindingContextPath()
-            form.bindElement(contextPath)
+            const oSource = oEvent.getSource()
+            const contextPath = oSource.getBindingContextPath()
+            const form = this.getView().byId("bookDetails")
+            form.bindObject(contextPath)
 
-            let stepInput = this.getView().byId("stepInput")
-            let contextStock = oEvent.getSource().getBindingContext().getProperty("stock")
-            stepInput.setMax(contextStock)
+            const stepInput = this.getView().byId("stepInput")
+            const availableStock = oSource.getBindingContext().getProperty("stock")
+            stepInput.setMax(availableStock)
 
-            this.checkIfStockExceeds(contextStock)
+            this.checkIfInputExceedsAvailability()
         },
-        checkIfStockExceeds: function (contextStock) {
-            let stepInput = this.getView().byId("stepInput")
-            
-            if (contextStock == 0) {
+        checkIfInputExceedsAvailability: function () {
+            const stepInput = this.getView().byId("stepInput")
+            const inputValue = stepInput.getValue()
+            const orderBtn = this.getView().byId("orderBtn")
+
+            const availableStock = stepInput.getMax()
+            if (availableStock == 0) {
                 stepInput.setEnabled(false)
-                this.getView().byId("orderBtn").setEnabled(false)
-            } else if (stepInput.getValue() > contextStock) {
-                stepInput.setValue(contextStock)
+                orderBtn.setEnabled(false)
+            } else if (inputValue > availableStock) {
+                stepInput.setValue(availableStock)
+                stepInput.setValueState("None")
                 stepInput.setEnabled(true)
             } else {
                 stepInput.setEnabled(true)
-                this.getView().byId("orderBtn").setEnabled(true)
+                orderBtn.setEnabled(true)
             }
         },
-        disableOrderBtn: function () {
-            this.getView().byId("orderBtn").setEnabled(false)
-        },
-        enableOrderBtn: function () {
-            this.getView().byId("orderBtn").setEnabled(true)
-        },
         onSubmitOrder: function (oEvent) {
-            let oBindingContext = oEvent.getSource().getParent().getParent().getBindingContext()
-            let selectedBookID = oBindingContext.getProperty("ID"),
-                selectedBookTitle = oBindingContext.getProperty("title"),
-                stock = oBindingContext.getProperty("stock"),
-                quantity = this.getView().byId("stepInput").getValue()
-            let oAction = oEvent.getSource().getParent().getObjectBinding()
+            const oBindingContext = this.getView().byId("bookDetails").getBindingContext()
+            const selectedBookID = oBindingContext.getProperty("ID")
+            const selectedBookTitle = oBindingContext.getProperty("title")
+            const inputValue = this.getView().byId("stepInput").getValue()
+            const oAction = oEvent.getSource().getParent().getObjectBinding()
             oAction.setParameter("book", selectedBookID)
-            oAction.setParameter("quantity", quantity)
+            oAction.setParameter("quantity", inputValue)
 
-            this.checkIfStockExceeds(stock - quantity)
-            
-            let that = this
             oAction.execute().then(
                 function () {
                     oAction.getModel().refresh()
-
-                    let oParameterContext = oAction.getParameterContext()
-                    let oText = 
-                        "Order successful ("
-                        + selectedBookTitle
-                        + ", "
-                        + oParameterContext.getProperty("quantity")
-                        + " pcs.)"
-                    
+                    const oText = `Order successful (${selectedBookTitle}, ${inputValue} pcs.)`
                     MessageToast.show(oText)
-                    //let oResult = oAction.getBoundContext().getObject()
                 },
                 function (oError) {
                     that.oErrorMessageDialog = new Dialog({
@@ -83,17 +69,17 @@ sap.ui.define([
                         })
                     })
                     that.oErrorMessageDialog.open();
-                }
+                }.bind(this)
             )
         },
         onSearch: function (oEvent) {
-            let aFilter = []
-            let sQuery = oEvent.getParameter("newValue")
+            const aFilter = []
+            const sQuery = oEvent.getParameter("newValue")
             if (sQuery) {
                 aFilter.push(new Filter("title", FilterOperator.Contains, sQuery))
             }
-            let oList = this.byId("booksTable")
-            let oBinding = oList.getBinding("items")
+            const oList = this.byId("booksTable")
+            const oBinding = oList.getBinding("items")
             oBinding.filter(aFilter)
         }
     })

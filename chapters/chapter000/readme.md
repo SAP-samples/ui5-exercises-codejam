@@ -4,12 +4,12 @@ By the end of this chapter we will have prepared our development environment so 
 
 ## Steps
 
-[1. Prerequisites]()<br>
-[2. Navigate into your preferred directory]()<br>
-[3. Clone this repository]()<br>
-[4. Navigate into the newly created directory]()<br>
-[5. Install the project's dependencies]()<br>
-[6. Open the directory]()<br>
+[1. Prerequisites](#1-prerequisites)<br>
+[2. Navigate into your preferred directory](#2-navigate-into-your-preferred-directory)<br>
+[3. Clone this repository](#3-clone-this-repository)<br>
+[4. Navigate into the newly created directory](#4-navigate-into-the-newly-created-directory)<br>
+[5. Install the project's dependencies](#5-install-the-projects-dependencies)<br>
+[6. Open the directory](#6-open-the-directory)<br>
 
 ### 1. Prerequisites
 

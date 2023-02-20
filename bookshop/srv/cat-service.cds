@@ -6,7 +6,7 @@ service CatalogService @(path:'/browse') {
   excluding { descr };
 
   /** For display in details pages */
-  @readonly entity Books as projection on my.Books 
+  entity Books as projection on my.Books 
   { *, author.name as author } 
   excluding { createdBy, modifiedBy };
 

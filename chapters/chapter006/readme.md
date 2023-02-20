@@ -1,6 +1,6 @@
 # Chapter 6 - Adding Custom Formatting
 
-At the end of this chapter we will have added custom formatting to the `stock` column in our table as well as to the order `<Button />` and `<StepControl />`.
+At the end of this chapter we will have added custom formatting to the `stock` column in our table as well as a method to handle the enabled/disabled state of our order controls.
 
 ## Steps
 
@@ -38,76 +38,84 @@ is the stock higher or equal to 20?
         if no: set state to 'Error'
 ```
 
-### 2. Add an `itemSelected` property to the `userSelection` model
+In case you want to learn more about custom formatting in UI5: There is also a way to write a custom formatter in a separate JavaScript file and avoid the inline syntax. Learn more about that [here](https://sapui5.hana.ondemand.com/#/topic/0f8626ed7b7542ffaa44601828db20de).
 
-Let us also use formatting to enable and disable our order `<Button />` and `<StepInput />` based on whether a book is currently selected or not. For that, we can add a new property to our `userSelection` model. 
+### 2. Set max value for `<StepInput />`
 
-➡️ Add the following three code snippets to their respective places in the `app/webapp/controller/App.controller.js` (specified in the comments above):
+We want to make sure that users cannot order more books than there are available. To achieve that, we can add some more logic to our `app/webapp/controller/App.controller.js`.
+
+➡️ Add the following code to the `onSelect` method in the `app/webapp/controller/App.controller.js`:
 
 ```javascript
-//in the onInit method where the userSelection model get instantiated, just before the selectedQuantity gets set to 1
-itemSelected: false,
+const stepInput = this.getView().byId("stepInput")
+const availableStock = oSource.getBindingContext().getProperty("stock")
+stepInput.setMax(availableStock)
 
-//at the very end of the onSelect method
-oModel.setProperty("/itemSelected", true)
-
-//at the very end of the onSearch method
-oModel.setProperty("/itemSelected", false)
+this.checkIfInputExceedsAvailability()
 ```
+
+We added some logic to our controller that sets a max value on the `<StepInput />` whenever a user selects a book. This is to ensure that users cannot set a higher quantity than there are books available. However, this is only prevents users from using the "-" (minus) and "+" (plus) icon to set higher values, but it doesn't prevent them from using the free input. Let's tackle this problem in the next step.
+
+### 3. Add `checkIfInputExceedsAvailability()` method to `app/webapp/controller/App.controller.js`
+
+We need a reusable method that handles the enabled/disabled state of the order controls depending on the available stock and the input value.
+
+➡️ Add the following method to the `app/webapp/controller/App.controller.js`:
+
+```javascript
+,
+checkIfInputExceedsAvailability: function () {
+    const stepInput = this.getView().byId("stepInput")
+    const inputValue = stepInput.getValue()
+    const orderBtn = this.getView().byId("orderBtn")
+
+    const availableStock = stepInput.getMax()
+    if (availableStock == 0) {
+        stepInput.setEnabled(false)
+        orderBtn.setEnabled(false)
+    } else if (inputValue > availableStock) {
+        stepInput.setValue(availableStock)
+        stepInput.setValueState("None")
+        stepInput.setEnabled(true)
+    } else {
+        stepInput.setEnabled(true)
+        orderBtn.setEnabled(true)
+    }
+}
+```
+
+We added a new method to our controller that makes sure that the order controls get disabled when a book's stock is equal to zero. The method also resets the input value to equal the available stock in case it ever exceeds it, which can happen when users use the free input of the `<StepInput />`.
 
 This is what our controller now looks like after all the changes (`onSubmitOrder` method collapsed in the screen shot):
 
 ![Controller with itemSelected property](/chapters/chapter006/chapter006-02.png)
 
-We added a new `itemSelected` property to the `userSelection` model and made sure it gets updated accordingly when a user selects a book (set to `true`) or searches for another book (set to `false`).
-
-### 3. Add an `enabled` attribute to the order `<Button />` and `<StepInput />`
-
-The previous step laid the foundation for being able to enable and disable the order `<Button />` and `<StepInput />` control based on whether an item is selected or not.
+### 3. Disable order controls by default and invoke validation method
 
 ➡️ Replace the existing `<Button />` and `<StepInput />` control in our `app/webapp/view/App.view.xml` with the following controls:
 
 ```xml
-<Button 
+<Button
+    id="orderBtn"
     text="Order"
     press=".onSubmitOrder"
-    enabled="{= 
-        ${userSelection>/itemSelected} === true 
-            ? ${userSelection>/selectedItemData/stock} === 0 
-                || ${userSelection>/selectedQuantity} === 0
-                ? false 
-                : true 
-            : false}" />
-<StepInput
-    value="{userSelection>/selectedQuantity}"
-    min="0"
+    enabled="false" />
+<StepInput 
+    id="stepInput"
+    min="1"
     textAlign="Center"
-    max="{userSelection>/selectedItemData/stock}"
-    enabled="{= 
-        ${userSelection>/itemSelected} === true 
-            ? ${userSelection>/selectedItemData/stock} === 0 
-                ? false 
-                : true 
-            : false}" />
+    validationMode="LiveChange"
+    enabled="false"
+    validationError=".checkIfInputExceedsAvailability" />
 ```
 
-We added the `enabled` attribute to our `<Button />` and `<StepInput />` control making sure they are only enabled and clickable when the user has selected a book. We used the inline if-statement syntax for it again, which looks complicated at first but can easily be broken down into its individual pieces. This is the pseudo code for the `enabled` attribute of the `<Button />`:
-
-```text
-is an item selected?
-    if yes: is the stock 0 or the selected quantity 0?
-        if yes: set to false
-        if not: set to true
-    if not: set to false
-```
-
-In case you want to learn more about custom formatting in UI5: There is also a way to write a custom formatter in a separate JavaScript file and avoid the inline syntax. Learn more about that [here](https://sapui5.hana.ondemand.com/#/topic/0f8626ed7b7542ffaa44601828db20de).
+We disabled (`enabled="false"`) our `<Button />` and `<StepInput />` by default, so they cannot be used until a book gets selected, which will trigger the `.onSelect` method enabling the controls. We also bound the `checkIfInputExceedsAvailability` method to the `validationError` event, so it gets triggered whenever the user enters an invalid value.
 
 ### 4. Inspect and test the new formatting
 
-➡️ Refresh the app. Inspect and test our new formatting.
+➡️ Refresh the app. Inspect and test our new formatting as well as entering invalid value in the `<StepInput />`.
 
-You will see that the `stock` is color coded based on the thresholds we defined. You will also see that the `<Button />` and `<StepInput />` controls are disabled by default if no book is selected. Try and set the `selectedQuantity` to match the `stock` of a book and submit an order. After that, the `<Button />` and `<StepInput />` control will be disabled based on our formatting, because no more books are available.
+You will notice that the `stock` is color coded based on the thresholds we defined. You will also see that the `<Button />` and `<StepInput />` controls are disabled by default if no book is selected.
 
 ![http://localhost:4004/webapp/index.html](/chapters/chapter006/chapter006-result.png)
 

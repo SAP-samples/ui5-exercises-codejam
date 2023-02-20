@@ -1,4 +1,4 @@
-# Chapter 101 - SAP Fiori Elements Flexible Programming Model
+# Chapter 101 - Enabling the SAP Fiori Elements Flexible Programming Model
 
 The following series of chapters (starting with this chapter101) introduces **SAP Fiori elements flexible programming model**, which bridges the gap between freestyle UI5 development and [SAP Fiori elements](https://ui5.sap.com/#/topic/03265b0408e2432c9571d6b3feb6b1fd).
 
@@ -245,7 +245,7 @@ We moved from OpenUI5 to SAPUI5, because SAP Fiori elements are not available an
 </mvc:View>
 ```
 
-We removed almost all the content of our app view and replaced it with a `<macros:Table />`, which is a so called **building block** that we can use in SAP Fiori elements flexible programming model enabled applications. We pass it a `metaPath` pointing to specific **OData annotations** using the [SAP UI vocabulary](https://github.com/SAP/odata-vocabularies/blob/main/vocabularies/UI.md). As described [earlier](/chapters/chapter101/readme.md#chapter-101---sap-fiori-elements-flexible-programming-model), these are mandatory when using SAP Fiori elements, but don't exist just yet - we will implement them in the next step.
+We removed almost all the content of our app view and replaced it with a `<macros:Table />`, which is a so called **building block** that we can use in SAP Fiori elements flexible programming model enabled applications. We pass it a `metaPath` pointing to specific **OData annotations** using the [SAP UI vocabulary](https://github.com/SAP/odata-vocabularies/blob/main/vocabularies/UI.md). As described [earlier](/chapters/chapter101/readme.md#chapter-101---sap-fiori-elements-flexible-programming-model), annotations are mandatory when using SAP Fiori elements, but they don't exist just yet - we will implement them shortly.
 
 ### 8. Use the `sap/fe/core/PageController` instead of the `sap/ui/core/mvc/Controller`
 

@@ -59,17 +59,23 @@
                         </items>
                     </Table>
                     <FlexBox direction="Column" class="sapUiMediumMarginTop" id="bookDetails">
-                        <FlexBox alignItems="Center" justifyContent="End" class="orderControls" binding="{/submitOrder(...)}" >
-                            <Button id="orderBtn" text="Order" press=".onSubmitOrder" enabled="false" />
+                        <FlexBox 
+                            alignItems="Center"
+                            justifyContent="End"
+                            class="sapUiMediumMarginBottom orderControls"
+                            binding="{/submitOrder(...)}" >
+                            <Button
+                                id="orderBtn"
+                                text="Order"
+                                press=".onSubmitOrder"
+                                enabled="false" />
                             <StepInput 
                                 id="stepInput"
                                 min="1"
                                 textAlign="Center"
-                                class="sapUiSmallMarginRight"
                                 validationMode="LiveChange"
-                                validationError=".disableOrderBtn"
-                                change=".enableOrderBtn"
-                                enabled="false" />                        
+                                validationError=".checkIfInputExceedsAvailability"
+                                enabled="false" />   
                         </FlexBox>
                         <FlexBox direction="Column" >
                             <Title text="{title}" />

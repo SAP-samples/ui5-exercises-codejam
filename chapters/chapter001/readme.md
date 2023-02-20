@@ -64,7 +64,7 @@ Like most other web applications our UI5 app needs an `index.html` serving as th
 </html>
 ```
 
-We loaded the UI5 framework into our project and configured a few attributes such as the theme and library we want to use, and the name of our project root.
+We loaded the UI5 framework into our project and configured a few attributes such as the theme and library we want to use, and the name of our project root. This process is called **bootstrapping**.
 
 <details>
 <summary>What is HTML and how is it structured? 💬</summary>
@@ -88,7 +88,7 @@ We loaded the UI5 framework into our project and configured a few attributes suc
 
 <br>
 
-> An HTML `<script />` element tells the browser that its content should be interpreted as JavaScript code. In our case we don't have content inside the tags, but rather specify attributes of that `<script />` element. By specifying these attributes we initialize the UI5 framework and turn our blank `index.html` file into a UI5 project. This step is called **bootstrapping**. 
+> An HTML `<script />` element tells the browser that its content should be interpreted as JavaScript code. In our case we don't have content inside the tags, but rather specify attributes of that `<script />` element. By specifying these attributes we initialize the UI5 framework and turn our blank `index.html` file into a UI5 project. This step is called **bootstrapping**.
 >
 > Let's go through each of the attributes step-by-step:
 > - We specify an `id` for the `<script />` element, which is used by the framework to find out where it was initialized from.
@@ -184,7 +184,7 @@ We have set up our component by initializing the `UIComponent` from the UI5 libr
 > 1. An array of dependencies from UI5 libraries
 > 1. A function that will be executed
 >
-> Our only dependency is the `UIComponent`, which we pass to the function. This function returns the `UIComponent`, but [extends](https://sapui5.hana.ondemand.com/sdk/#/api/sap.ui.core.UIComponent%23methods/sap.ui.core.UIComponent.extend) it with an new subclass that we call `sap.codejam.Component`. This subclass is enriched with a `metadata` parameter, which is an object that points to a `manifest.json` and makes sure that the `UIComponent` is created fully asynchronously (`"sap.ui.core.IAsyncContentCreation"`). The subclass is also enriched by an `init` function, which is automatically invoked by the framework when the component is instantiated. Inside this function, we make sure that the init function of the `UIComponent`'s parent is invoked (which is obligatory).
+> Our only dependency is the `UIComponent` class, which we pass to the function. This function returns the `UIComponent`, but [extends](https://sapui5.hana.ondemand.com/sdk/#/api/sap.ui.core.UIComponent%23methods/sap.ui.core.UIComponent.extend) it with a new subclass that we call `sap.codejam.Component`. This subclass is enriched with a `metadata` parameter, which is an object that points to a `manifest.json` and makes sure that the `UIComponent` is created fully asynchronously (`"sap.ui.core.IAsyncContentCreation"`). The subclass is also enriched by an `init` function, which is automatically invoked by the framework when the component is instantiated. Inside this function, we make sure that the init function of the `UIComponent`'s parent is invoked (which is obligatory).
 >
 > Read more about the component configuration in the [SAPUI5 Documentation](https://sapui5.hana.ondemand.com/sdk/#/topic/4cfa60872dca462cb87148ccd0d948ee). 
 
@@ -258,7 +258,7 @@ We already referenced our root XML view in our `app/webapp/manifest.json`. Let's
 </mvc:View>
 ```
 
-We defined our first XML view with a few UI5 controls. UI5 controls are reusable UI elements provided by the framework. Similar to HTML elements, they have an opening and closing tag and predefined attributes (non-working example: `<Control attributes="myValue"></Control>`). They follow the [Fiori Design Guidelines](https://experience.sap.com/fiori-design-web/) and provide a lot of functionalities out of the box. XML views are the best way to use and structure UI5 controls, as they are very easy to read and represent the hierarchical structure of controls very well. We will just call them 'views' from now on.
+We defined our first XML view with a few UI5 controls. UI5 controls are reusable UI elements provided by the framework. Similar to HTML elements, they have an opening and closing tag and predefined attributes (non-working example: `<Control attribute="myValue"></Control>`). They follow the [Fiori Design Guidelines](https://experience.sap.com/fiori-design-web/) and provide a lot of functionalities out of the box. XML views are the best way to use and structure UI5 controls, as they are very easy to read and represent the hierarchical structure of controls very well. We will just call them 'views' from now on.
 
 You might be wondering how you as a developer can find out which UI5 controls to use and what attributes and APIs they have. The official [SAPUI5 API Reference](https://sapui5.hana.ondemand.com/#/api) as well as the [Code Samples](https://sapui5.hana.ondemand.com/#/controls) are your go-to resources and contain all the information you will ever need.
 
@@ -285,9 +285,9 @@ At this point we have already created a fully functional UI5 app. Let's start ou
 npm run dev 
 ```
 
-We ran the script to start our app locally, which is defined in our [package.json](/bookshop/package.json). We did this on root level of the `bookshop` project, as we want to start both our front and backend application. The SAP Cloud Application Model automatically looks for `html` files inside the `app/` directory and serves them on a web server alongside the service endpoints for the backend application (see [srv](/bookshop/srv/)). You can find the URL to access it in the terminal output. It will be [http://localhost:4004](http://localhost:4004) or something similar depending on your development environment.
+We ran the script to start our app locally, which is defined in our [package.json](/bookshop/package.json#L22). We did this on root level of the `bookshop` project, as we want to start both our front and backend application. The SAP Cloud Application Programming Model automatically looks for `html` files inside the `app/` directory and serves them on a web server alongside the service endpoints for the backend application (see [srv](/bookshop/srv/)). You can find the URL to access it in the terminal output. It will be [http://localhost:4004](http://localhost:4004) or something similar depending on your development environment.
 
-The server is set to restart once it detects a change in one of the files. This is very useful as we don't have to do this manually after we one or more changes to our app. You can test this by editing the `title` attribute of the `<Page />`, saving the file, and reloading the page in the browser.
+The server is set to restart once it detects a change in one of the files. This is very useful as we don't have to do this manually after making one or more changes to our app. You can test this by editing the `title` attribute of the `<Page />`, saving the file, and reloading the page in the browser.
 
 ![http://localhost:4004](/chapters/chapter001/chapter001-result1.png)
 ![http://localhost:4004/webapp/index.html](/chapters/chapter001/chapter001-result2.png)

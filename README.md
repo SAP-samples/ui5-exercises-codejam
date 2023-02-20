@@ -41,17 +41,25 @@ The material consists of a series of chapters. The chapters build on top of each
 
 ## Chapters
 
-0. [Preparing the Development Environment](/chapters/chapter00)
-1. [Scaffolding the App - Our First View](/chapters/chapter01)
-1. [Creating and Consuming Our First Model](/chapters/chapter02)
-1. [Creating and Extending Our First Controller](/chapters/chapter03)
-1. [Adding an 'Order' Feature to Our Bookshop](/chapters/chapter04)
-1. [Adding a 'Search' Feature to Our Bookshop](/chapters/chapter05)
-1. [Adding Custom Formatting](/chapters/chapter06)
-1. [Adding i18n Features](/chapters/chapter07)
-1. [Adding Custom CSS](/chapters/chapter08)
-1. [Deploying Our App](/chapters/chapter09) (Optional)
-1. [Further Improvements and Learning Material](/chapters/chapter10)
+### Part 1 - Freestyle UI5
+
+- [000 - Preparing the Development Environment](/chapters/chapter000)
+- [001 - Scaffolding the App - Our First View](/chapters/chapter001)
+- [002 - Creating and Consuming Our First Model](/chapters/chapter002)
+- [003 - Creating and Extending Our First Controller](/chapters/chapter003)
+- [004 - Adding an 'Order' Feature to Our Bookshop](/chapters/chapter004)
+- [005 - Adding a 'Search' Feature to Our Bookshop](/chapters/chapter005)
+- [006 - Adding Custom Formatting](/chapters/chapter006)
+- [007 - Adding i18n Features](/chapters/chapter007)
+- [008 - Adding Custom CSS](/chapters/chapter008)
+- [009 - Deploying Our App](/chapters/chapter009) (Optional)
+- [010 - Further Improvements and Learning Material](/chapters/chapter100)
+
+### Part 2 - SAP Fiori Elements Flexible Programming Model
+
+- [101 - Enabling the SAP Fiori Elements Flexible Programming Model](/chapters/chapter101/)
+- [102 - Adding an Object Page](/chapters/chapter102/)
+
 
 ## SAPUI5 vs. OpenUI5
 
