@@ -6,69 +6,54 @@ sap.ui.define([
     "sap/m/Text",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
-], function (Controller, MessageToast, Dialog, Button, Text, Filter, FilterOperator) {
+    "../model/formatter"
+], function (Controller, MessageToast, Dialog, Button, Text, Filter, FilterOperator, formatter) {
     "use strict"
     return Controller.extend("sap.codejam.controller.App", {
+        formatter: formatter,
+        onAfterRendering: function () {
+            this.getView().byId("orderBtn").setEnabled(false)
+        },
         onSelect: function (oEvent) {
             const oSource = oEvent.getSource()
             const contextPath = oSource.getBindingContextPath()
             const form = this.getView().byId("bookDetails")
             form.bindObject(contextPath)
-
-            const stepInput = this.getView().byId("stepInput")
-            const availableStock = oSource.getBindingContext().getProperty("stock")
-            stepInput.setMax(availableStock)
-
-            this.checkIfInputExceedsAvailability()
-        },
-        checkIfInputExceedsAvailability: function () {
-            const stepInput = this.getView().byId("stepInput")
-            const inputValue = stepInput.getValue()
-            const orderBtn = this.getView().byId("orderBtn")
-
-            const availableStock = stepInput.getMax()
-            if (availableStock == 0) {
-                stepInput.setEnabled(false)
-                orderBtn.setEnabled(false)
-            } else if (inputValue > availableStock) {
-                stepInput.setValue(availableStock)
-                stepInput.setValueState("None")
-                stepInput.setEnabled(true)
-            } else {
-                stepInput.setEnabled(true)
-                orderBtn.setEnabled(true)
-            }
         },
         onSubmitOrder: function (oEvent) {
             const oBindingContext = this.getView().byId("bookDetails").getBindingContext()
             const selectedBookID = oBindingContext.getProperty("ID")
             const selectedBookTitle = oBindingContext.getProperty("title")
             const inputValue = this.getView().byId("stepInput").getValue()
-            const oAction = oEvent.getSource().getParent().getObjectBinding()
+
+            const oModel = this.getView().getModel()
+			const oAction = oModel.bindContext("/submitOrder(...)")
             oAction.setParameter("book", selectedBookID)
             oAction.setParameter("quantity", inputValue)
 
+            const i18nModel = this.getView().getModel("i18n")
+
             oAction.execute().then(
                 function () {
-                    oAction.getModel().refresh()
-                    const oText = `Order successful (${selectedBookTitle}, ${inputValue} pcs.)`
+                    oModel.refresh()
+                    const oText = `${i18nModel.getProperty("orderSuccessful")} (${selectedBookTitle}, ${inputValue} ${i18nModel.getProperty("pieces")})`
                     MessageToast.show(oText)
                 },
                 function (oError) {
-                    that.oErrorMessageDialog = new Dialog({
+                    this.oErrorMessageDialog = new Dialog({
                         type: "Standard",
-                        title: "Error",
+                        title: i18nModel.getProperty("Error"),
                         state: "Error",
                         content: new Text({ text: oError.error.message })
                         .addStyleClass("sapUiTinyMargin"),
                         beginButton: new Button({
-                            text: "OK",
+                            text: i18nModel.getProperty("Close"),
                             press: function () {
-                                that.oErrorMessageDialog.close()
+                                this.oErrorMessageDialog.close()
                             }.bind(this)
                         })
                     })
-                    that.oErrorMessageDialog.open();
+                    this.oErrorMessageDialog.open();
                 }.bind(this)
             )
         },

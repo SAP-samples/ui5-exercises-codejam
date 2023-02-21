@@ -1,6 +1,6 @@
 # Chapter 8 - Adding Custom CSS
 
-At the end of this chapter we will have added custom CSS to our UI5 app that makes sure that our `<FlexBox />` containing the `<ObjectStatus />`, `Button`, and `<StepInput />` is styled properly.
+At the end of this chapter we will have added custom CSS to our UI5 app that makes sure that our `<FlexBox />` containing the order `<Button />`, and `<StepInput />` is styled properly.
 
 ## Steps
 
@@ -40,17 +40,19 @@ We added a new `css` resource to our application descriptor and pointed it to a 
 }
 ```
 
-We created a new css file and added a css class to it. The css class uses the `gap` property which makes sure that all items inside a container that is styled with `display = flex` (like the `<FlexBox />` control) have the specified gap between each other.
+We created a new css file and added a css class to it. The css class uses the `gap` property which makes sure that all items inside a container with `display = flex` (like the `<FlexBox />` control) have the specified gap between each other.
 
 ### 3. Use a custom CSS class in our `app/webapp/view/App.view.xml`
 
-We can now apply the css class `orderControls` to our `app/webapp/view/App.view.xml`.
+We can now use the css class `orderControls` in our `app/webapp/view/App.view.xml`.
 
-➡️ Add the class to the `<FlexBox />` containing the `<ObjectStatus />`, `Button`, and `<StepInput />`, so it looks like this:
+➡️ Add the class to the `<FlexBox />` containing the order `<Button />`, and `<StepInput />`, so it looks like this:
 
 ```xml
-<FlexBox alignItems="Center" justifyContent="End" class="orderControls">
-    <ObjectStatus ... />
+<FlexBox 
+    alignItems="Center"
+    justifyContent="End"
+    class="sapUiMediumMarginBottom orderControls" >
     <Button ... />
     <StepInput .../>                     
 </FlexBox>

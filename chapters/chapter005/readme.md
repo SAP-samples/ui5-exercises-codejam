@@ -48,7 +48,7 @@ We added a new `onSearch` method, which is being passed an event. The method get
 
 The new `.onSearch` method uses the `Filter` and `FilterOperator` from the library. Make sure to import them from the library and pass the to the main function of the `app/webapp/controller/App.controller.js`.
 
-➡️ Replace the array defining the library imports as well the main function and it's imports at the top of the file with the following code snippet. Keep the content of the main function (the return statement with our controller methods):
+➡️ Replace the array defining the library imports as well the main function and its arguments at the top of the file with the following code snippet. Keep the content of the main function (the return statement with the controller methods):
 
 ```javascript
 sap.ui.define([
@@ -60,8 +60,8 @@ sap.ui.define([
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
 ], function (Controller, MessageToast, Dialog, Button, Text, Filter, FilterOperator) {
-    //content of the function stays here 
-}
+    // content of the function stays here 
+})
 ```
 
 This is what our controller now looks like (a few methods collapsed in the screen shot):
@@ -76,4 +76,4 @@ You'll notice how the search is instantly triggered after a keystroke is submitt
 
 ![http://localhost:4004/webapp/index.html](/chapters/chapter005/chapter005-result.png)
 
-Continue to [Chapter 6 - Adding Custom Formatting](/chapters/chapter006):
+Continue to [Chapter 6 - Adding Expression Binding & Custom Formatting](/chapters/chapter006):

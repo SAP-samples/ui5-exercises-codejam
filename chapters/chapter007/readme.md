@@ -48,6 +48,7 @@ Order=Order
 orderSuccessful=Order successful
 pieces=pcs.
 Error=Error
+Close=Close
 ```
 
 We created a new file that contains a few key value pairs for texts we want to use in our app. This allows us to simply reference the keys when consuming the model in our view instead of hardcoding the values. Because the keys as well as the values are in English it might look like this doesn't add much value, but you will see what this is about once we add some translations in the next step.
@@ -67,6 +68,7 @@ Order=Bestellen
 orderSuccessful=Bestellung erfolgreich
 pieces=Stk.
 Error=Fehler
+Close=Schließen
 ```
 
 This is what our project's structure now looks like:
@@ -87,36 +89,52 @@ We can now consume the `i18n` model in our `app/webapp/view/App.view.xml` using 
 
 ### 5. Consume the `i18n` model in our `app/webapp/controller/App.controller.js`
 
-We not only want to consume the `i18n` model in our view but also in our `app/webapp/controller/App.controller.js`. We previously hardcoded the text for the `orderStatus` and now want to use the `i18n` model instead.
+We not only want to consume the `i18n` model in our view but also in our `app/webapp/controller/App.controller.js`. We previously hardcoded the success and error messages and now want to use the `i18n` model instead.
 
-➡️ Replace the `jQuery.ajax` request including the `done` and `fail` methods with the following code:
+➡️ Replace the `onSubmitOrder` method with the following code:
 
 ```javascript
-let i18nModel = oView.getModel("i18n")
-jQuery.ajax(reqSettings)
-    .done(function (response) {
-        console.log(response)
-        oView.byId("orderStatus")
-            .setText(
-                `${i18nModel.getProperty("orderSuccessful")} 
-                (${userSelectionData.selectedItemData.title}, 
-                ${userSelectionData.selectedQuantity} 
-                ${i18nModel.getProperty("pieces")})`
-            )
-        oView.byId("orderStatus").setState("Success")
+,
+onSubmitOrder: function (oEvent) {
+    const oBindingContext = this.getView().byId("bookDetails").getBindingContext()
+    const selectedBookID = oBindingContext.getProperty("ID")
+    const selectedBookTitle = oBindingContext.getProperty("title")
+    const inputValue = this.getView().byId("stepInput").getValue()
 
-        let userSelectedPath = oView.getModel("userSelection").getProperty("/selectedItemPath")
-        oView.getModel().setProperty(userSelectedPath + "/stock", response.stock)
-        oView.getModel("userSelection").setProperty("/selectedItemData/stock", response.stock)
-    })
-    .fail(function(response) {
-        console.log(response)
-        oView.byId("orderStatus").setText(`${i18nModel.getProperty("Error")}`)
-        oView.byId("orderStatus").setState("Error")
-    })
+    const oModel = this.getView().getModel()
+    const oAction = oModel.bindContext("/submitOrder(...)")
+    oAction.setParameter("book", selectedBookID)
+    oAction.setParameter("quantity", inputValue)
+
+    const i18nModel = this.getView().getModel("i18n")
+
+    oAction.execute().then(
+        function () {
+            oModel.refresh()
+            const oText = `${i18nModel.getProperty("orderSuccessful")} (${selectedBookTitle}, ${inputValue} ${i18nModel.getProperty("pieces")})`
+            MessageToast.show(oText)
+        },
+        function (oError) {
+            this.oErrorMessageDialog = new Dialog({
+                type: "Standard",
+                title: i18nModel.getProperty("Error"),
+                state: "Error",
+                content: new Text({ text: oError.error.message })
+                .addStyleClass("sapUiTinyMargin"),
+                beginButton: new Button({
+                    text: i18nModel.getProperty("Close"),
+                    press: function () {
+                        this.oErrorMessageDialog.close()
+                    }.bind(this)
+                })
+            })
+            this.oErrorMessageDialog.open();
+        }.bind(this)
+    )
+}
 ```
 
-We added the `i18n` model to our controller and used it when setting the text for the `orderStatus`.
+We added the `i18n` model to our controller and used it for the success and error messages.
 
 ### 6. Test the app in another language
 

@@ -59,23 +59,26 @@
                         </items>
                     </Table>
                     <FlexBox direction="Column" class="sapUiMediumMarginTop" id="bookDetails">
+
                         <FlexBox 
                             alignItems="Center"
                             justifyContent="End"
-                            class="sapUiMediumMarginBottom orderControls"
-                            binding="{/submitOrder(...)}" >
+                            class="sapUiMediumMarginBottom orderControls" >
                             <Button
                                 id="orderBtn"
                                 text="Order"
                                 press=".onSubmitOrder"
-                                enabled="false" />
+                                enabled="{
+                                    path: 'stock',
+                                    targetType: 'any',
+                                    formatter: '.formatter.inputLowerThanStock'
+                                }" />
                             <StepInput 
                                 id="stepInput"
                                 min="1"
+                                max="{stock}"
                                 textAlign="Center"
-                                validationMode="LiveChange"
-                                validationError=".checkIfInputExceedsAvailability"
-                                enabled="false" />   
+                                validationMode="LiveChange" />
                         </FlexBox>
                         <FlexBox direction="Column" >
                             <Title text="{title}" />

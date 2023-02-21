@@ -20,9 +20,9 @@ At the end of this chapter we will have deployed our UI5 to the Cloud Foundry En
 [4. Create an `app/mta.yaml` file to describe the build process](#4-create-an-appmtayaml-file-to-describe-the-build-process)<br>
 [5. Navigate into the `app` directory](#5-navigate-into-the-app-directory)<br>
 [6. Install the dependencies](#6-install-the-dependencies)<br>
-[7. Build the multitarget application](#7-build-the-multitarget-application)<br>
+[7. Build the multi-target application](#7-build-the-multi-target-application)<br>
 [8. Log in to the Cloud Foundry Environment](#8-log-in-to-the-cloud-foundry-environment)<br>
-[9. Deploy the multitarget application](#9-deploy-the-multitarget-application)<br>
+[9. Deploy the multi-target application](#9-deploy-the-multi-target-application)<br>
 [10. Test the bookshop in the cloud](#10-test-the-bookshop-in-the-cloud)<br>
 
 ### 1. Wrap the UI5 app into a Node.js based application using the `@sap/approuter` package
@@ -141,7 +141,7 @@ resources:
      path: ./remote-destination.json
 ```
 
-We described the build process for our multitarget application. Our UI5 app is now part of a 'multitarget application' because we not only want to deploy the approuter module (proxying requests to our UI5 app), but also an instance of the destination service in Cloud Foundry. This instance is listed under `resources` and points to the `app/remote-destination.json` file defining the destination. The `bookshop-approuter` module `requires` this particular resource, which makes sure they will be bound during deployment.
+We described the build process for our multi-target application. Our UI5 app is now part of a 'multi-target application' because we not only want to deploy the approuter module (proxying requests to our UI5 app), but also an instance of the destination service in Cloud Foundry. This instance is listed under `resources` and points to the `app/remote-destination.json` file defining the destination. The `bookshop-approuter` module `requires` this particular resource, which makes sure they will be bound during deployment.
 
 This is what our project's structure now looks like:
 
@@ -165,7 +165,7 @@ cd app
 npm install
 ```
 
-### 7. Build the multitarget application
+### 7. Build the multi-target application
 
 ➡️ Execute the following command in the same terminal session to trigger the build:
 
@@ -185,7 +185,7 @@ We can now log in to the Cloud Foundry environment on the SAP Business Technolog
 cf login
 ```
 
-### 9. Deploy the multitarget application
+### 9. Deploy the multi-target application
 
 We can now deploy the project.
 
@@ -206,6 +206,6 @@ If the build was successful and finished with no errors, we can test our booksho
 ![SAP BTP Cockpit](/chapters/chapter009/chapter009-result1.png)
 ![Bookshop in the cloud](/chapters/chapter009/chapter009-result2.png)
 
-We successfully deployed our UI5 app to the Cloud Foundry Environment as part of a multitarget application. It consumes a remote service as the data source when running in the cloud (during local development we used a local backend application), so don't be surprised if the stock amounts suddenly decrease. Someone else might be using the same remote service at the same time.
+We successfully deployed our UI5 app to the Cloud Foundry Environment as part of a multi-target application. It consumes a remote service as the data source when running in the cloud (during local development we used a local backend application), so don't be surprised if the stock amounts suddenly decrease. Someone else might be using the same remote service at the same time.
 
 Continue to [Chapter 10 - Further Improvements and Learning Material](/chapters/chapter010)

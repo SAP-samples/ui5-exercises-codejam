@@ -19,14 +19,16 @@ We need an input field for the order quantity as well as an order button for our
 <FlexBox 
     alignItems="Center"
     justifyContent="End"
-    class="sapUiMediumMarginBottom"
-    binding="{/submitOrder(...)}" >
-    <Button id="orderBtn" text="Order" press=".onSubmitOrder" />
+    class="sapUiMediumMarginBottom">
+    <Button
+        id="orderBtn"
+        text="Order"
+        press=".onSubmitOrder" />
     <StepInput 
         id="stepInput"
         min="1"
         textAlign="Center"
-        validationMode="LiveChange" />   
+        validationMode="LiveChange" />
 </FlexBox>
 ```
 
@@ -34,8 +36,7 @@ This is what our view now looks like (`<Table />` collapsed in the screen shot):
 
 ![View with updated FlexBox](/chapters/chapter004/chapter004-01.png)
 
-We added a new `<FlexBox />` with the attributes `alignItems="Center"` and `justifyContent="End"` which makes sure all of its children will be centered vertically and displayed at the end of the box horizontally (which is the right side of the browser window in this case). We use an [OData operation binding](https://sapui5.hana.ondemand.com/sdk/#/topic/b54f7895b7594c61a83fa7257fa9d13f) (`{/submitOrder(...)}`) for the box, which binds an action [defined in the CAP backend](/bookshop/srv/cat-service.cds#L14) to the frontend control. This action will not directly be executed when clicking the box however (it's "deferred"), but the binding allows us to use it in a new `.onSubmitOrder` method, which we will implement in the next step.
-We also added a `<StepInput />` so the user can set the order quantity.
+We added a new `<FlexBox />` with the attributes `alignItems="Center"` and `justifyContent="End"` which makes sure all of its children will be centered vertically and displayed at the end of the box horizontally (which is the right side of the browser window in this case). Inside that `<FlexBox />` we define a `<Button />` that triggers an `.onSubmitOrder` method when pressed, which we will define in the next step. We also added a `<StepInput />` so the user can set the order quantity.
 
 ### 2. Add a new `onSubmitOrder` method to our `app/webapp/controller/App.controller.js`
 
@@ -45,19 +46,22 @@ We can now implement the `onSubmitOrder` method that will send an order request 
 
 ```javascript
 ,
+
 onSubmitOrder: function (oEvent) {
     const oBindingContext = this.getView().byId("bookDetails").getBindingContext()
     const selectedBookID = oBindingContext.getProperty("ID")
     const selectedBookTitle = oBindingContext.getProperty("title")
-    const inputQuantity = this.getView().byId("stepInput").getValue()
-    const oAction = oEvent.getSource().getParent().getObjectBinding()
+    const inputValue = this.getView().byId("stepInput").getValue()
+
+    const oModel = this.getView().getModel()
+    const oAction = oModel.bindContext("/submitOrder(...)")
     oAction.setParameter("book", selectedBookID)
-    oAction.setParameter("quantity", inputQuantity)
+    oAction.setParameter("quantity", inputValue)
 
     oAction.execute().then(
         function () {
-            oAction.getModel().refresh()
-            const oText = `Order successful (${selectedBookTitle}, ${inputQuantity} pcs.)`
+            oModel.refresh()
+            const oText = `Order successful (${selectedBookTitle}, ${inputValue} pcs.)`
             MessageToast.show(oText)
         },
         function (oError) {
@@ -68,7 +72,7 @@ onSubmitOrder: function (oEvent) {
                 content: new Text({ text: oError.error.message })
                 .addStyleClass("sapUiTinyMargin"),
                 beginButton: new Button({
-                    text: "OK",
+                    text: "Close",
                     press: function () {
                         that.oErrorMessageDialog.close()
                     }.bind(this)
@@ -80,7 +84,7 @@ onSubmitOrder: function (oEvent) {
 }
 ```
 
-We added a new `onSubmitOrder` method to our controller which we already bound to the press event of the order button in [step 1](/chapters/chapter004#1-add-input-field-and-button-to-our-appwebappviewappviewxml) of this chapter. First, the methods gets the binding context from a parent element of the pressed button. It then gets the book's ID and title from that context as well as the order quantity from the step input. It sets these parameters on the bound action and executes the action, meaning it sends the OData request to the backend. When the promise of the action gets resolved, it can go either one of two ways:
+We added a new `onSubmitOrder` method to our controller, which we already bound to the order button's press event in [step 1](/chapters/chapter004#1-add-input-field-and-button-to-our-appwebappviewappviewxml) of this chapter. First, the method gets the binding context from the `bookDetails` wrapper control. It then gets the book's ID and title from that context as well as the order quantity from the step input. It then binds an action, which is [defined in the CAP backend](/bookshop/srv/cat-service.cds#L14), to the view's model (see [another example](https://sapui5.hana.ondemand.com/sdk/#/topic/a3e7cb6f671b4b839f37eb5f88429e41) and the [documentation](https://sapui5.hana.ondemand.com/sdk/#/topic/b54f7895b7594c61a83fa7257fa9d13f)). The method then sets parameters on that action and executes it, meaning it sends the OData request to the backend. Once the promise of the action gets resolved, it can go either one of two ways:
 1. **Success** : The request is successful and we can refresh the data in our data model. This is to make sure the stock gets updated in our table accordingly. We can then display a message toast informing the user about the successful order and its details.
 1. **Error** : The request was unsuccessful and we get passed and error object. We instanciate a new dialog control (a pop-up window basically) and display the error message inside that dialog. We also add a button to the dialog so it can be closed by the user.
 
@@ -88,7 +92,7 @@ We added a new `onSubmitOrder` method to our controller which we already bound t
 
 The new `onSubmitOrder` method uses several controls we have not imported yet. Make sure to import them from the library and pass the to the main function of the `app/webapp/controller/App.controller.js`.
 
-➡️ Replace the array defining the library imports as well the main function and it's imports at the top of the file with the following code snippet. Keep the content of the main function (the return statement with our controller methods):
+➡️ Replace the array defining the library imports as well the main function and its arguments at the top of the file with the following code snippet. Keep the content of the main function (the return statement with the controller methods):
 
 ```javascript
 sap.ui.define([
@@ -98,8 +102,8 @@ sap.ui.define([
     "sap/m/Button",
     "sap/m/Text"
 ], function (Controller, MessageToast, Dialog, Button, Text) {
-    //content of the function stays here 
-}
+    // content of the function stays here 
+})
 ```
 
 This is what our controller now looks like (a few methods collapsed in the screen shot):

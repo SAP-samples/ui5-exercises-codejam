@@ -49,7 +49,7 @@ The material consists of a series of chapters. The chapters build on top of each
 - [003 - Creating and Extending Our First Controller](/chapters/chapter003)
 - [004 - Adding an 'Order' Feature to Our Bookshop](/chapters/chapter004)
 - [005 - Adding a 'Search' Feature to Our Bookshop](/chapters/chapter005)
-- [006 - Adding Custom Formatting](/chapters/chapter006)
+- [006 - Adding Expression Binding & Custom Formatting](/chapters/chapter006)
 - [007 - Adding i18n Features](/chapters/chapter007)
 - [008 - Adding Custom CSS](/chapters/chapter008)
 - [009 - Deploying Our App](/chapters/chapter009) (Optional)
@@ -78,3 +78,8 @@ If you wish to contribute code, offer fixes or improvements, please send a pull 
 
 ## License
 Copyright (c) 2022 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](/LICENSE) file.
+
+
+The instructor will set you off on the first exercise, and that's the only one you should do; if you finish before others, there are some questions at the end of the exercise for you to ponder. Do not proceed to the next exercise until the instructor tells you to do so.
+
+Further reading to link to other content from me
