@@ -20,31 +20,34 @@ sap.ui.define([
             const form = this.getView().byId("bookDetails")
             form.bindObject(contextPath)
         },
-        onSubmitOrder: function (oEvent) {
+        onSubmitOrder: async function (oEvent) {
             const oBindingContext = this.getView().byId("bookDetails").getBindingContext()
             const selectedBookID = oBindingContext.getProperty("ID")
             const selectedBookTitle = oBindingContext.getProperty("title")
             const inputValue = this.getView().byId("stepInput").getValue()
 
-            const oModel = this.getView().getModel()
-			const oAction = oModel.bindContext("/submitOrder(...)")
-            oAction.setParameter("book", selectedBookID)
-            oAction.setParameter("quantity", inputValue)
-
             const i18nModel = this.getView().getModel("i18n")
-
-            oAction.execute().then(
-                function () {
+            const oModel = this.getView().getModel()
+            oModel.callFunction("/submitOrder", {
+                method: "POST",
+                urlParameters: {
+                    "book": selectedBookID,
+                    "quantity": inputValue
+                },
+                success: function(oData, oResponse) {
+                    // refreshing model manually
+                    // not doing a oModel.refresh()) as this won't work with the mockserver
+                    // oModel.setProperty(`/Books(${selectedBookID})/stock`, oData.submitOrder.stock)
                     oModel.refresh()
                     const oText = `${i18nModel.getProperty("orderSuccessful")} (${selectedBookTitle}, ${inputValue} ${i18nModel.getProperty("pieces")})`
                     MessageToast.show(oText)
                 },
-                function (oError) {
+                error: function(error) {
                     this.oErrorMessageDialog = new Dialog({
                         type: "Standard",
                         title: i18nModel.getProperty("Error"),
                         state: "Error",
-                        content: new Text({ text: oError.error.message })
+                        content: new Text({ text: error })
                         .addStyleClass("sapUiTinyMargin"),
                         beginButton: new Button({
                             text: i18nModel.getProperty("Close"),
@@ -53,9 +56,9 @@ sap.ui.define([
                             }.bind(this)
                         })
                     })
-                    this.oErrorMessageDialog.open();
-                }.bind(this)
-            )
+                    this.oErrorMessageDialog.open()
+                }
+            })
         },
         onSearch: function (oEvent) {
             const aFilter = []

@@ -11,16 +11,18 @@
   ],
   "dependencies": {
     "@sap/cds": ">=5.9",
-    "express": "^4.17.1",
-    "passport": ">=0.4.1",
     "@sap/cds-dk": "^4",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.9.19",
+    "@sap/hana-client": "^2",
+    "express": "^4.17.1",
     "mbt": "^1.2",
-    "@sap/hana-client": "^2"
+    "passport": ">=0.4.1"
   },
   "scripts": {
     "start": "cds run",
     "dev": "cds watch",
-    "build": "mbt build"
+    "build": "mbt build",
+    "serve:local": "serve app/finished-webapp"
   },
   "cds": {
     "hana": {
@@ -33,6 +35,7 @@
     }
   },
   "devDependencies": {
+    "serve": "^14.2.0",
     "sqlite3": "^5.0.7"
   }
 }

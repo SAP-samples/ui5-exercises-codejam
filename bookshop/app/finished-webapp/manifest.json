@@ -8,10 +8,10 @@
         },
         "dataSources": {
             "capService": {
-                "uri": "/browse/",
+                "uri": "/v2/browse/",
                 "type" : "OData",
                 "settings" : {
-                    "odataVersion" : "4.0"
+                    "odataVersion" : "2.0"
                 }
             }  
         }
@@ -31,11 +31,7 @@
         },
         "models": {
             "": {
-				"dataSource": "capService",
-				"settings": {
-                    "operationMode": "Server",
-					"synchronizationMode": "None"
-				}
+				"dataSource": "capService"
             },
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
