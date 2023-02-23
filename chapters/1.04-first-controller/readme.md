@@ -1,15 +1,15 @@
-# Chapter 3 - Creating and Extending our First Controller
+# Chapter 1.04 - Creating and Extending the First Controller
 
 At the end of this chapter we will have made our UI5 app interactive so that a user can select a book to read more information about it.
 
 ## Steps
 
 [1. Create a new `app/webapp/controller/App.controller.js` file](#1-create-a-new-appwebappcontrollerappcontrollerjs-file)<br>
-[2. Reference the controller file in our `app/webapp/view/App.view.xml`](#2-reference-the-controller-file-in-our-appwebappviewappviewxml)<br>
-[3. Add a new `onSelect` method to our controller](#3-add-a-new-onselect-method-to-our-controller)<br>
+[2. Reference the controller in the `app/webapp/view/App.view.xml`](#2-reference-the-controller-in-the-appwebappviewappviewxml)<br>
+[3. Add a new `onSelect` method to our controller](#3-add-a-new-onselect-method-to-the-controller)<br>
 [4. Bind the new `.onSelect` method to the `<ColumnListItem />`](#4-bind-the-new-onselect-method-to-the-columnlistitem)<br>
 [5. Add a new `<FlexBox />` to the `app/webapp/view/App.view.xml`](#5-add-a-new-flexbox--to-the-appwebappviewappviewxml)<br>
-[6. Inspect our app in the browser](#6-inspect-our-app-in-the-browser)<br>
+[6. Inspect the app in the browser](#6-inspect-the-app-in-the-browser)<br>
 
 ### 1. Create a new `app/webapp/controller/App.controller.js` file
 
@@ -30,7 +30,7 @@ sap.ui.define([
 
 We created our first controller file. We imported the core `Controller` from the library, passed it to a function and extended it. To demonstrate how the controller works, we added an alert to the `onInit` method, which automatically gets triggered upon initialization of the view.
 
-### 2. Reference the controller file in our `app/webapp/view/App.view.xml`
+### 2. Reference the controller in the `app/webapp/view/App.view.xml`
 
 To make the browser execute the JavaScript code in our controller file we have to reference it in our `app/webapp/view/App.view.xml`.
 
@@ -45,7 +45,7 @@ To make the browser execute the JavaScript code in our controller file we have t
 
 We can now refresh our app running in the browser and see the alert being displayed just before the view is visible.
 
-### 3. Add a new `onSelect` method to our controller
+### 3. Add a new `onSelect` method to the controller
 
 Of course we can not only extend existing methods in a controller, but we can write our own ones, too.
 
@@ -103,16 +103,16 @@ Now that we have a model that holds the data of the selected book, we can create
 
 This is what our view now looks like (`<Table />` collapsed in the screen shot):
 
-![View with Table](/chapters/chapter003/chapter003-01.png)
+![]()
 
 We added two `<FlexBox />` controls to display the "bookDetails". A `<FlexBox />` is convenient for aligning content vertically ("Column") or horizontally ("Row"). Inside the inner `<FlexBox />` we added controls for the actual data (title and description text). We made use of the data binding concept again - in this case we used property binding ([binding types](https://ui5.sap.com/#/topic/91f0d8ab6f4d1014b6dd926db0e91070)). We also assigned a predefined CSS class that adds a small margin at the top to the `<Text />` control.
 
 > In the previous three chapters you learned about Models, Views, and Controllers. This approach is also called the Model-view-controller concept (MVC) and is especially important in UI5 as well as web development in general. As a UI5 developer you should familiarize yourself with the concept as much as possible. You can learn more about it in the [SAPUI5 Documentation](https://sapui5.hana.ondemand.com/#/topic/91f233476f4d1014b6dd926db0e91070).
 
-### 6. Inspect our app in the browser
+### 6. Inspect the app in the browser
 
 ➡️ Move over to the browser and refresh the page. Select any book to see its description:
 
-![http://localhost:4004/webapp/index.html](/chapters/chapter003/chapter003-result.png)
+![]()
 
-Continue to - [Chapter 4 - Adding an 'Order' Feature to Our Bookshop](/chapters/chapter004)
+Continue to - [Chapter 1.05 - Adding an 'Order' Feature](/chapters/1.05-order-feature/)

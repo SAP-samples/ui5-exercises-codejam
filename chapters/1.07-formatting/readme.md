@@ -1,4 +1,4 @@
-# Chapter 6 - Adding Expression Binding & Custom Formatting
+# Chapter 1.07 - Adding Expression Binding and Custom Formatting
 
 At the end of this chapter we will have added expression binding to the stock column in our table as well as custom formatting to the order `<Button />`.
 
@@ -6,9 +6,9 @@ At the end of this chapter we will have added expression binding to the stock co
 
 [1. Replace the `<Text />` control for the `stock` with an `<ObjectStatus />`](#1-replace-the-text--control-for-the-stock-with-an-objectstatus)<br>
 [2. Use a custom formatting function](#2-use-a-custom-formatting-function)<br>
-[3. Create `app/webapp/model/formatter.js`](#3-create-appwebappmodelformatterjs)<br>
-[4. Import and use `../model/formatter` in `app/webapp/controller/App.controller.js`](#4-import-and-use-modelformatter-in-appwebappcontrollerappcontrollerjs)<br>
-[5. Disable `<Button />` by default](#5-disable-button--by-default)<br>
+[3. Create a `app/webapp/model/formatter.js` file](#3-create-a-appwebappmodelformatterjs-file)<br>
+[4. Import and use the `../model/formatter` in the `app/webapp/controller/App.controller.js`](#4-import-and-use-the-modelformatter-in-the-appwebappcontrollerappcontrollerjs)<br>
+[5. Disable the order `<Button />` by default](#5-disable-the-order-button--by-default)<br>
 [6. Test the new formatting](#6-test-the-new-formatting)<br>
 
 ### 1. Replace the `<Text />` control for the `stock` with an `<ObjectStatus />`
@@ -28,7 +28,7 @@ At the end of this chapter we will have added expression binding to the stock co
 
 This is what our view now looks like (a few controls collapsed in the screen shot):
 
-![View with ObjectStatus for stock](/chapters/chapter006/chapter006-01.png)
+![]()
 
 We replaced the `<Text />` control with an `<ObjectStatus />` which allows us to set a `state` attribute. For the state we make use of a concept called [expression binding](https://sapui5.hana.ondemand.com/#/topic/c98d57347ba444c6945f596584d2db45). Expressions bindings can be used to set a control's attributes based on simple conditions or calculations. Our expression might look complicated, because it is written as an inline if-statement, but translating it into pseudo code makes it a lot more readable:
 
@@ -68,11 +68,11 @@ We added data binding syntax to the `enabled` attribute of the `<Button />` and 
 
 We also set a max value for the `<StepInput />` using a relative [property binding](https://ui5.sap.com/#/topic/91f0d8ab6f4d1014b6dd926db0e91070). This only prevents users from using the plus and minus icons of the `<StepInput />` to set invalid value though and doesn't restrict the free input.
 
-### 3. Create `app/webapp/model/formatter.js`
+### 3. Create a `app/webapp/model/formatter.js` file
 
 Let's now implement the custom formatting function.
 
-➡️ Create a new file `app/webapp/model/formatter.js` with the following content:
+➡️ Create a new `app/webapp/model/formatter.js` file with the following content:
 
 ```javascript
 sap.ui.define([], function () {
@@ -88,7 +88,7 @@ sap.ui.define([], function () {
 
 We implemented a custom formatting function to custom format the `<Button />`. The function does not extend any base object but just returns a JavaScript object with the `formatter` method(s) inside the `sap.ui.define` call. `inputLowerThanStock` method is being passed the `availableStock` from the control's `{stock}` property binding and gets the current value of the `<StepInput />` via the standard internal UI5 APIs. It does a simple comparison and returns a boolean.
 
-### 4. Import and use `../model/formatter` in `app/webapp/controller/App.controller.js`
+### 4. Import and use the `../model/formatter` in the `app/webapp/controller/App.controller.js`
 
 Although we have implemented and used our custom formatting function already, our view doesn't actually know where the function lives yet. Let's make our view aware of the function by importing it in the corresponding controller.
 
@@ -112,7 +112,7 @@ sap.ui.define([
 
 We added the formatter to our controller to be able to call it in the corresponding view.
 
-### 5. Disable `<Button />` by default
+### 5. Disable the order `<Button />` by default
 
 The current default behavior of our app is that no book is selected when users first visit the bookshop. However, the order button is already enabled. This is a good opportunity to use a [lifecycle hook](https://sapui5.hana.ondemand.com/sdk/#/topic/121b8e6337d147af9819129e428f1f75.html).
 
@@ -139,6 +139,6 @@ There are more lifecycle hooks available in UI5 that are suited for different ta
 
 You will notice that the `stock` is color coded based on the thresholds we defined. You will also notice that the order button is disabled by default and always gets disabled once you enter value that is too high.
 
-![http://localhost:4004/webapp/index.html](/chapters/chapter006/chapter006-result.png)
+![]()
 
-Continue to [Chapter 7 - Adding i18n Features](/chapters/chapter007)
+Continue to [Chapter 1.08 - Adding i18n Features](/chapters/1.08-i18n/)

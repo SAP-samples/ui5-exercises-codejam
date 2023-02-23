@@ -1,4 +1,4 @@
-# Chapter 0 - Preparing the Development Environment
+# Chapter 1.00 - Preparing the Development Environment
 
 By the end of this chapter we will have prepared our development environment so that we can start developing our bookshop app.
 
@@ -8,8 +8,7 @@ By the end of this chapter we will have prepared our development environment so 
 [2. Navigate into your preferred directory](#2-navigate-into-your-preferred-directory)<br>
 [3. Clone this repository](#3-clone-this-repository)<br>
 [4. Navigate into the newly created directory](#4-navigate-into-the-newly-created-directory)<br>
-[5. Install the project's dependencies](#5-install-the-projects-dependencies)<br>
-[6. Open the directory](#6-open-the-directory)<br>
+[5. Open the directory](#5-open-the-directory)<br>
 
 ### 1. Prerequisites
 
@@ -51,16 +50,8 @@ We want to navigate into the `bookshop` directory inside newly created directory
 cd ui5-exercises-codejam/bookshop
 ```
 
-### 5. Install the project's dependencies
+### 5. Open the directory
 
-➡️ Execute the following command to install the project's dependencies:
+➡️ Open the directory in the code editor of your choice, depending on the option you chose in [step 1](#1-prerequisites).
 
-```bash
-npm install
-```
-
-### 6. Open the directory
-
-➡️ Open the directory in the code editor of your choice (e.g. [Visual Studio Code](https://code.visualstudio.com/download)).
-
-Continue to [Chapter 1 - Scaffolding the App - Our First View](/chapters/chapter001)
+Continue to [Chapter 1.01 - Scaffolding the App](/chapters/1.01-scaffolding/)

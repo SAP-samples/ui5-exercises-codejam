@@ -1,4 +1,4 @@
-# Chapter 10 - Further Improvements and Learning Material
+# Chapter 1.11 - Further Improvements and Learning Material
 
 ## Further Improvements
 

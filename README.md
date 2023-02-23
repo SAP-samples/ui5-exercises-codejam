@@ -4,7 +4,7 @@
 
 This repository contains the material for SAP CodeJam events on UI5.
 
-Please check the [prerequisites](/prerequisites.md) before the event an make sure you meet them.
+Please check the [prerequisites](/chapters/1.00-prep-dev-environment/readme.md#1-prerequisites) before the event an make sure you meet them.
 
 ## Overview
 
@@ -12,7 +12,7 @@ The material in this repository introduces you to the core principles of UI5, an
 
 ![The finished app](/finished-app.png)
 
-The finished UI5 bookshop app already exists in the [bookshop/app/finished-webapp](/bookshop/app/finished-webapp/) directory, but we want to rebuild it from scratch step by step. You can compare the finished app with your version in case you have issues along the way.
+The finished UI5 bookshop app already exists in the [bookshop/finished-webapp](/bookshop/finished-webapp/) directory, but we want to rebuild it from scratch step by step. You can compare the finished app with your version in case you have issues along the way.
 
 After reading all chapters and following the instructions, you will be able to build your own UI5 applications leveraging the official [SAPUI5 API Reference](https://sapui5.hana.ondemand.com/#/api).
 
@@ -43,22 +43,23 @@ The material consists of a series of chapters. The chapters build on top of each
 
 ### Part 1 - Freestyle UI5
 
-- [000 - Preparing the Development Environment](/chapters/chapter000)
-- [001 - Scaffolding the App - Our First View](/chapters/chapter001)
-- [002 - Creating and Consuming Our First Model](/chapters/chapter002)
-- [003 - Creating and Extending Our First Controller](/chapters/chapter003)
-- [004 - Adding an 'Order' Feature to Our Bookshop](/chapters/chapter004)
-- [005 - Adding a 'Search' Feature to Our Bookshop](/chapters/chapter005)
-- [006 - Adding Expression Binding & Custom Formatting](/chapters/chapter006)
-- [007 - Adding i18n Features](/chapters/chapter007)
-- [008 - Adding Custom CSS](/chapters/chapter008)
-- [009 - Deploying Our App](/chapters/chapter009) (Optional)
-- [010 - Further Improvements and Learning Material](/chapters/chapter100)
+- [1.00 - Preparing the Development Environment](/chapters/1.00-prep-dev-environment/)
+- [1.01 - Scaffolding the App](/chapters/1.01-scaffolding/)
+- [1.02 - Creating the First View](/chapters/1.02-first-view/)
+- [1.03 - Creating and Consuming the First Model](/chapters/1.03-first-model/)
+- [1.04 - Creating and Extending the First Controller](/chapters/1.04-first-controller/)
+- [1.05 - Adding an 'Order' Feature](/chapters/1.05-order-feature/)
+- [1.06 - Adding a 'Search' Feature](/chapters/1.06-search-feature/)
+- [1.07 - Adding Expression Binding and Custom Formatting](/chapters/1.07-formatting/)
+- [1.08 - Adding i18n Features](/chapters/1.08-i18n/)
+- [1.09 - Adding Custom CSS](/chapters/1.09-custom-css/)
+- [1.10 - Deploying the App](/chapters/1.10-deployment/) (Optional)
+- [1.11 - Further Improvements and Learning Material](/chapters/1.11-further-improvements/)
 
 ### Part 2 - SAP Fiori Elements Flexible Programming Model
 
-- [101 - Enabling the SAP Fiori Elements Flexible Programming Model](/chapters/chapter101/)
-- [102 - Adding an Object Page](/chapters/chapter102/)
+- [2.01 - Enabling the SAP Fiori Elements Flexible Programming Model](/chapters/2.01-fe-fpm/)
+- [2.02 - Adding an Object Page](/chapters/2.02-object-page/)
 
 
 ## SAPUI5 vs. OpenUI5

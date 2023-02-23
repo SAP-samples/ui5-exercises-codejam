@@ -1,16 +1,22 @@
-# Chapter 2 - Creating and Consuming Our First Model
+# Chapter 1.03 - Creating and Consuming the First Model
 
-By the end of this chapter, we will have added a Table to our UI5 app that displays the books that are available in our bookshop.
+By the end of this chapter, we will have added a remote bookshop data source to our app and stored the data in a model. We will also have added a table displaying this model data.
 
 ## Steps
 
-[1. Add a new `dataSource` and `model` to our `app/webapp/manifest.json`](#1-add-a-new-datasource-and-model-to-our-appwebappmanifestjson)<br>
-[2. Add a new `<Table />` to our `app/webapp/view/App.view.xml` that consumes the model](#2-add-a-new-table--to-our-appwebappviewappviewxml-that-consumes-the-model)<br>
-[3. Inspect our app in the browser](#3-inspect-our-app-in-the-browser)<br>
+[1. Add `@sap/ux-ui5-tooling` as a dependency in the `package.json`](#1-add-sapux-ui5-tooling-as-a-dependency-in-the-packagejson)<br>
+[2. Configure the `fiori-tools-proxy` in the `ui5.yaml`](#2-configure-the-fiori-tools-proxy-in-the-ui5yaml)<br>
+[3. Add a new `dataSource` and `model` to the `app/webapp/manifest.json`](#3-add-a-new-datasource-and-model-to-the-appwebappmanifestjson)<br>
+[4. Add a new `<Table />` to the `app/webapp/view/App.view.xml`](#4-add-a-new-table--to-the-appwebappviewappviewxml)<br>
+[5. Inspect the app in the browser](#5-inspect-the-app-in-the-browser)<br>
 
-### 1. Add a new `dataSource` and `model` to our `app/webapp/manifest.json`
+### 1. Add `@sap/ux-ui5-tooling` as a dependency in the `package.json`
 
-Models are another major part of UI5 development. We use models to store data in our app ("data layer"). Models are not bound to or represented by a specific file, but are dynamic objects that can be consumed and modified by different parts of the app. They can be created via the `manifest.json` file or via a controller (which we will do in [chapter 03](/chapters/chapter003#3-add-a-new-userselection-model-and-an-onselect-method-to-our-controller)).
+### 2. Configure the `fiori-tools-proxy` in the `ui5.yaml`
+
+### 3. Add a new `dataSource` and `model` to the `app/webapp/manifest.json`
+
+Models are another major part of UI5 development. We use models to store data in our app ("data layer"). Models are not bound to or represented by a specific file, but are dynamic objects that can be consumed and modified by different parts of the app. They can be created via the `manifest.json` file or via a controller.
 
 ➡️ Paste the following code into the `app/webapp/manifest.json`:
 
@@ -53,11 +59,11 @@ Models are another major part of UI5 development. We use models to store data in
 }
 ```
 
-We defined a new model with an empty string as its name, which makes it the default model of the app. The `dataSource` for the model is `capService`, which is a new `dataSource` we created that links to our backend application that is being served on the same domain as our UI5 app (see [chapter 1 - step 7](/chapters/chapter001#7-run-our-app)). We can inspect the data at [http://localhost:4004/browse/Books?$expand=genre](http://localhost:4004/browse/Books?$expand=genre). The model we created is of type [OData](https://www.odata.org/getting-started/) V4, which is a [RESTful](https://www.youtube.com/watch?v=bhn-Dl87SDE) protocol that heavily used within the SAP ecosphere. We will learn more about OData and its strengths in the upcoming chapters. Let's go through the settings we set for the model:
+We defined a new model with an empty string as its name, which makes it the default model of the app. The `dataSource` for the model is `capService`, which is a new `dataSource` we created that links a location we will define shortly (`/browse/`). The model we created is of type [OData](https://www.odata.org/getting-started/) V4, which is a [RESTful](https://www.youtube.com/watch?v=bhn-Dl87SDE) protocol that heavily used within the SAP ecosphere. We will learn more about OData and its strengths in the upcoming chapters. Let's go through the settings we set for the model:
 - We set the `operationMode` to `Server`, which is mandatory for filtering and sorting queries with OData V4.
 - We set the `synchronizationMode` to `None`, which is also mandatory for OData V4.
 
-### 2. Add a new `<Table />` to our `app/webapp/view/App.view.xml` that consumes the model
+### 4. Add a new `<Table />` to the `app/webapp/view/App.view.xml`
 
 We can now go ahead an consume the newly created model in our `app/webapp/view/App.view.xml`.
 
@@ -119,12 +125,12 @@ Check the [documentation](https://ui5.sap.com/#/topic/91f0d8ab6f4d1014b6dd926db0
 
 This is what our view now looks like (`<Table />` collapsed in the screen shot):
 
-![View with Table](/chapters/chapter002/chapter002-01.png)
+![]()
 
-### 3. Inspect our app in the browser
+### 5. Inspect the app in the browser
 
 ➡️ Move over to the browser and refresh the page to see the table:
 
-![http://localhost:4004/webapp/index.html](/chapters/chapter002/chapter002-result.png)
+![]()
 
-Continue to - [Chapter 3 - Creating and Extending our First Controller](/chapters/chapter003)
+Continue to - [Chapter 1.04 - Creating and Extending the First Controller](/chapters/1.04-first-controller/)

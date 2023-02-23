@@ -1,4 +1,4 @@
-# Chapter 101 - Enabling the SAP Fiori Elements Flexible Programming Model
+# Chapter 2.01 - Enabling the SAP Fiori Elements Flexible Programming Model
 
 The following series of chapters (starting with this chapter101) introduces **SAP Fiori elements flexible programming model**, which bridges the gap between freestyle UI5 development and [SAP Fiori elements](https://ui5.sap.com/#/topic/03265b0408e2432c9571d6b3feb6b1fd).
 
@@ -321,4 +321,4 @@ You can learn more about the structure of annotations in this [document](https:/
 
 We enabled the SAP Fiori elements flexible programming model for our custom SAPUI5 application and use the Table building block, powered by OData annotations. You might have to resize your browser window to see all the columns of the Table. We will continue to fine tune and work on our application in the following chapters.
 
-Continue to [Chapter 102 - Adding an Object Page](/chapters/chapter102)
+Continue to [Chapter 2.02 - Adding an Object Page](/chapters/2.02-object-page/)
