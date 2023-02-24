@@ -1,6 +1,6 @@
 # Chapter 1.06 - Adding a 'Search' Feature
 
-At the end of this chapter we will have added a new feature to our bookshop that enables users to search for books in the table.
+At the end of this chapter we will have added a new feature to our bookshop that enables users to search for books.
 
 ## Steps
 
@@ -22,7 +22,7 @@ This is what our view now looks like (a few controls collapsed in the screen sho
 
 ![]()
 
-We added a new `<SearchField />` control to our view. It comes with a `liveChange` event that gets triggered on every keystroke the user submits in the field. We bound an `.onSearch` method to that event which we will define in the next step. The great thing about the `liveChange` event is that the user doesn't have to actively click the search icon or hit enter to trigger the search.
+We added a new `<SearchField />` control to our view. It comes with a `liveChange` event that gets fired on every keystroke the user submits in the field. We bound an `.onSearch` method to that event which we will define in the next step. The great thing about the `liveChange` event is that the user doesn't have to actively click the search icon or hit enter to start the search.
 
 ### 2. Add a new `onSearch` method to the `app/webapp/controller/App.controller.js`
 
@@ -48,7 +48,7 @@ We added a new `onSearch` method, which is being passed an event. The method get
 
 The new `.onSearch` method uses the `Filter` and `FilterOperator` from the library. Make sure to import them from the library and pass the to the main function of the `app/webapp/controller/App.controller.js`.
 
-➡️ Replace the array defining the library imports as well the main function and its arguments at the top of the file with the following code snippet. Keep the content of the main function (the return statement with the controller methods):
+➡️ Replace the array defining the library imports as well the main function and its arguments at the top of the file with the following code snippet. Keep the content of the main function (the return statement with all controller methods):
 
 ```javascript
 sap.ui.define([

@@ -53,7 +53,6 @@ We want to make sure that users cannot order more books than there are available
     press=".onSubmitOrder"
     enabled="{
         path: 'stock',
-        targetType: 'any',
         formatter: '.formatter.inputLowerThanStock'
     }" />
 <StepInput 
@@ -64,9 +63,11 @@ We want to make sure that users cannot order more books than there are available
     validationMode="LiveChange" />
 ```
 
-We added data binding syntax to the `enabled` attribute of the `<Button />` and specified a `formatter`. A formatter is a JavaScript function that is being passed the value of the `path` binding and gets executed every time this data changes. The function should return the value that should be set for the `enabled` attribute - a boolean (true/false) in this case. Because `{stock}` is an integer however and OData V4 will try to set this type on the attribute, we have to specify `targetType: 'any'`, which will turn off the automatic [type determination](https://openui5.hana.ondemand.com/topic/53cdd55a77ce4f33a14bd0767a293063.html).
+We added data binding syntax to the `enabled` attribute of the `<Button />` and specified a `formatter`. A formatter is a JavaScript function that is being passed the value of the `path` binding and gets called every time this data changes. The function should return the value that should be set for the `enabled` attribute - a boolean (true/false) in this case. 
 
-We also set a max value for the `<StepInput />` using a relative [property binding](https://ui5.sap.com/#/topic/91f0d8ab6f4d1014b6dd926db0e91070). This only prevents users from using the plus and minus icons of the `<StepInput />` to set invalid value though and doesn't restrict the free input.
+<!-- Because `{stock}` is an integer however and OData V4 will try to set this type on the attribute, we have to specify `targetType: 'any'`, which will turn off the automatic [type determination](https://openui5.hana.ondemand.com/topic/53cdd55a77ce4f33a14bd0767a293063.html). -->
+
+We also set a max value for the `<StepInput />` using a relative [property binding](https://ui5.sap.com/#/topic/91f0d8ab6f4d1014b6dd926db0e91070). However, this only prevents users from using the plus and minus icons of the `<StepInput />` to set invalid value and doesn't restrict the free input.
 
 ### 3. Create a `app/webapp/model/formatter.js` file
 
@@ -86,13 +87,13 @@ sap.ui.define([], function () {
 });
 ```
 
-We implemented a custom formatting function to custom format the `<Button />`. The function does not extend any base object but just returns a JavaScript object with the `formatter` method(s) inside the `sap.ui.define` call. `inputLowerThanStock` method is being passed the `availableStock` from the control's `{stock}` property binding and gets the current value of the `<StepInput />` via the standard internal UI5 APIs. It does a simple comparison and returns a boolean.
+We implemented a custom formatting function to custom format the order `<Button />`. The function does not extend any base object but just returns a JavaScript object with the `formatter` method(s) inside the `sap.ui.define` call. The `inputLowerThanStock` method is being passed the `availableStock` from the control's `{stock}` property binding and gets the current value of the `<StepInput />` via the standard internal UI5 APIs. It does a simple comparison and returns a boolean.
 
 ### 4. Import and use the `../model/formatter` in the `app/webapp/controller/App.controller.js`
 
 Although we have implemented and used our custom formatting function already, our view doesn't actually know where the function lives yet. Let's make our view aware of the function by importing it in the corresponding controller.
 
-➡️ Replace the array defining the library imports as well the main function and its arguments at the top of the file with the following code snippet. Also add the formatter method. Keep the content of the main function (the return statement with the controller methods):
+➡️ Replace the array defining the library imports as well the main function and its arguments at the top of the file with the following code snippet. Also add the formatter method. Keep the content of the main function (the return statement with all controller methods):
 
 ```javascript
 sap.ui.define([
@@ -114,7 +115,7 @@ We added the formatter to our controller to be able to call it in the correspond
 
 ### 5. Disable the order `<Button />` by default
 
-The current default behavior of our app is that no book is selected when users first visit the bookshop. However, the order button is already enabled. This is a good opportunity to use a [lifecycle hook](https://sapui5.hana.ondemand.com/sdk/#/topic/121b8e6337d147af9819129e428f1f75.html).
+The current default behavior of our app is that no book is selected when users first visit the bookshop. However, the order button is already enabled at that time. This problem can be solved using a [lifecycle hook](https://sapui5.hana.ondemand.com/sdk/#/topic/121b8e6337d147af9819129e428f1f75.html).
 
 ➡️ Add the following method to the `app/webapp/controller/App.controller.js` file:
 
@@ -135,9 +136,9 @@ There are more lifecycle hooks available in UI5 that are suited for different ta
 
 ### 6. Test the new formatting
 
-➡️ Refresh the app. Inspect and test our new formatting. 
+➡️ Refresh the app. Inspect and test the new formatting. 
 
-You will notice that the `stock` is color coded based on the thresholds we defined. You will also notice that the order button is disabled by default and always gets disabled once you enter value that is too high.
+You will notice that the `stock` is color coded based on the thresholds we defined in [step 1](#1-replace-the-text--control-for-the-stock-with-an-objectstatus). You will also notice that the order button is disabled by default and gets disabled when selecting a book with a lower stock than the current `<StepInput />` value.
 
 ![]()
 

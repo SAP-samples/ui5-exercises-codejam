@@ -1,6 +1,6 @@
 # Chapter 1.09 - Adding Custom CSS
 
-At the end of this chapter we will have added custom CSS to our UI5 app that makes sure that our `<FlexBox />` containing the order `<Button />`, and `<StepInput />` is styled properly.
+At the end of this chapter we will have added custom CSS to our UI5 app that applies styling to the `<FlexBox />` containing the order `<Button />` and `<StepInput />`.
 
 ## Steps
 
@@ -66,8 +66,8 @@ This is what our view now looks like (a few controls collapsed in the screen sho
 
 ➡️ Refresh the app and inspect the new styling. 
 
-You will see that all items inside the `<FlexBox />` that we applied the new class to now have a gap of 20 pixels between each other.
+You will see that the items inside the `<FlexBox />` now have a gap of 20 pixels between each other.
 
 ![]()
 
-Continue to [Chapter 1.10 - Deploying the App](/chapters/1.10-deployment/)
+Continue to [Chapter 1.10 - Adding a Mockserver](/chapters/1.10-mockserver/)

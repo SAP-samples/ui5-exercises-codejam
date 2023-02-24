@@ -18,9 +18,9 @@ sap.ui.define([
             const oSource = oEvent.getSource()
             const contextPath = oSource.getBindingContextPath()
             const form = this.getView().byId("bookDetails")
-            form.bindObject(contextPath)
+            form.bindElement(contextPath)
         },
-        onSubmitOrder: async function (oEvent) {
+        onSubmitOrder: function (oEvent) {
             const oBindingContext = this.getView().byId("bookDetails").getBindingContext()
             const selectedBookID = oBindingContext.getProperty("ID")
             const selectedBookTitle = oBindingContext.getProperty("title")
@@ -35,19 +35,19 @@ sap.ui.define([
                     "quantity": inputValue
                 },
                 success: function(oData, oResponse) {
-                    // refreshing model manually
-                    // not doing a oModel.refresh()) as this won't work with the mockserver
-                    // oModel.setProperty(`/Books(${selectedBookID})/stock`, oData.submitOrder.stock)
                     oModel.refresh()
                     const oText = `${i18nModel.getProperty("orderSuccessful")} (${selectedBookTitle}, ${inputValue} ${i18nModel.getProperty("pieces")})`
                     MessageToast.show(oText)
                 },
-                error: function(error) {
+                error: function(oError) {
+                    if (oError.responseText) {
+                        oError = JSON.parse(oError.responseText).error
+                    }
                     this.oErrorMessageDialog = new Dialog({
                         type: "Standard",
                         title: i18nModel.getProperty("Error"),
                         state: "Error",
-                        content: new Text({ text: error })
+                        content: new Text({ text: oError.message })
                         .addStyleClass("sapUiTinyMargin"),
                         beginButton: new Button({
                             text: i18nModel.getProperty("Close"),
@@ -57,7 +57,7 @@ sap.ui.define([
                         })
                     })
                     this.oErrorMessageDialog.open()
-                }
+                }.bind(this)
             })
         },
         onSearch: function (oEvent) {

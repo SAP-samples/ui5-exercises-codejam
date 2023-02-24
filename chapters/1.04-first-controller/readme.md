@@ -28,7 +28,7 @@ sap.ui.define([
 })
 ```
 
-We created our first controller file. We imported the core `Controller` from the library, passed it to a function and extended it. To demonstrate how the controller works, we added an alert to the `onInit` method, which automatically gets triggered upon initialization of the view.
+We created our first controller file. We imported the core `Controller` from the library, passed it to a function and extended it. To demonstrate how the controller works, we added an alert to the `onInit` [lifecycle hook](https://sapui5.hana.ondemand.com/sdk/#/topic/121b8e6337d147af9819129e428f1f75.html), which automatically gets called upon initialization of the view.
 
 ### 2. Reference the controller in the `app/webapp/view/App.view.xml`
 
@@ -43,7 +43,7 @@ To make the browser execute the JavaScript code in our controller file we have t
     controllerName="sap.codejam.controller.App">
 ```
 
-We can now refresh our app running in the browser and see the alert being displayed just before the view is visible.
+We added the controller to the view. We can now refresh our app running in the browser and see the alert being displayed just before the view is visible.
 
 ### 3. Add a new `onSelect` method to the controller
 
@@ -67,7 +67,7 @@ sap.ui.define([
 })
 ```
 
-We defined a new `onSelect` method that is being passed an event, which will be the press event when a user clicks on a book. First, the method gets the source of the event. It then gets the binding context path of that source (the selected book, for example `/Books(201)` when clicking on the Book with the ID 201) and binds this element to the "bookDetails" section of the view, which we have not defined yet. This so called "context binding" ([binding types](https://ui5.sap.com/#/topic/91f0d8ab6f4d1014b6dd926db0e91070)) will allow us to use relative binding within the "bookDetails" section and all of its children (see [step 5](#5-add-a-new-flexbox--to-the-appwebappviewappviewxml)).
+We defined a new `onSelect` method that is being passed an event, which will be the press event when a user clicks on a book. First, the method gets the source of the event. It then gets the binding context path of that source (the selected book, for example `/Books(201)` when clicking on the Book with the ID 201) and binds this element to the "bookDetails" section of the view, which we have not defined yet. This so-called "context binding" (see [binding types](https://ui5.sap.com/#/topic/91f0d8ab6f4d1014b6dd926db0e91070)) will allow us to use relative binding within the "bookDetails" section and all of its children (see [step 5](#5-add-a-new-flexbox--to-the-appwebappviewappviewxml)).
 
 ### 4. Bind the new `.onSelect` method to the `<ColumnListItem />`
 
@@ -82,7 +82,7 @@ We can now use our new method in our `app/webapp/view/App.view.xml` by binding i
     type="Active">
 ```
 
-We bound the `.onSelect` method to the press event of the `<ColumnListItem />` which means it will be executed when a user clicks on a book in our table. Notice how we prefixed a dot to the method name, which is a naming convention for custom methods that live in a controller. The prefixed dot will be omitted when interpreted by the framework.
+We bound the `.onSelect` method to the press event of the `<ColumnListItem />` which means it will be called when a user clicks on a book in our table. Notice how we prefixed a dot (`.`) to the method name, which is a naming convention for custom methods that live in a controller. The prefixed dot will be omitted when interpreted by the framework.
 
 ### 5. Add a new `<FlexBox />` to the `app/webapp/view/App.view.xml`
 
@@ -105,7 +105,7 @@ This is what our view now looks like (`<Table />` collapsed in the screen shot):
 
 ![]()
 
-We added two `<FlexBox />` controls to display the "bookDetails". A `<FlexBox />` is convenient for aligning content vertically ("Column") or horizontally ("Row"). Inside the inner `<FlexBox />` we added controls for the actual data (title and description text). We made use of the data binding concept again - in this case we used property binding ([binding types](https://ui5.sap.com/#/topic/91f0d8ab6f4d1014b6dd926db0e91070)). We also assigned a predefined CSS class that adds a small margin at the top to the `<Text />` control.
+We added two `<FlexBox />` controls to display the "bookDetails". A `<FlexBox />` is convenient for aligning content vertically ("Column", same as `<VBox />`) or horizontally ("Row", same as `<HBox />`). Inside the inner `<FlexBox />` we added controls to display the data (title and description text). We made use of the data binding concept again - in this case we used property binding ([binding types](https://ui5.sap.com/#/topic/91f0d8ab6f4d1014b6dd926db0e91070)). We also assigned a predefined CSS class (`sapUiSmallMarginTop`, see [other available classes](https://sapui5.hana.ondemand.com/sdk/#/topic/777168ffe8324873973151dae2356d1c.html))that adds a small margin to the top of the `<Text />` control.
 
 > In the previous three chapters you learned about Models, Views, and Controllers. This approach is also called the Model-view-controller concept (MVC) and is especially important in UI5 as well as web development in general. As a UI5 developer you should familiarize yourself with the concept as much as possible. You can learn more about it in the [SAPUI5 Documentation](https://sapui5.hana.ondemand.com/#/topic/91f233476f4d1014b6dd926db0e91070).
 

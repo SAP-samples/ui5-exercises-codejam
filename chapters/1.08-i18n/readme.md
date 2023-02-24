@@ -79,9 +79,9 @@ We added a new file that contains the German translations for the texts we want 
 
 ### 4. Consume the `i18n` model in the `app/webapp/view/App.view.xml`
 
-We can now consume the `i18n` model in our `app/webapp/view/App.view.xml` using the keys. The app will then display their respective values based on the language preferences of the user.
+We can now consume the `i18n` model in our `app/webapp/view/App.view.xml` using the keys. The app will display their respective values based on the language preference of the user.
 
-➡️ Replace all hardcoded texts in our view with the data binding syntax for the `i18n` model shown in the example below. Go through the whole file to make sure not to miss any texts:
+➡️ Replace all hardcoded texts in our view with the data binding syntax for the `i18n` model shown in the example below. Go through the whole file and make sure to not miss any texts:
 
 ```xml
 <Page title="{i18n>Bookshop}" >
@@ -101,25 +101,28 @@ onSubmitOrder: function (oEvent) {
     const selectedBookTitle = oBindingContext.getProperty("title")
     const inputValue = this.getView().byId("stepInput").getValue()
 
-    const oModel = this.getView().getModel()
-    const oAction = oModel.bindContext("/submitOrder(...)")
-    oAction.setParameter("book", selectedBookID)
-    oAction.setParameter("quantity", inputValue)
-
     const i18nModel = this.getView().getModel("i18n")
-
-    oAction.execute().then(
-        function () {
+    const oModel = this.getView().getModel()
+    oModel.callFunction("/submitOrder", {
+        method: "POST",
+        urlParameters: {
+            "book": selectedBookID,
+            "quantity": inputValue
+        },
+        success: function(oData, oResponse) {
             oModel.refresh()
             const oText = `${i18nModel.getProperty("orderSuccessful")} (${selectedBookTitle}, ${inputValue} ${i18nModel.getProperty("pieces")})`
             MessageToast.show(oText)
         },
-        function (oError) {
+        error: function(oError) {
+            if (oError.responseText) {
+                oError = JSON.parse(oError.responseText).error
+            }
             this.oErrorMessageDialog = new Dialog({
                 type: "Standard",
                 title: i18nModel.getProperty("Error"),
                 state: "Error",
-                content: new Text({ text: oError.error.message })
+                content: new Text({ text: oError.message })
                 .addStyleClass("sapUiTinyMargin"),
                 beginButton: new Button({
                     text: i18nModel.getProperty("Close"),
@@ -128,9 +131,9 @@ onSubmitOrder: function (oEvent) {
                     }.bind(this)
                 })
             })
-            this.oErrorMessageDialog.open();
+            this.oErrorMessageDialog.open()
         }.bind(this)
-    )
+   })
 }
 ```
 
@@ -138,7 +141,7 @@ We added the `i18n` model to our controller and used it for the success and erro
 
 ### 6. Test the app in another language
 
-We can now test our app in another language.
+We can now test the app in another language.
 
 ➡️ Reload the app and attach a query parameter to the URL of the app to specify which language you want the bookshop to be displayed in. Attach `?sap-ui-language=de` to the URL to view the app in German for example.
 

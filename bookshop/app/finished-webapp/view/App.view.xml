@@ -66,19 +66,18 @@
                             class="sapUiMediumMarginBottom orderControls" >
                             <Button
                                 id="orderBtn"
-                                text="Order"
+                                text="{i18n>Order}"
                                 press=".onSubmitOrder"
                                 enabled="{
                                     path: 'stock',
-                                    targetType: 'any',
                                     formatter: '.formatter.inputLowerThanStock'
                                 }" />
                             <StepInput 
                                 id="stepInput"
                                 min="1"
-                                max="{stock}"
                                 textAlign="Center"
-                                validationMode="LiveChange" />
+                                validationMode="LiveChange"
+                                max="{stock}" />
                         </FlexBox>
                         <FlexBox direction="Column" >
                             <Title text="{title}" />
