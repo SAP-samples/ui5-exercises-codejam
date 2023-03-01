@@ -250,7 +250,7 @@ The UI5 Tooling is a Node.js based package, so we have to turn our project into 
   "name": "bookshop",
   "version": "0.0.1",
   "scripts": {
-    "start": "ui5 serve --open \"index.html\""
+    "dev": "ui5 serve --open \"index.html\""
   },
   "devDependencies": {
     "@ui5/cli": "^2"
@@ -265,7 +265,7 @@ We added a new `package.json` file, which essentially turns our project into a N
 ➡️ Open a new terminal session on root level of our project and run the following command:
 
 ```bash
-npm install && npm start
+npm install && npm run start:dev
 ```
 
 We installed the project's dependencies and executed the `start` script of our project. This script is like a "shortcut" for the `ui5 serve --open "index.html"` command of the UI5 Tooling. You should see a new browser window or tab automatically opening and displaying our (empty) UI5 application.

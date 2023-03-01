@@ -4,14 +4,14 @@ At the end of this chapter we will have added custom CSS to our UI5 app that app
 
 ## Steps
 
-[1. Add new `resource` to our `app/webapp/manifest.json`](#1-add-new-resource-to-our-appwebappmanifestjson)<br>
-[2. Create a `app/webapp/css/style.css` file](#2-create-a-appwebappcssstylecss-file)<br>
-[3. Use a custom CSS class in the `app/webapp/view/App.view.xml`](#3-use-a-custom-css-class-in-the-appwebappviewappviewxml)<br>
+[1. Add new `resource` to our `webapp/manifest.json`](#1-add-new-resource-to-our-webappmanifestjson)<br>
+[2. Create a `webapp/css/style.css` file](#2-create-a-webappcssstylecss-file)<br>
+[3. Use a custom CSS class in the `webapp/view/App.view.xml`](#3-use-a-custom-css-class-in-the-webappviewappviewxml)<br>
 [4. Inspect the new styling](#4-inspect-the-new-styling)<br>
 
-### 1. Add new `resource` to our `app/webapp/manifest.json`
+### 1. Add new `resource` to our `webapp/manifest.json`
 
-➡️ Add the following code snippet to the `sap.ui5` section of the `app/webapp/manifest.json`:
+➡️ Add the following code snippet to the `sap.ui5` section of the `webapp/manifest.json`:
 
 ```json
 ,
@@ -30,9 +30,9 @@ This is what our application descriptor now looks like:
 
 We added a new `css` resource to our application descriptor and pointed it to a css file that we are about to create next.
 
-### 2. Create a `app/webapp/css/style.css` file
+### 2. Create a `webapp/css/style.css` file
 
-➡️ Create a new file `app/webapp/css/style.css` and paste the following code into it:
+➡️ Create a new file `webapp/css/style.css` and paste the following code into it:
 
 ```css
 .orderControls {
@@ -42,9 +42,9 @@ We added a new `css` resource to our application descriptor and pointed it to a 
 
 We created a new css file and added a css class to it. The css class uses the `gap` property which makes sure that all items inside a container with `display = flex` (like the `<FlexBox />` control) have the specified gap between each other.
 
-### 3. Use a custom CSS class in the `app/webapp/view/App.view.xml`
+### 3. Use a custom CSS class in the `webapp/view/App.view.xml`
 
-We can now use the css class `orderControls` in our `app/webapp/view/App.view.xml`.
+We can now use the css class `orderControls` in our `webapp/view/App.view.xml`.
 
 ➡️ Add the class to the `<FlexBox />` containing the order `<Button />`, and `<StepInput />`, so it looks like this:
 
@@ -70,4 +70,4 @@ You will see that the items inside the `<FlexBox />` now have a gap of 20 pixels
 
 ![]()
 
-Continue to [Chapter 1.10 - Adding a Mockserver](/chapters/1.10-mockserver/)
+Continue to [Chapter 1.10 - Deploying the App](/chapters/1.10-deployment/)

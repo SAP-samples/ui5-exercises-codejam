@@ -14,29 +14,30 @@ At the end of this chapter we will have enabled the Fiori elements flexible prog
 
 ## Steps
 
-[1. Dublicate your existing application](#1-duplicate-your-existing-application)<br>
+[1. Duplicate the existing application](#1-duplicate-the-existing-application)<br>
 [2. Extend the `sap/fe/core/AppComponent` instead of the `sap/ui/core/UIComponent`](#2-extend-the-sapfecoreappcomponent-instead-of-the-sapuicoreuicomponent)<br>
-[3. Add routing to the `app/webapp-fpm/manifest.json`](#3-add-routing-to-the-appwebapp-fpmmanifestjson)<br>
-[4. Remove the `rootView` from the `app/webapp-fpm/manifest.json`](#4-remove-the-rootview-from-the-appwebapp-fpmmanifestjson)<br>
-[5. Add dependencies to the `app/webapp-fpm/manifest.json`](#5-add-dependencies-to-the-appwebapp-fpmmanifestjson)<br>
-[6. Use SAPUI5 instead of OpenUI5](#6-use-sapui5-instead-of-openui5)<br>
-[7. Rebuild the `app/webapp-fpm/view/App.view.xml`](#7-rebuild-the-appwebapp-fpmviewappviewxml)<br>
-[8. Use the `sap/fe/core/PageController` instead of the `sap/ui/core/mvc/Controller`](#8-use-the-sapfecorepagecontroller-instead-of-the-sapuicoremvccontroller)<br>
-[9. Add OData annotations](#9-add-odata-annotations)<br>
-[10. Test the new app](#10-test-the-new-app)<br>
-
+[3. Use OData V4](#3-use-odata-v4)<br>
+[4. Add OData V4 model settings]()<br>
+[5. Add routing to the `webapp-fpm/manifest.json`](#5-add-routing-to-the-webapp-fpmmanifestjson)<br>
+[6. Remove the `rootView` from the `webapp-fpm/manifest.json`](#6-remove-the-rootview-from-the-webapp-fpmmanifestjson)<br>
+[7. Add dependencies to the `webapp-fpm/manifest.json`](#7-add-dependencies-to-the-webapp-fpmmanifestjson)<br>
+[8. Use SAPUI5 instead of OpenUI5](#8-use-sapui5-instead-of-openui5)<br>
+[9. Rebuild the `webapp-fpm/view/App.view.xml`](#9-rebuild-the-webapp-fpmviewappviewxml)<br>
+[10. Use the `sap/fe/core/PageController` instead of the `sap/ui/core/mvc/Controller`](#10-use-the-sapfecorepagecontroller-instead-of-the-sapuicoremvccontroller)<br>
+[11. Add OData annotations](#11-add-odata-annotations)<br>
+[12. Test the new app](#12-test-the-new-app)<br>
 
 ### 1. Duplicate the existing application
 
-➡️ Duplicate your existing UI5 application living in `app/webapp/` into a new `app/webapp-fpm/` directory.
+➡️ Duplicate your existing UI5 application living in `webapp/` into a new `webapp-fpm/` directory.
 
-![New project structure](dublicate-webapp.png)
+![New project structure](duplicate-webapp.png)
 
-We dublicated our existing application to preserve the progress we made in the previous chapters. The structural changes we are about to make to our application require us to delete parts of the application (and thus the progress we made).
+We duplicated our existing application to preserve the progress we made in the previous chapters. The structural changes we are about to make to our application require us to delete parts of the application (and thus the progress we made).
 
 ### 2. Extend the `sap/fe/core/AppComponent` instead of the `sap/ui/core/UIComponent`
 
-➡️ Replace the content of the existing `app/webapp-fpm/Component.js` with the following code:
+➡️ Replace the content of the existing `webapp-fpm/Component.js` with the following code:
 
 ```javascript
 sap.ui.define([
@@ -61,12 +62,44 @@ sap.ui.define([
 })
 ```
 
-We now use and extend the `sap/fe/core/AppComponent` instead of the `sap/ui/core/UIComponent` to make sure our [component](/chapters/chapter001/readme.md#4-create-an-appwebappcomponentjs-file) runs within the SAP Fiori elements framework.
+We now use and extend the `sap/fe/core/AppComponent` instead of the `sap/ui/core/UIComponent` to make sure our [component](/chapters/chapter001/readme.md#4-create-an-webappcomponentjs-file) runs within the SAP Fiori elements framework.
+
+### 3. Use OData V4
+
+The Fiori Elements Flexible Programming Model is only available for OData V4, meaning it's not compatible with the OData service we are currently consuming, which is version 2 of the protocol. Luckily, our remote backend service provide endpoints for both V2 and V4, so all we have to do is change the data source in our `webapp-fpm/manifest.json`.
+
+➡️ Replace the `sap.app.dataSources` section of the `webapp-fpm/manifest.json` with the following code:
+
+```json
+,
+"dataSources": {
+    "capService": {
+        "uri": "/browse/",
+        "type" : "OData",
+        "settings" : {
+            "odataVersion" : "4.0",
+            "synchronizationMode": "None",
+            "operationMode": "Server",
+            "autoExpandSelect": true,
+            "earlyRequests": true
+        }
+    }  
+}
+```
+
+We changed the OData uri (different endpoint) and changed the version to V4.
+
+ and provided some additional settings that are specific to OData V4:
+- We set the `operationMode` to `Server`, which is mandatory for filtering and sorting queries with OData V4.
+- We set the `synchronizationMode` to `None`, which is also mandatory for OData V4.
+
+### 4. Add OData V4 model settings
 
 
-### 3. Add routing to the `app/webapp-fpm/manifest.json`
 
-➡️ Add the following code to the `sap.ui5` section of the `app/webapp-fpm/manifest.json`:
+### 5. Add routing to the `webapp-fpm/manifest.json`
+
+➡️ Add the following code to the `sap.ui5` section of the `webapp-fpm/manifest.json`:
 
 ```json
 "routing": {
@@ -101,15 +134,15 @@ We added a new `sap.ui5.routing` section to our application descriptor file in w
 - The `targets` section is where we provide content information for the pages of our app. If we where to follow a freestyle UI5 approach, we could directly point to an xml file at this point, but within the SAP Fiori elements framework we specify the type as `Component` and use `sap.fe` templates for the pages.
 - For our `mainPage` we use the `sap.fe.core.fpm` template component, which allows us to point to our own `sap.codejam.view.App` xml view, but have it run inside the SAP Fiori elements flexible programming model. We define the main `entitySet` (coming from the backend OData service) we want to use on the page. We leave the `navigation` section empty for now, as we currently only have one route.
 
-### 4. Remove the `rootView` from the `app/webapp-fpm/manifest.json`
+### 6. Remove the `rootView` from the `webapp-fpm/manifest.json`
 
-➡️ Remove the entire `rootView` section (inside `sap.ui5`) from the `app/webapp-fpm/manifest.json` file.
+➡️ Remove the entire `rootView` section (inside `sap.ui5`) from the `webapp-fpm/manifest.json` file.
 
 It was mandatory to remove the `rootView` from our application descriptor as we now have a dedicated `sap.ui5.routing` section and want the SAP Fiori elements framework to handle the routing, including embedding our views.
 
-### 5. Add dependencies to the `app/webapp-fpm/manifest.json`
+### 7. Add dependencies to the `webapp-fpm/manifest.json`
 
-➡️ Add the following code to the `sap.ui5.dependencies.libs` section of the `app/webapp-fpm/manifest.json`:
+➡️ Add the following code to the `sap.ui5.dependencies.libs` section of the `webapp-fpm/manifest.json`:
 
 ```json
 "sap.fe.templates": {},
@@ -118,7 +151,7 @@ It was mandatory to remove the `rootView` from our application descriptor as we 
 
 We added SAP Fiori elements related libraries to our dependencies to make sure they are preloaded by the SAPUI5 (performance optimizations) and are available at runtime.
 
-This is what our `app/webapp-fpm/manifest.json` now looks like:
+This is what our `webapp-fpm/manifest.json` now looks like:
 
 ```json
 {
@@ -200,9 +233,9 @@ This is what our `app/webapp-fpm/manifest.json` now looks like:
 }
 ```
 
-### 6. Use SAPUI5 instead of OpenUI5
+### 8. Use SAPUI5 instead of OpenUI5
 
-➡️ Replace `openui5` with `sapui5` in the `app/webapp-fpm/index.html` so the bootstrapping (the script tag) looks like this:
+➡️ Replace `openui5` with `sapui5` in the `webapp-fpm/index.html` so the bootstrapping (the script tag) looks like this:
 
 ```html
 <script
@@ -221,9 +254,9 @@ This is what our `app/webapp-fpm/manifest.json` now looks like:
 
 We moved from OpenUI5 to SAPUI5, because SAP Fiori elements are not available and not part of OpenUI5. Check the [base readme](/README.md#sapui5-vs-openui5) to learn more about the differences between SAPUI5 and OpenUI5.
 
-### 7. Rebuild the `app/webapp-fpm/view/App.view.xml`
+### 9. Rebuild the `webapp-fpm/view/App.view.xml`
 
-➡️ Replace the content of the `app/webapp-fpm/view/App.view.xml` with the following code:
+➡️ Replace the content of the `webapp-fpm/view/App.view.xml` with the following code:
 
 ```xml
 <mvc:View
@@ -247,9 +280,9 @@ We moved from OpenUI5 to SAPUI5, because SAP Fiori elements are not available an
 
 We removed almost all the content of our app view and replaced it with a `<macros:Table />`, which is a so called **building block** that we can use in SAP Fiori elements flexible programming model enabled applications. We pass it a `metaPath` pointing to specific **OData annotations** using the [SAP UI vocabulary](https://github.com/SAP/odata-vocabularies/blob/main/vocabularies/UI.md). As described [earlier](/chapters/chapter101/readme.md#chapter-101---sap-fiori-elements-flexible-programming-model), annotations are mandatory when using SAP Fiori elements, but they don't exist just yet - we will implement them shortly.
 
-### 8. Use the `sap/fe/core/PageController` instead of the `sap/ui/core/mvc/Controller`
+### 10. Use the `sap/fe/core/PageController` instead of the `sap/ui/core/mvc/Controller`
 
-➡️ Replace the content of the `app/webapp-fpm/controller/App.controller.js` with the following code:
+➡️ Replace the content of the `webapp-fpm/controller/App.controller.js` with the following code:
 
 ```javascript
 sap.ui.define([
@@ -262,9 +295,9 @@ sap.ui.define([
 
 Similar to what we did in [step 3](/chapters/chapter101/readme.md#2-extend-the-sapfecoreappcomponent-instead-of-the-sapuicoreuicomponent) we now use the `PageController` provided by SAP Fiori elements instead of the core UI5 controller. This is to make sure our controller code runs within the SAP Fiori elements framework and has access to its [extension APIs](https://ui5.sap.com/#/api/sap.fe.core.PageController%23methods/getExtensionAPI). The `sap/fe/core/PageController` itself extends the `sap/ui/core/mvc/Controller`.
 
-### 9. Add OData annotations
+### 11. Add OData annotations
 
-➡️ Create the following `app/cat-service.cds` file:
+➡️ Create the following `cat-service.cds` file:
 
 ```cds
 using {CatalogService} from '../srv/cat-service';
@@ -311,7 +344,7 @@ We added CDS based OData annotations to our project, which is one of the superpo
 
 You can learn more about the structure of annotations in this [document](https://github.com/SAP-samples/odata-basics-handsonsapdev/blob/annotations/bookshop/README.md).
 
-### 10. Test the new app
+### 12. Test the new app
 
 ➡️ Restart the CAP server in case it is not running (`npm run dev`) and go to [http://localhost:4004/webapp-fpm/index.html](http://localhost:4004/webapp-fpm/index.html) in your browser.
 

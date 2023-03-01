@@ -1,41 +1,21 @@
 {
   "name": "bookshop",
-  "version": "1.0.0",
-  "description": "A simple self-contained bookshop service.",
-  "files": [
-    "app",
-    "srv",
-    "db",
-    "index.cds",
-    "index.js"
-  ],
-  "dependencies": {
-    "@sap/cds": ">=5.9",
-    "@sap/cds-dk": "^4",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.9.19",
-    "@sap/hana-client": "^2",
-    "express": "^4.17.1",
-    "mbt": "^1.2",
-    "passport": ">=0.4.1"
-  },
+  "version": "0.0.1",
   "scripts": {
-    "start": "cds run",
-    "dev": "cds watch",
-    "build": "mbt build",
-    "serve:local": "serve app/finished-webapp"
+    "start": "node node_modules/@sap/approuter/approuter.js",
+    "dev": "ui5 serve --open \"index.html\"",
+    "build": "ui5 build"
   },
-  "cds": {
-    "hana": {
-      "deploy-format": "hdbtable"
-    },
-    "requires": {
-      "db": {
-        "kind": "sql"
-      }
-    }
+  "dependencies": {
+    "@sap/approuter": "^10"
   },
   "devDependencies": {
-    "serve": "^14.2.0",
-    "sqlite3": "^5.0.7"
+    "@sap/ux-ui5-tooling": "^1.9.0",
+    "@ui5/cli": "^2"
+  },
+  "ui5": {
+    "dependencies": [
+      "@sap/ux-ui5-tooling"
+    ]
   }
 }

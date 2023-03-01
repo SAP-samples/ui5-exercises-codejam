@@ -1,39 +1,12 @@
-# CAP bookshop
-_out
-*.db
-connection.properties
-default-*.json
-.cdsrc-private.json
-gen/
+
 node_modules/
-target/
+dist/
 
-# Web IDE, App Studio
-.che/
-.gen/
+bookshop/cat-service.cds
+bookshop/manifest.yaml
+bookshop/package-lock.json
+bookshop/package.json
+bookshop/ui5.yaml
+bookshop/xs-app.json
 
-# MTA
-*_mta_build_tmp
-*.mtar
-mta_archives/
-
-# Other
 .DS_Store
-*.orig
-*.log
-
-*.iml
-*.flattened-pom.xml
-
-# IDEs
-# .vscode
-# .idea
-
-bookshop/mta.yaml
-bookshop/xs-security.json
-
-bookshop/app/mta.yaml
-bookshop/app/package.json
-bookshop/app/package-lock.json
-bookshop/app/remote-destination.json
-bookshop/app/xs-app.json

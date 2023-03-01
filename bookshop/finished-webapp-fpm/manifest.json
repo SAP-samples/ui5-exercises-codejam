@@ -74,12 +74,12 @@
         "models": {
             "": {
 				"dataSource": "capService",
-				"settings": {
-					"synchronizationMode": "None",
+                "settings": {
+                    "synchronizationMode": "None",
 					"operationMode": "Server",
 					"autoExpandSelect": true,
 					"earlyRequests": true
-				}
+                }
 			},
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",

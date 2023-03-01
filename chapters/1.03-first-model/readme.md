@@ -21,7 +21,7 @@ We want to consume a remote data source []() for our bookshop. Unfortunately, we
   "name": "bookshop",
   "version": "0.0.1",
   "scripts": {
-    "start": "ui5 serve --open \"index.html\""
+    "dev": "ui5 serve --open \"index.html\""
   },
   "devDependencies": {
     "@sap/ux-ui5-tooling": "^1.9.0",
@@ -55,10 +55,10 @@ server:
       configuration:
         backend:
           - path: /v2/browse
-            url: /url/of/deployed/cap/service/
+            url: https://developer-advocates-free-tier-central-hana-cloud-instan3b540fd6.cfapps.us10.hana.ondemand.com
 ```
 
-We configured a custom middleware using the `fiori-tools-proxy`. This middleware will handle all calls that our UI5 app initiates to the `v2/browse/` path and will proxy (think "forward") them to `/url/of/deployed/cap/service/`. We can now add the `v2/browse/` path as the data source to our UI5 application.
+We configured a custom middleware using the `fiori-tools-proxy`. This middleware will handle all calls that our UI5 app initiates to the `v2/browse/` path and will proxy (think "forward") them to `https://developer-advocates-free-tier-central-hana-cloud-instan3b540fd6.cfapps.us10.hana.ondemand.com`. We can now add the `v2/browse/` path as the data source to our UI5 application.
 
 ### 3. Add a new `dataSource` and `model` to the `app/webapp/manifest.json`
 
@@ -105,10 +105,6 @@ Models are a major part of UI5 development. We use models to store data in our a
 ```
 
 We defined a new model with an empty string as its name, which makes it the default model of the app. The `dataSource` for the model is the `capService`, which is a new `dataSource` we created that calls the `/v2/browse/` path and therefore gets proxied by the middleware (see [step 2](#2-configure-the-fiori-tools-proxy-in-the-ui5yaml) of this chapter). The model we created is of type [OData](https://www.odata.org/getting-started/) V2, which is a [RESTful](https://www.youtube.com/watch?v=bhn-Dl87SDE) protocol that heavily used within the SAP ecosphere. We will learn more about OData and its strengths in the upcoming chapters.
-
-<!-- Let's go through the settings we set for the model:
-- We set the `operationMode` to `Server`, which is mandatory for filtering and sorting queries with OData V4.
-- We set the `synchronizationMode` to `None`, which is also mandatory for OData V4. -->
 
 ### 4. Add a new `<Table />` to the `app/webapp/view/App.view.xml`
 
@@ -161,7 +157,7 @@ We can now go ahead an consume the newly created model in our `app/webapp/view/A
 We created a Table that displays the books from our bookshop data. Let's go through the code step by step to better understand how we did it:
 
 - We created a new [`<Table />`](https://sapui5.hana.ondemand.com/#/api/sap.m.Table) that holds `<columns />` and `<items />` (think "rows") as its aggregations.
-- The `<Table />` has an `items` attribute that we want to bind to the `Books` in our data model (you can access the data at [/url/of/deployed/cap/service/](/url/of/deployed/cap/service/)). For that we make use of a concept called ***data binding*** (more specifically [list binding](https://ui5.sap.com/#/topic/91f0d8ab6f4d1014b6dd926db0e91070)). Data binding is very important in UI5 and requires a special syntax. We use curly brackets (`{}`) and specify the `path` to the data in the model we want to bind. This list binding automatically creates child controls (`<items />`) according to model data (like cloning a template). Additionally, we specify the `expand` parameter that will be sent with the OData request when getting the data. This is not always necessary, but rather specific to our data model as the `genre` information is nested and not expanded by default.
+- The `<Table />` has an `items` attribute that we want to bind to the `Books` in our data model (you can access the data at [https://developer-advocates-free-tier-central-hana-cloud-instan3b540fd6.cfapps.us10.hana.ondemand.com](https://developer-advocates-free-tier-central-hana-cloud-instan3b540fd6.cfapps.us10.hana.ondemand.com)). For that we make use of a concept called ***data binding*** (more specifically [list binding](https://ui5.sap.com/#/topic/91f0d8ab6f4d1014b6dd926db0e91070)). Data binding is very important in UI5 and requires a special syntax. We use curly brackets (`{}`) and specify the `path` to the data in the model we want to bind. This list binding automatically creates child controls (`<items />`) according to model data (like cloning a template). Additionally, we specify the `expand` parameter that will be sent with the OData request when getting the data. This is not always necessary, but rather specific to our data model as the `genre` information is nested and not expanded by default.
 - The `<columns />` aggregation inside the `<Table />` holds several [`<Column />`](https://sapui5.hana.ondemand.com/#/api/sap.m.Column) controls that each hold a [`<Text />`](https://sapui5.hana.ondemand.com/#/api/sap.m.Text) control. These are the texts in the header row of our `<Table />`.
 - The `<items />` (rows) of our `<Table />` hold a [`<ColumnListItem />`](https://sapui5.hana.ondemand.com/#/api/sap.m.ColumnListItem), which serves as a wrapper for the `<cells />` of each row. The controls inside the `<cells />` aggregation have to match our `<columns />` with respect to the order of the content (book, author, genre, price, stock).
 - Check the [documentation](https://sapui5.hana.ondemand.com/#/api/sap.m.ColumnListItem%23controlProperties) to see what the `vAlign` and `type` attributes for the `<ColumnListItem />` do.
