@@ -1,3 +1,10 @@
+<style>
+    img[src$="#border"] {
+        border-radius: 15px;
+        border: 1px solid black;
+    }
+</style>
+
 # Chapter 2.01 - Enabling the SAP Fiori Elements Flexible Programming Model
 
 The following series of chapters (part 2 - starting with this chapter 2.01) introduces the **SAP Fiori elements flexible programming model**, which bridges the gap between freestyle UI5 development and [SAP Fiori elements](https://ui5.sap.com/#/topic/03265b0408e2432c9571d6b3feb6b1fd).
@@ -6,7 +13,7 @@ The application we built so far in part 1 used a freestyle approach, meaning we 
 
 It is necessary to decide before starting to develop a new application which of the two approaches you want to use to build your application. The [SAP Fiori Tools](https://help.sap.com/docs/SAP_FIORI_tools/17d50220bcd848aa854c9c182d65b699/2d8b1cb11f6541e5ab16f05461c64201.html?locale=en-US) provide guided application generators for both approaches.
 
-![SAP Fiori Tools Application Generator](fiori-tools.png)
+![SAP Fiori Tools Application Generator](fiori-tools.png#border)
 
 However, the situation is not exactly black and white, as the [SAP Fiori elements flexible programming model](https://sapui5.hana.ondemand.com/test-resources/sap/fe/core/fpmExplorer/index.html#/overview/introduction) provides building blocks (macros), which are metadata-driven UI controls that can be used in any (freestyle) SAPUI5 application. This flexible programming model is perfect for our use case, as we already have a working freestyle UI5 application and solely want to enhance it - while learning about SAP Fiori elements and OData annotations along the way. The instructions given in this chapter basically align with the [the official documentation](https://sapui5.hana.ondemand.com/test-resources/sap/fe/core/fpmExplorer/index.html#/buildingBlocks/guidance/guidanceCustomApps), but are more detailed and more specific to our use case.
 
@@ -309,53 +316,63 @@ We moved from OpenUI5 to SAPUI5, because SAP Fiori elements are not available an
 </mvc:View>
 ```
 
-We removed almost all the content of our app view and replaced it with a `<macros:Table />`, which is a so called **building block** that we can use in SAP Fiori elements flexible programming model enabled applications. We pass it a `metaPath` pointing to specific **OData annotations** using the [SAP UI vocabulary](https://github.com/SAP/odata-vocabularies/blob/main/vocabularies/UI.md). As described [earlier](#chapter-201---enabling-the-sap-fiori-elements-flexible-programming-model), annotations are mandatory when using SAP Fiori elements. Luckily, they have already been implemented as part of the OData backend application (built with the SAP Cloud Application Programming model) and are ready to be consumed. This is what the annotation file in the backend looks like:
+We removed almost all the content of our app view and replaced it with a `<macros:Table />`, which is a so called **building block** that we can use in SAP Fiori elements flexible programming model enabled applications. We pass it a `metaPath` pointing to specific **OData annotations** using the [SAP UI vocabulary](https://github.com/SAP/odata-vocabularies/blob/main/vocabularies/UI.md). As described [earlier](#chapter-201---enabling-the-sap-fiori-elements-flexible-programming-model), annotations are mandatory when using SAP Fiori elements. Luckily, they have already been implemented as part of the OData backend application (built with the SAP Cloud Application Programming model) and are ready to be consumed.
 
-```cds
-using {CatalogService} from '../srv/cat-service';
+<details>
+<summary>How have the OData annotations been implemented? 💬</summary>
 
-annotate CatalogService.Books with @(
-    UI: {
-        LineItem: [
-            {
-                $Type: 'UI.DataField',
-                Label: 'Book',
-                Value: title
-            },
-            {
-                $Type: 'UI.DataField',
-                Label: 'Author',
-                Value: author
-            },
-            {
-                $Type: 'UI.DataField',
-                Label: 'Genre',
-                Value: genre.name
-            },
-            {
-                $Type: 'UI.DataField',
-                Label: 'Price',
-                Value: price
-            },
-            {
-                $Type: 'UI.DataField',
-                Label: 'Stock',
-                Value: stock
-            }
-        ]
-    }
-);
-```
+<br>
 
-Although annotations are considered backend development and therefore not exactly the scope of this repository, it is important to understand how annotations work and how SAP Fiori Elements is able to interpret them:
+> This is what the annotation file in the backend looks like:
+>
+>```cds
+>using {CatalogService} from '../srv/cat-service';
+>
+>annotate CatalogService.Books with @(
+>    UI: {
+>        LineItem: [
+>            {
+>                $Type: 'UI.DataField',
+>                Label: 'Book',
+>                Value: title
+>            },
+>            {
+>                $Type: 'UI.DataField',
+>                Label: 'Author',
+>                Value: author
+>            },
+>            {
+>                $Type: 'UI.DataField',
+>                Label: 'Genre',
+>                Value: genre.name
+>            },
+>            {
+>                $Type: 'UI.DataField',
+>                Label: 'Price',
+>                Value: price
+>            },
+>            {
+>                $Type: 'UI.DataField',
+>                Label: 'Stock',
+>                Value: stock
+>            }
+>        ]
+>    }
+>);
+>```
+>
+>Although annotations are considered backend development and therefore not exactly the scope of this repository, it is important to understand how annotations work and how SAP Fiori Elements is able to interpret them:
+>
+>CDS based OData annotations are one of the superpowers of the SAP Cloud Application Programming Model. It automatically picks up and reads annotation files and serves the provided information in the service [metadata document](https://developer-advocates-free-tier-central-hana-cloud-instan3b540fd6.cfapps.us10.hana.ondemand.com/browse/$metadata). This is the document our SAP Fiori elements application interprets and uses to build the UI. Let's go through the annotations file step by step:
+>
+>- It uses the [UI vocabulary](https://github.com/SAP/odata-vocabularies/blob/main/vocabularies/UI.md) developed by SAP to describe how the entity should to be displayed in user interfaces. Generally a vocabulary is a collection of terms that can be used to describe and give meaning to OData services.
+>- It describes a `LineItem`, which is a collection (array) of data fields (think "columns") suitable to be visualized in a table or list.
+>- The objects of the `LineItem` array are of type `UI.DataField` and therefore simply represent a piece of data. Each data field (think "column") has a `Label` and a `Value`, the latter comes directly from our Books entity.
+>
+>You can learn more about the structure of annotations in this [document](https://github.com/SAP-samples/odata-basics-handsonsapdev/blob/annotations/bookshop/README.md).
 
-CDS based OData annotations are one of the superpowers of the SAP Cloud Application Programming Model. It automatically picks up and reads annotation files and serves the provided information in the service [metadata document](https://developer-advocates-free-tier-central-hana-cloud-instan3b540fd6.cfapps.us10.hana.ondemand.com/browse/$metadata). This is the document our SAP Fiori elements application interprets and uses to build the UI. Let's go through the annotations file step by step:
+</details>
 
-- It uses the [UI vocabulary](https://github.com/SAP/odata-vocabularies/blob/main/vocabularies/UI.md) developed by SAP to describe how the entity should to be displayed in user interfaces. Generally a vocabulary is a collection of terms that can be used to describe and give meaning to OData services.
-- It describes a `LineItem`, which is a collection (array) of data fields (think "columns") suitable to be visualized in a table or list.
-- The objects of the `LineItem` array are of type `UI.DataField` and therefore simply represent a piece of data. Each data field (think "column") has a `Label` and a `Value`, the latter comes directly from our Books entity.
-
-You can learn more about the structure of annotations in this [document](https://github.com/SAP-samples/odata-basics-handsonsapdev/blob/annotations/bookshop/README.md).
 
 ### 10. Use the `sap/fe/core/PageController` instead of the `sap/ui/core/mvc/Controller`
 
