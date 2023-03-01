@@ -1,0 +1,62 @@
+[
+    {
+        "ID": 10,
+        "name": "Fiction"
+    },
+    {
+        "ID": 11,
+        "name": "Drama"
+    },
+    {
+        "ID": 12,
+        "name": "Poetry"
+    },
+    {
+        "ID": 13,
+        "name": "Fantasy"
+    },
+    {
+        "ID": 14,
+        "name": "Science Fiction"
+    },
+    {
+        "ID": 15,
+        "name": "Romance"
+    },
+    {
+        "ID": 16,
+        "name": "Mystery"
+    },
+    {
+        "ID": 17,
+        "name": "Thriller"
+    },
+    {
+        "ID": 18,
+        "name": "Dystopia"
+    },
+    {
+        "ID": 19,
+        "name": "Fairy Tale"
+    },
+    {
+        "ID": 20,
+        "name": "Non-Fiction"
+    },
+    {
+        "ID": 21,
+        "name": "Biography"
+    },
+    {
+        "ID": 22,
+        "name": "Autobiography"
+    },
+    {
+        "ID": 23,
+        "name": "Essay"
+    },
+    {
+        "ID": 24,
+        "name": "Speech"
+    }
+]

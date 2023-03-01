@@ -1,0 +1,32 @@
+[
+    {
+    "name": "Euro",
+    "descr": null,
+    "code": "EUR",
+    "symbol": "€"
+    },
+    {
+    "name": "British Pound",
+    "descr": null,
+    "code": "GBP",
+    "symbol": "£"
+    },
+    {
+    "name": "Shekel",
+    "descr": null,
+    "code": "ILS",
+    "symbol": "₪"
+    },
+    {
+    "name": "Yen",
+    "descr": null,
+    "code": "JPY",
+    "symbol": "¥"
+    },
+    {
+    "name": "US Dollar",
+    "descr": null,
+    "code": "USD",
+    "symbol": "$"
+    }
+]
