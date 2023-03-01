@@ -60,9 +60,8 @@ The material consists of a series of chapters. The chapters build on top of each
 - [1.07 - Adding Expression Binding and Custom Formatting](/chapters/1.07-formatting/)
 - [1.08 - Adding i18n Features](/chapters/1.08-i18n/)
 - [1.09 - Adding Custom CSS](/chapters/1.09-custom-css/)
-- [1.10 - Adding a Mockserver](/chapters/1.10-mockserver/) (Optional)
-- [1.11 - Deploying the App](/chapters/1.11-deployment/) (Optional)
-- [1.12 - Further Improvements and Learning Material](/chapters/1.12-further-improvements/)
+- [1.10 - Deploying the App](/chapters/1.10-deployment/) (Optional)
+- [1.11 - Further Improvements and Learning Material](/chapters/1.11-further-improvements/)
 
 ### Part 2 - SAP Fiori Elements Flexible Programming Model
 
