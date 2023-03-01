@@ -1,7 +1,8 @@
 
-node_modules/
 dist/
+node_modules/
 
+bookshop/webapp-fpm/
 bookshop/cat-service.cds
 bookshop/manifest.yaml
 bookshop/package-lock.json

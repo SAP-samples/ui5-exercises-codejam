@@ -3,15 +3,11 @@
 ## Further Improvements
 
 If you followed the steps described in this repository successfully you have built a fully functional UI5 app that makes use of most core principles of the framework. But of course the material did not cover everything UI5 has to offer. There is a lot more you can do with UI5 and a lot of features you could add to take your bookshop app to the next level. Here are a few ideas, but feel free to improve the app in whatever way you would like to:
-- You could split the view (`app/webapp/view/App.view.xml`) up into multiple views using a concept called [nested views](https://sapui5.hana.ondemand.com/#/topic/df8c9c3d79b54c928855162bafcd88ee), making its structure easier to read and understand.
+- You could split the view (`webapp/view/App.view.xml`) up into multiple views using a concept called [nested views](https://sapui5.hana.ondemand.com/#/topic/df8c9c3d79b54c928855162bafcd88ee), making its structure easier to read and understand.
 
 - You could also move parts of the UI into reusable [fragments](https://sapui5.hana.ondemand.com/#/topic/4da72985139b4b83b5f1c1e0c0d2ed5a). While this is not necessary for a simple app like ours, this does help to remove redundancies once the project grows.
 
 - You could add more pages to your app and split its content up. At this stage, the bookshop's complexity doesn't necessarily require [routing and navigation](https://sapui5.hana.ondemand.com/#/topic/e5200ee755f344c8aef8efcbab3308fb), but it's certainly a good feature to know how to implement.
-
-- You could run the UI5 app on its own webserver during development (instead of using the `@sap/cds` server) leveraging the [UI5 Tooling](https://sap.github.io/ui5-tooling/). This enables you to use a lot of great open source tools and packages. You could for example try consuming a remote service in your app using a [package that mocks Cloud Foundry destination locally](https://www.npmjs.com/package/ui5-middleware-cfdestination).
-
-- The UI5 Tooling also comes with a useful build command (`ui5 build`) that you could use to build your app and prepare it for deployment. This improves the performance of the application.
 
 ## Further Learning Material
 

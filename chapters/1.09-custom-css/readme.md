@@ -1,3 +1,10 @@
+<style>
+    img[src$="#border"] {
+        border-radius: 15px;
+        border: 1px solid black;
+    }
+</style>
+
 # Chapter 1.09 - Adding Custom CSS
 
 At the end of this chapter we will have added custom CSS to our UI5 app that applies styling to the `<FlexBox />` containing the order `<Button />` and `<StepInput />`.
@@ -26,7 +33,7 @@ At the end of this chapter we will have added custom CSS to our UI5 app that app
 
 This is what our application descriptor now looks like:
 
-![]()
+![manifest.json](manifest.png#border)
 
 We added a new `css` resource to our application descriptor and pointed it to a css file that we are about to create next.
 
@@ -41,6 +48,31 @@ We added a new `css` resource to our application descriptor and pointed it to a 
 ```
 
 We created a new css file and added a css class to it. The css class uses the `gap` property which makes sure that all items inside a container with `display = flex` (like the `<FlexBox />` control) have the specified gap between each other.
+
+This is what our project's structure now looks like:
+
+```text
+- bookshop/
+    + node_modules/
+    - webapp/
+        - controller/
+            - App.controller.js
+        - css/
+            - style.css
+        - i18n/
+            - i18n_de.properties
+            - i18n.properties
+        - model/
+            - formatter.js
+        - view/
+            - App.view.xml
+        - Component.js
+        - index.html
+        - manifest.json
+    - package-lock.json
+    - package.json
+    - ui5.yaml
+```
 
 ### 3. Use a custom CSS class in the `webapp/view/App.view.xml`
 
@@ -60,7 +92,7 @@ We can now use the css class `orderControls` in our `webapp/view/App.view.xml`.
 
 This is what our view now looks like (a few controls collapsed in the screen shot):
 
-![]()
+![App.view.xml](App.view.png#border)
 
 ### 4. Inspect the new styling
 
@@ -68,6 +100,6 @@ This is what our view now looks like (a few controls collapsed in the screen sho
 
 You will see that the items inside the `<FlexBox />` now have a gap of 20 pixels between each other.
 
-![]()
+![result](result.png#border)
 
 Continue to [Chapter 1.10 - Deploying the App](/chapters/1.10-deployment/)

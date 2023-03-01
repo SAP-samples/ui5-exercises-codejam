@@ -1,3 +1,10 @@
+<style>
+    img[src$="#border"] {
+        border-radius: 15px;
+        border: 1px solid black;
+    }
+</style>
+
 # Chapter 1.02 - Creating the First View
 
 By the end of this chapter, we will have added the first view to our UI5 application.
@@ -50,6 +57,22 @@ You might be wondering how you as a developer can find out which UI5 controls to
 
 </details>
 
+This is what our project structure now looks like: 
+
+```text
+- bookshop/
+    + node_modules/
+    - webapp/
+        - view/
+            - App.view.xml
+        - Component.js
+        - index.html
+        - manifest.json
+    - package-lock.json
+    - package.json
+    - ui5.yaml
+```
+
 
 ### 2. Inspect the app in the browser
 
@@ -57,6 +80,6 @@ You might be wondering how you as a developer can find out which UI5 controls to
 
 This is what the application now looks like:
 
-![]()
+![result](result.png#border)
 
 Continue to [Chapter 1.03 - Creating and Consuming the First Model](/chapters/1.03-first-model/)

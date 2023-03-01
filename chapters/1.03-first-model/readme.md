@@ -1,3 +1,10 @@
+<style>
+    img[src$="#border"] {
+        border-radius: 15px;
+        border: 1px solid black;
+    }
+</style>
+
 # Chapter 1.03 - Creating and Consuming the First Model
 
 By the end of this chapter, we will have added a remote bookshop data source to our app and stored the data in a model. We will also have added a table displaying this model data.
@@ -6,8 +13,8 @@ By the end of this chapter, we will have added a remote bookshop data source to 
 
 [1. Add `@sap/ux-ui5-tooling` as a dependency in the `package.json`](#1-add-sapux-ui5-tooling-as-a-dependency-in-the-packagejson)<br>
 [2. Configure the `fiori-tools-proxy` in the `ui5.yaml`](#2-configure-the-fiori-tools-proxy-in-the-ui5yaml)<br>
-[3. Add a new `dataSource` and `model` to the `app/webapp/manifest.json`](#3-add-a-new-datasource-and-model-to-the-appwebappmanifestjson)<br>
-[4. Add a new `<Table />` to the `app/webapp/view/App.view.xml`](#4-add-a-new-table--to-the-appwebappviewappviewxml)<br>
+[3. Add a new `dataSource` and `model` to the `webapp/manifest.json`](#3-add-a-new-datasource-and-model-to-the-webappmanifestjson)<br>
+[4. Add a new `<Table />` to the `webapp/view/App.view.xml`](#4-add-a-new-table--to-the-webappviewappviewxml)<br>
 [5. Inspect the app in the browser](#5-inspect-the-app-in-the-browser)<br>
 
 ### 1. Add `@sap/ux-ui5-tooling` as a dependency in the `package.json`
@@ -60,11 +67,11 @@ server:
 
 We configured a custom middleware using the `fiori-tools-proxy`. This middleware will handle all calls that our UI5 app initiates to the `v2/browse/` path and will proxy (think "forward") them to `https://developer-advocates-free-tier-central-hana-cloud-instan3b540fd6.cfapps.us10.hana.ondemand.com`. We can now add the `v2/browse/` path as the data source to our UI5 application.
 
-### 3. Add a new `dataSource` and `model` to the `app/webapp/manifest.json`
+### 3. Add a new `dataSource` and `model` to the `webapp/manifest.json`
 
 Models are a major part of UI5 development. We use models to store data in our app ("data layer"). Models are not bound to or represented by a specific file, but are dynamic objects that can be consumed and modified by different parts of the app. They can be created via the `manifest.json` file or via a controller.
 
-➡️ Paste the following code into the `app/webapp/manifest.json`:
+➡️ Replace the current content of the `webapp/manifest.json` with the following code:
 
 ```json
 {
@@ -76,11 +83,11 @@ Models are a major part of UI5 development. We use models to store data in our a
             "version": "1.0.0"
         },
         "dataSources": {
-            "capService": {
+            "remoteBookshop": {
                 "uri": "/v2/browse/",
                 "type" : "OData",
                 "settings" : {
-                    "odataVersion" : "4.0"
+                    "odataVersion" : "2.0"
                 }
             } 
         }
@@ -93,22 +100,18 @@ Models are a major part of UI5 development. We use models to store data in our a
         },
         "models": {
             "": {
-				"dataSource": "capService",
-				"settings": {
-                    "operationMode": "Server",
-					"synchronizationMode": "None"
-				}
+				"dataSource": "remoteBookshop"
             }
         }
     }
 }
 ```
 
-We defined a new model with an empty string as its name, which makes it the default model of the app. The `dataSource` for the model is the `capService`, which is a new `dataSource` we created that calls the `/v2/browse/` path and therefore gets proxied by the middleware (see [step 2](#2-configure-the-fiori-tools-proxy-in-the-ui5yaml) of this chapter). The model we created is of type [OData](https://www.odata.org/getting-started/) V2, which is a [RESTful](https://www.youtube.com/watch?v=bhn-Dl87SDE) protocol that heavily used within the SAP ecosphere. We will learn more about OData and its strengths in the upcoming chapters.
+We defined a new model with an empty string as its name, which makes it the default model of the app. The `dataSource` for the model is the `remoteBookshop`, which is a new `dataSource` we created that calls the `/v2/browse/` path and therefore gets proxied by the middleware (see [step 2](#2-configure-the-fiori-tools-proxy-in-the-ui5yaml) of this chapter). The model we created is of type [OData](https://www.odata.org/getting-started/) V2, which is a [RESTful](https://www.youtube.com/watch?v=bhn-Dl87SDE) protocol that heavily used within the SAP ecosphere. We will learn more about OData and its strengths in the upcoming chapters.
 
-### 4. Add a new `<Table />` to the `app/webapp/view/App.view.xml`
+### 4. Add a new `<Table />` to the `webapp/view/App.view.xml`
 
-We can now go ahead an consume the newly created model in our `app/webapp/view/App.view.xml`.
+We can now go ahead an consume the newly created model in our `webapp/view/App.view.xml`.
 
 ➡️ Paste the following code into the `<content />` section of the `<Panel />` in our existing view:
 
@@ -168,12 +171,12 @@ Check the [documentation](https://ui5.sap.com/#/topic/91f0d8ab6f4d1014b6dd926db0
 
 This is what our view now looks like (`<Table />` collapsed in the screen shot):
 
-![]()
+![App.view.xml](App.view.png#border)
 
 ### 5. Inspect the app in the browser
 
 ➡️ Move over to the browser and refresh the page to see the table:
 
-![]()
+![result](result.png#border)
 
 Continue to - [Chapter 1.04 - Creating and Extending the First Controller](/chapters/1.04-first-controller/)

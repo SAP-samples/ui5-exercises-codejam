@@ -1,3 +1,10 @@
+<style>
+    img[src$="#border"] {
+        border-radius: 15px;
+        border: 1px solid black;
+    }
+</style>
+
 # Chapter 1.01 - Scaffolding the App
 
 By the end of this chapter, we will have scaffolded an empty UI5 application.
@@ -220,7 +227,13 @@ The `manifest.json` is our application descriptor file and holds metadata about 
 
 This is what our project's structure now looks like:
 
-![]()
+```text
+- bookshop/
+    - webapp/
+        - Component.js
+        - index.html
+        - manifest.json
+```
 
 At this point the UI5 application itself is complete, although it's more an empty shell. We have a `webapp/index.html` file (entry point) containing our component, which references our `manifest.json`, which describes our application. The only thing missing is a web server to serve these files. Let's implement this web server next.
 
@@ -265,17 +278,27 @@ We added a new `package.json` file, which essentially turns our project into a N
 ➡️ Open a new terminal session on root level of our project and run the following command:
 
 ```bash
-npm install && npm run start:dev
+npm install && npm run dev
 ```
 
 We installed the project's dependencies and executed the `start` script of our project. This script is like a "shortcut" for the `ui5 serve --open "index.html"` command of the UI5 Tooling. You should see a new browser window or tab automatically opening and displaying our (empty) UI5 application.
 
 This is what our project structure now looks like: 
 
-![]()
+```text
+- bookshop/
+    + node_modules/
+    - webapp/
+        - Component.js
+        - index.html
+        - manifest.json
+    - package-lock.json
+    - package.json
+    - ui5.yaml
+```
 
 This is what our application currently looks like:
 
-![]()
+![result](result.png#border)
 
 Continue to [Chapter 1.02 - Creating the First View](/chapters/1.02-first-view/)

@@ -1,19 +1,26 @@
+<style>
+    img[src$="#border"] {
+        border-radius: 15px;
+        border: 1px solid black;
+    }
+</style>
+
 # Chapter 1.08 - Adding i18n Features
 
 At the end of this chapter we will have added internationalization (i18n) features to our UI5 app, so that it can be displayed in German (and other languages you want to add) as well.
 
 ## Steps
 
-[1. Add an `i18n` model to the `app/webapp/manifest.json`](#1-add-an-i18n-model-to-the-appwebappmanifestjson)<br>
-[2. Create a `app/webapp/i18n/i18n.properties` file](#2-create-a-appwebappi18ni18nproperties-file)<br>
-[3. Create a `app/webapp/i18n/i18n_de.properties` file](#3-create-a-appwebappi18ni18n_deproperties-file)<br>
-[4. Consume the `i18n` model in the `app/webapp/view/App.view.xml`](#4-consume-the-i18n-model-in-the-appwebappviewappviewxml)<br>
-[5. Consume the `i18n` model in the `app/webapp/controller/App.controller.js`](#5-consume-the-i18n-model-in-the-appwebappcontrollerappcontrollerjs)<br>
+[1. Add an `i18n` model to the `webapp/manifest.json`](#1-add-an-i18n-model-to-the-webappmanifestjson)<br>
+[2. Create a `webapp/i18n/i18n.properties` file](#2-create-a-webappi18ni18nproperties-file)<br>
+[3. Create a `webapp/i18n/i18n_de.properties` file](#3-create-a-webappi18ni18n_deproperties-file)<br>
+[4. Consume the `i18n` model in the `webapp/view/App.view.xml`](#4-consume-the-i18n-model-in-the-webappviewappviewxml)<br>
+[5. Consume the `i18n` model in the `webapp/controller/App.controller.js`](#5-consume-the-i18n-model-in-the-webappcontrollerappcontrollerjs)<br>
 [6. Test the app in another language](#6-test-the-app-in-another-language)<br>
 
 > BTW: The abbreviation for 'internationalization' is 'i18n' because there are 18 letters between the 'i' and the 'n'. Internationalization is one of the main requirements for enterprise apps and one of the strengths of UI5.
 
-### 1. Add an `i18n` model to the `app/webapp/manifest.json`
+### 1. Add an `i18n` model to the `webapp/manifest.json`
 
 ➡️ Add the following code snippet to the end of the `models` section of the `manifest.json`:
 
@@ -29,13 +36,13 @@ At the end of this chapter we will have added internationalization (i18n) featur
 
 This is what our application descriptor now looks like:
 
-![]()
+![manifest.json](manifest.png#border)
 
 We added a new `i18n` model which is of type `ResourceModel` (special type for `i18n` models). It points to an `i18n` directory and file, which we are about to create next.
 
-### 2. Create a `app/webapp/i18n/i18n.properties` file
+### 2. Create a `webapp/i18n/i18n.properties` file
 
-➡️ Create a new file `app/webapp/i18n/i18n.properties` and paste the following code into it:
+➡️ Create a new file `webapp/i18n/i18n.properties` and paste the following code into it:
 
 ```properties
 Bookshop=Bookshop
@@ -53,9 +60,9 @@ Close=Close
 
 We created a new file that contains a few key value pairs for texts we want to use in our app. This allows us to simply reference the keys when consuming the model in our view instead of hardcoding the values. Because the keys as well as the values are in English it might look like this doesn't add much value, but you will see what this is about once we add some translations in the next step.
 
-### 3. Create a `app/webapp/i18n/i18n_de.properties` file
+### 3. Create a `webapp/i18n/i18n_de.properties` file
 
-Create a new file `app/webapp/i18n/i18n_de.properties` and paste the following code into it:
+Create a new file `webapp/i18n/i18n_de.properties` and paste the following code into it:
 
 ```properties
 Bookshop=Buchhandlung
@@ -73,13 +80,32 @@ Close=Schließen
 
 This is what our project's structure now looks like:
 
-![]()
+```text
+- bookshop/
+    + node_modules/
+    - webapp/
+        - controller/
+            - App.controller.js
+        - i18n/
+            - i18n_de.properties
+            - i18n.properties
+        - model/
+            - formatter.js
+        - view/
+            - App.view.xml
+        - Component.js
+        - index.html
+        - manifest.json
+    - package-lock.json
+    - package.json
+    - ui5.yaml
+```
 
 We added a new file that contains the German translations for the texts we want to use in our app. This makes it possible for our app to be displayed in German as well. You can add support for other languages as well if you want. Simply add a language code (for example `de`) prefixed with an underscore to the file name (like we did with `i18n_de.properties`).
 
-### 4. Consume the `i18n` model in the `app/webapp/view/App.view.xml`
+### 4. Consume the `i18n` model in the `webapp/view/App.view.xml`
 
-We can now consume the `i18n` model in our `app/webapp/view/App.view.xml` using the keys. The app will display their respective values based on the language preference of the user.
+We can now consume the `i18n` model in our `webapp/view/App.view.xml` using the keys. The app will display their respective values based on the language preference of the user.
 
 ➡️ Replace all hardcoded texts in our view with the data binding syntax for the `i18n` model shown in the example below. Go through the whole file and make sure to not miss any texts:
 
@@ -87,9 +113,9 @@ We can now consume the `i18n` model in our `app/webapp/view/App.view.xml` using 
 <Page title="{i18n>Bookshop}" >
 ```
 
-### 5. Consume the `i18n` model in the `app/webapp/controller/App.controller.js`
+### 5. Consume the `i18n` model in the `webapp/controller/App.controller.js`
 
-We not only want to consume the `i18n` model in our view but also in our `app/webapp/controller/App.controller.js`. We previously hardcoded the success and error messages and now want to use the `i18n` model instead.
+We not only want to consume the `i18n` model in our view but also in our `webapp/controller/App.controller.js`. We previously hardcoded the success and error messages and now want to use the `i18n` model instead.
 
 ➡️ Replace the `onSubmitOrder` method with the following code:
 
@@ -147,6 +173,6 @@ We can now test the app in another language.
 
 Feel free to try other language codes in case you provided translation files for other languages. You can learn more about languages in UI5 and other options to set them in the [SAPUI5 Documentation](https://sapui5.hana.ondemand.com/#/topic/91f21f176f4d1014b6dd926db0e91070).
 
-![]()
+![result](result.png#border)
 
 Continue to [Chapter 1.09 - Adding Custom CSS](/chapters/1.09-custom-css/)

@@ -11,9 +11,6 @@ sap.ui.define([
     "use strict"
     return Controller.extend("sap.codejam.controller.App", {
         formatter: formatter,
-        onAfterRendering: function () {
-            this.getView().byId("orderBtn").setEnabled(false)
-        },
         onSelect: function (oEvent) {
             const oSource = oEvent.getSource()
             const contextPath = oSource.getBindingContextPath()
@@ -25,7 +22,7 @@ sap.ui.define([
             const selectedBookID = oBindingContext.getProperty("ID")
             const selectedBookTitle = oBindingContext.getProperty("title")
             const inputValue = this.getView().byId("stepInput").getValue()
-
+        
             const i18nModel = this.getView().getModel("i18n")
             const oModel = this.getView().getModel()
             oModel.callFunction("/submitOrder", {
@@ -58,17 +55,20 @@ sap.ui.define([
                     })
                     this.oErrorMessageDialog.open()
                 }.bind(this)
-            })
+           })
         },
         onSearch: function (oEvent) {
-            const aFilter = []
             const sQuery = oEvent.getParameter("newValue")
+            const aFilter = []
             if (sQuery) {
                 aFilter.push(new Filter("title", FilterOperator.Contains, sQuery))
             }
             const oList = this.byId("booksTable")
             const oBinding = oList.getBinding("items")
             oBinding.filter(aFilter)
+        },
+        onAfterRendering: function () {
+            this.getView().byId("orderBtn").setEnabled(false)
         }
     })
 })

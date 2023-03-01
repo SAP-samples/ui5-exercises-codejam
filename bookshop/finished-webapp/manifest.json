@@ -7,23 +7,16 @@
             "version": "1.0.0"
         },
         "dataSources": {
-            "capService": {
+            "remoteBookshop": {
                 "uri": "/v2/browse/",
                 "type" : "OData",
                 "settings" : {
                     "odataVersion" : "2.0"
                 }
-            }  
+            } 
         }
     },
     "sap.ui5": {
-        "dependencies": {
-			"minUI5Version": "1.60.0",
-			"libs": {
-				"sap.ui.core": {},
-                "sap.m": {}
-			}
-		},
         "rootView": {
             "viewName": "sap.codejam.view.App",
             "type": "XML",
@@ -31,7 +24,7 @@
         },
         "models": {
             "": {
-				"dataSource": "capService"
+				"dataSource": "remoteBookshop"
             },
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",

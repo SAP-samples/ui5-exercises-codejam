@@ -1,3 +1,10 @@
+<style>
+    img[src$="#border"] {
+        border-radius: 15px;
+        border: 1px solid black;
+    }
+</style>
+
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/ui5-exercises-codejam)](https://api.reuse.software/info/github.com/SAP-samples/ui5-exercises-codejam)
 
 # SAP CodeJam - UI5

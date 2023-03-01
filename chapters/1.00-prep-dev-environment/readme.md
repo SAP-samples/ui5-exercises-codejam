@@ -20,7 +20,7 @@ To be able to follow the instructions in this repository you need to fulfill ***
   - [Node.js](https://nodejs.org/en/) (version 14 or higher) including `npm`
   - [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
   - Your favorite code editor (e.g. [Visual Studio Code](https://code.visualstudio.com/download))
-  - You need privileges to install npm packages from the [npm Registry](https://www.npmjs.com/)
+  - You need privileges to install npm packages from the [npm registry](https://www.npmjs.com/)
 
 - **Option 3:** You can run this project in a devcontainer using the [provided configuration](/.devcontainer). You need to meet *one* of the following requirements:
   - **Option 3a**: You have GitHub codespaces enabled for your GitHub organization and account.

@@ -1,8 +1,8 @@
 # Chapter 2.01 - Enabling the SAP Fiori Elements Flexible Programming Model
 
-The following series of chapters (starting with this chapter101) introduces **SAP Fiori elements flexible programming model**, which bridges the gap between freestyle UI5 development and [SAP Fiori elements](https://ui5.sap.com/#/topic/03265b0408e2432c9571d6b3feb6b1fd).
+The following series of chapters (part 2 - starting with this chapter 2.01) introduces the **SAP Fiori elements flexible programming model**, which bridges the gap between freestyle UI5 development and [SAP Fiori elements](https://ui5.sap.com/#/topic/03265b0408e2432c9571d6b3feb6b1fd).
 
-The application we built so far in chapters 001 to 010 used a freestyle approach, meaning we built our own custom view with specific controls and controller logic. In contrast to that, SAP Fiori elements provide predefined [floorplans](https://ui5.sap.com/#/topic/797c3239b2a9491fa137e4998fd76aa7.html) (think "application layouts") for common business application use cases. Using this approach, the framework (SAPUI5) generates an application by interpreting metadata that is part of the consumed OData backend services. The specific parts of OData metadata that define the way a backend service is represented in frontend applications are called "annotations" and are mandatory when using SAP Fiori elements.
+The application we built so far in part 1 used a freestyle approach, meaning we built our own custom view with specific controls and controller logic. In contrast to that, SAP Fiori elements provide predefined [floorplans](https://ui5.sap.com/#/topic/797c3239b2a9491fa137e4998fd76aa7.html) (think "application layouts") for common business application use cases. Using this approach, the framework (SAPUI5) generates an application by interpreting metadata that is part of the consumed OData backend services. The specific parts of OData metadata that define the way a backend service is represented in frontend applications are called "annotations" and are mandatory when using SAP Fiori elements.
 
 It is necessary to decide before starting to develop a new application which of the two approaches you want to use to build your application. The [SAP Fiori Tools](https://help.sap.com/docs/SAP_FIORI_tools/17d50220bcd848aa854c9c182d65b699/2d8b1cb11f6541e5ab16f05461c64201.html?locale=en-US) provide guided application generators for both approaches.
 
@@ -17,21 +17,33 @@ At the end of this chapter we will have enabled the Fiori elements flexible prog
 [1. Duplicate the existing application](#1-duplicate-the-existing-application)<br>
 [2. Extend the `sap/fe/core/AppComponent` instead of the `sap/ui/core/UIComponent`](#2-extend-the-sapfecoreappcomponent-instead-of-the-sapuicoreuicomponent)<br>
 [3. Use OData V4](#3-use-odata-v4)<br>
-[4. Add OData V4 model settings]()<br>
+[4. Add OData V4 model settings](#4-add-odata-v4-model-settings)<br>
 [5. Add routing to the `webapp-fpm/manifest.json`](#5-add-routing-to-the-webapp-fpmmanifestjson)<br>
 [6. Remove the `rootView` from the `webapp-fpm/manifest.json`](#6-remove-the-rootview-from-the-webapp-fpmmanifestjson)<br>
 [7. Add dependencies to the `webapp-fpm/manifest.json`](#7-add-dependencies-to-the-webapp-fpmmanifestjson)<br>
 [8. Use SAPUI5 instead of OpenUI5](#8-use-sapui5-instead-of-openui5)<br>
 [9. Rebuild the `webapp-fpm/view/App.view.xml`](#9-rebuild-the-webapp-fpmviewappviewxml)<br>
 [10. Use the `sap/fe/core/PageController` instead of the `sap/ui/core/mvc/Controller`](#10-use-the-sapfecorepagecontroller-instead-of-the-sapuicoremvccontroller)<br>
-[11. Add OData annotations](#11-add-odata-annotations)<br>
+[11. Change `ui5.yaml` configuration](#11-change-ui5yaml-configuration)<br>
 [12. Test the new app](#12-test-the-new-app)<br>
 
 ### 1. Duplicate the existing application
 
 ➡️ Duplicate your existing UI5 application living in `webapp/` into a new `webapp-fpm/` directory.
 
-![New project structure](duplicate-webapp.png)
+This is what our project's structure now looks like:
+
+```text
+- bookshop/
+    + node_modules/
+    + webapp/
+    + webapp-fpm
+    - manifest.yaml
+    - package-lock.json
+    - package.json
+    - ui5.yaml
+    - xs-app.json
+```
 
 We duplicated our existing application to preserve the progress we made in the previous chapters. The structural changes we are about to make to our application require us to delete parts of the application (and thus the progress we made).
 
@@ -73,35 +85,46 @@ The Fiori Elements Flexible Programming Model is only available for OData V4, me
 ```json
 ,
 "dataSources": {
-    "capService": {
+    "remoteBookshop": {
         "uri": "/browse/",
         "type" : "OData",
         "settings" : {
-            "odataVersion" : "4.0",
-            "synchronizationMode": "None",
-            "operationMode": "Server",
-            "autoExpandSelect": true,
-            "earlyRequests": true
+            "odataVersion" : "4.0"
         }
     }  
 }
 ```
 
-We changed the OData uri (different endpoint) and changed the version to V4.
-
- and provided some additional settings that are specific to OData V4:
-- We set the `operationMode` to `Server`, which is mandatory for filtering and sorting queries with OData V4.
-- We set the `synchronizationMode` to `None`, which is also mandatory for OData V4.
+We changed the OData uri (different endpoint of the remote bookshop service) and changed the version to V4.
 
 ### 4. Add OData V4 model settings
 
+➡️ Replace the default model in the `sap.ui5.models` section of the `webapp-fpm/manifest.json` with the following code:
 
+```json
+"": {
+    "dataSource": "remoteBookshop",
+    "settings": {
+        "synchronizationMode": "None",
+        "operationMode": "Server",
+        "autoExpandSelect": true,
+        "earlyRequests": true
+    }
+}
+```
+
+We added a few settings to our default model that are specific to OData V4. Let's go through them step-by-step:
+- We set the `operationMode` to `Server`, which is mandatory for filtering and sorting queries with OData V4.
+- We set the `synchronizationMode` to `None`, which is also mandatory for OData V4.
+- `"autoExpandSelect": true` makes sure the `$expand` and `$select` OData query parameters are automatically being used, which we need for nested entities like `Genre` (https://developer-advocates-free-tier-central-hana-cloud-instan3b540fd6.cfapps.us10.hana.ondemand.com/browse/Books?$expand=genre).
+- `"earlyRequests": true` makes sure the OData service metadata is called as early as possible.
 
 ### 5. Add routing to the `webapp-fpm/manifest.json`
 
 ➡️ Add the following code to the `sap.ui5` section of the `webapp-fpm/manifest.json`:
 
 ```json
+,
 "routing": {
     "routes": [
         {
@@ -124,7 +147,7 @@ We changed the OData uri (different endpoint) and changed the version to V4.
             }
         }
     }
-},
+}
 ```
 
 We added a new `sap.ui5.routing` section to our application descriptor file in which we define all `routes` (think "pages") our application contains. Currently we have just one route and target, but that will change shortly. Let's go through the additions step by step:
@@ -142,11 +165,19 @@ It was mandatory to remove the `rootView` from our application descriptor as we 
 
 ### 7. Add dependencies to the `webapp-fpm/manifest.json`
 
-➡️ Add the following code to the `sap.ui5.dependencies.libs` section of the `webapp-fpm/manifest.json`:
+➡️ Add the following code to the `sap.ui5` section of the `webapp-fpm/manifest.json`:
 
 ```json
-"sap.fe.templates": {},
-"sap.fe.macros": {},
+,
+"dependencies": {
+    "minUI5Version": "1.60.0",
+    "libs": {
+        "sap.ui.core": {},
+        "sap.m": {},
+        "sap.fe.macros": {},
+        "sap.fe.templates": {}
+    }
+}
 ```
 
 We added SAP Fiori elements related libraries to our dependencies to make sure they are preloaded by the SAPUI5 (performance optimizations) and are available at runtime.
@@ -163,7 +194,7 @@ This is what our `webapp-fpm/manifest.json` now looks like:
             "version": "1.0.0"
         },
         "dataSources": {
-            "capService": {
+            "remoteBookshop": {
                 "uri": "/browse/",
                 "type" : "OData",
                 "settings" : {
@@ -173,48 +204,16 @@ This is what our `webapp-fpm/manifest.json` now looks like:
         }
     },
     "sap.ui5": {
-        "dependencies": {
-			"minUI5Version": "1.60.0",
-			"libs": {
-                "sap.ui.core": {},
-                "sap.m": {},
-                "sap.fe.macros": {},
-                "sap.fe.templates": {}
-			}
-		},
-        "routing": {
-            "routes": [
-                {
-					"pattern": ":?query:",
-					"name": "mainPage",
-					"target": "mainPage"
-				}
-            ],
-            "targets": {
-                "mainPage": {
-					"type": "Component",
-					"id": "mainPage",
-					"name": "sap.fe.core.fpm",
-					"options": {
-						"settings": {
-                            "viewName": "sap.codejam.view.App",
-							"entitySet": "Books",
-							"navigation": {}
-						}
-					}
-				}
-            }
-        },
         "models": {
             "": {
-				"dataSource": "capService",
-				"settings": {
-					"synchronizationMode": "None",
-					"operationMode": "Server",
-					"autoExpandSelect": true,
-					"earlyRequests": true
-				}
-			},
+				"dataSource": "remoteBookshop",
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
                 "settings": {
@@ -228,6 +227,38 @@ This is what our `webapp-fpm/manifest.json` now looks like:
                     "uri": "css/style.css"
                 }
             ]
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "mainPage",
+                    "target": "mainPage"
+                }
+            ],
+            "targets": {
+                "mainPage": {
+                    "type": "Component",
+                    "id": "mainPage",
+                    "name": "sap.fe.core.fpm",
+                    "options": {
+                        "settings": {
+                            "viewName": "sap.codejam.view.App",
+                            "entitySet": "Books",
+                            "navigation": {}
+                        }
+                    }
+                }
+            }
+        },
+        "dependencies": {
+            "minUI5Version": "1.60.0",
+            "libs": {
+                "sap.ui.core": {},
+                "sap.m": {},
+                "sap.fe.macros": {},
+                "sap.fe.templates": {}
+            }
         }
     }
 }
@@ -278,7 +309,53 @@ We moved from OpenUI5 to SAPUI5, because SAP Fiori elements are not available an
 </mvc:View>
 ```
 
-We removed almost all the content of our app view and replaced it with a `<macros:Table />`, which is a so called **building block** that we can use in SAP Fiori elements flexible programming model enabled applications. We pass it a `metaPath` pointing to specific **OData annotations** using the [SAP UI vocabulary](https://github.com/SAP/odata-vocabularies/blob/main/vocabularies/UI.md). As described [earlier](/chapters/chapter101/readme.md#chapter-101---sap-fiori-elements-flexible-programming-model), annotations are mandatory when using SAP Fiori elements, but they don't exist just yet - we will implement them shortly.
+We removed almost all the content of our app view and replaced it with a `<macros:Table />`, which is a so called **building block** that we can use in SAP Fiori elements flexible programming model enabled applications. We pass it a `metaPath` pointing to specific **OData annotations** using the [SAP UI vocabulary](https://github.com/SAP/odata-vocabularies/blob/main/vocabularies/UI.md). As described [earlier](#chapter-201---enabling-the-sap-fiori-elements-flexible-programming-model), annotations are mandatory when using SAP Fiori elements. Luckily, they have already been implemented as part of the OData backend application (built with the SAP Cloud Application Programming model) and are ready to be consumed. This is what the annotation file in the backend looks like:
+
+```cds
+using {CatalogService} from '../srv/cat-service';
+
+annotate CatalogService.Books with @(
+    UI: {
+        LineItem: [
+            {
+                $Type: 'UI.DataField',
+                Label: 'Book',
+                Value: title
+            },
+            {
+                $Type: 'UI.DataField',
+                Label: 'Author',
+                Value: author
+            },
+            {
+                $Type: 'UI.DataField',
+                Label: 'Genre',
+                Value: genre.name
+            },
+            {
+                $Type: 'UI.DataField',
+                Label: 'Price',
+                Value: price
+            },
+            {
+                $Type: 'UI.DataField',
+                Label: 'Stock',
+                Value: stock
+            }
+        ]
+    }
+);
+```
+
+Although annotations are considered backend development and therefore not exactly the scope of this repository, it is important to understand how annotations work and how SAP Fiori Elements is able to interpret them:
+
+CDS based OData annotations are one of the superpowers of the SAP Cloud Application Programming Model. It automatically picks up and reads annotation files and serves the provided information in the service [metadata document](https://developer-advocates-free-tier-central-hana-cloud-instan3b540fd6.cfapps.us10.hana.ondemand.com/browse/$metadata). This is the document our SAP Fiori elements application interprets and uses to build the UI. Let's go through the annotations file step by step:
+
+- It uses the [UI vocabulary](https://github.com/SAP/odata-vocabularies/blob/main/vocabularies/UI.md) developed by SAP to describe how the entity should to be displayed in user interfaces. Generally a vocabulary is a collection of terms that can be used to describe and give meaning to OData services.
+- It describes a `LineItem`, which is a collection (array) of data fields (think "columns") suitable to be visualized in a table or list.
+- The objects of the `LineItem` array are of type `UI.DataField` and therefore simply represent a piece of data. Each data field (think "column") has a `Label` and a `Value`, the latter comes directly from our Books entity.
+
+You can learn more about the structure of annotations in this [document](https://github.com/SAP-samples/odata-basics-handsonsapdev/blob/annotations/bookshop/README.md).
 
 ### 10. Use the `sap/fe/core/PageController` instead of the `sap/ui/core/mvc/Controller`
 
@@ -293,9 +370,9 @@ sap.ui.define([
 })
 ```
 
-Similar to what we did in [step 3](/chapters/chapter101/readme.md#2-extend-the-sapfecoreappcomponent-instead-of-the-sapuicoreuicomponent) we now use the `PageController` provided by SAP Fiori elements instead of the core UI5 controller. This is to make sure our controller code runs within the SAP Fiori elements framework and has access to its [extension APIs](https://ui5.sap.com/#/api/sap.fe.core.PageController%23methods/getExtensionAPI). The `sap/fe/core/PageController` itself extends the `sap/ui/core/mvc/Controller`.
+Similar to what we did in [step 2](#2-extend-the-sapfecoreappcomponent-instead-of-the-sapuicoreuicomponent) we now use the `PageController` provided by SAP Fiori elements instead of the core UI5 controller. This is to make sure our controller code runs within the SAP Fiori elements framework and has access to its [extension APIs](https://ui5.sap.com/#/api/sap.fe.core.PageController%23methods/getExtensionAPI). The `sap/fe/core/PageController` itself extends the `sap/ui/core/mvc/Controller`.
 
-### 11. Add OData annotations
+<!-- ### 11. Add OData annotations
 
 ➡️ Create the following `cat-service.cds` file:
 
@@ -342,16 +419,41 @@ We added CDS based OData annotations to our project, which is one of the superpo
 - We describe a `LineItem`, which is a collection (array) of data fields (think "columns") suitable to be visualized in a table or list.
 - The objects of the `LineItem` array are of type `UI.DataField` and therefore simply represent a piece of data. Each data field (think "column") has a `Label` and a `Value`, the latter comes directly from our Books entity.
 
-You can learn more about the structure of annotations in this [document](https://github.com/SAP-samples/odata-basics-handsonsapdev/blob/annotations/bookshop/README.md).
+You can learn more about the structure of annotations in this [document](https://github.com/SAP-samples/odata-basics-handsonsapdev/blob/annotations/bookshop/README.md). -->
+
+### 11. Change `ui5.yaml` configuration
+
+Now that we are consuming a different OData service endpoint (V4) and our application does not sit in the default `webapp/` directory, but in `webapp-fpm/`, we need to tweak the UI5 server configuration in the `ui5.yaml` file:
+
+➡️ Replace the current content of the `ui5.yaml` file with the following code:
+
+```yaml
+specVersion: '2.6'
+metadata:
+  name: bookshop
+type: application
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        backend:
+          - path: /browse
+            url: https://developer-advocates-free-tier-central-hana-cloud-instan3b540fd6.cfapps.us10.hana.ondemand.com
+resources:
+  configuration:
+    paths:
+      webapp: webapp-fpm/
+```
+
+We changed the path to the backend service (via the `fiori-tools-proxy`) to `/browse`, as we are now consuming a different OData service endpoint (V4). This configuration has to match our `webapp-fpm/manifest.json` file. We also specified `webapp-fpm/` as the new path to serve our webapp from.
 
 ### 12. Test the new app
 
-➡️ Restart the CAP server in case it is not running (`npm run dev`) and go to [http://localhost:4004/webapp-fpm/index.html](http://localhost:4004/webapp-fpm/index.html) in your browser.
+➡️ Stop the UI5 server (`control + c`) and restart it `npm run dev` so the the server configuration changes take effect.
 
-![http://localhost:4004](result-01.png)
+![result](result.png#border)
 
-![http://localhost:4004/webapp-fpm/index.html](result-02.png)
-
-We enabled the SAP Fiori elements flexible programming model for our custom SAPUI5 application and use the Table building block, powered by OData annotations. You might have to resize your browser window to see all the columns of the Table. We will continue to fine tune and work on our application in the following chapters.
+We enabled the SAP Fiori elements flexible programming model for our custom SAPUI5 application and used the Table building block, powered by OData annotations. You might have to resize your browser window to see all the columns of the Table. We will continue to fine tune and work on our application in the following chapters.
 
 Continue to [Chapter 2.02 - Adding an Object Page](/chapters/2.02-object-page/)

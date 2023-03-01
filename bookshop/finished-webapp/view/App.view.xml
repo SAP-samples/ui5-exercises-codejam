@@ -3,94 +3,92 @@
     xmlns:mvc="sap.ui.core.mvc"
     controllerName="sap.codejam.controller.App">
 
-<App>
-    <pages>
-        <Page title="{i18n>Bookshop}">
-            <content>
-            <Panel
-                headerText="Hello, Dev! 👋">
+    <App>
+        <pages>
+            <Page title="{i18n>Bookshop}">
                 <content>
-                    <SearchField liveChange=".onSearch"/>
-                    <Table
-                        id="booksTable"
-                        items="{ path: '/Books', parameters: { expand: 'genre' } }">
-                        <columns>
-                            <Column>
-                                <Text text="{i18n>Book}" />
-                            </Column>
-                            <Column>
-                                <Text text="{i18n>Author}" />
-                            </Column>
-                            <Column>
-                                <Text text="{i18n>Genre}" />
-                            </Column>
-                            <Column>
-                                <Text text="{i18n>Price}" />
-                            </Column>
-                            <Column>
-                                <Text text="{i18n>Stock}" />
-                            </Column>
-                        </columns>
-                        <items>
-                            <ColumnListItem 
-                                vAlign="Middle"
-                                press=".onSelect"
-                                type="Active">
-                                <cells>
-                                    <ObjectIdentifier
-                                        title="{title}"/>
-                                    <Text
-                                        text="{author}" />
-                                    <Text
-                                        text="{genre/name}" />
-                                    <ObjectNumber
-                                        number="{price}"
-                                        unit="{currency_code}" />
-                                    <ObjectStatus 
-                                        text="{stock}"
-                                        state="{=
-                                            ${stock} >= 20
-                                                ? 'Success'
-                                            : ${stock} > 0
-                                                ? 'Warning'
-                                            : 'Error'}" />
-                                </cells>
-                            </ColumnListItem>
-                        </items>
-                    </Table>
-                    <FlexBox direction="Column" class="sapUiMediumMarginTop" id="bookDetails">
-
-                        <FlexBox 
-                            alignItems="Center"
-                            justifyContent="End"
-                            class="sapUiMediumMarginBottom orderControls" >
-                            <Button
-                                id="orderBtn"
-                                text="{i18n>Order}"
-                                press=".onSubmitOrder"
-                                enabled="{
-                                    path: 'stock',
-                                    formatter: '.formatter.inputLowerThanStock'
-                                }" />
-                            <StepInput 
-                                id="stepInput"
-                                min="1"
-                                textAlign="Center"
-                                validationMode="LiveChange"
-                                max="{stock}" />
-                        </FlexBox>
-                        <FlexBox direction="Column" >
-                            <Title text="{title}" />
-                            <Text 
-                                text="{descr}"
-                                class="sapUiSmallMarginTop" />
-                        </FlexBox>
-                    </FlexBox>
+                    <Panel headerText="Hello, Dev! 👋">
+                        <content>
+                            <SearchField liveChange=".onSearch"/>
+                            <Table 
+                                id="booksTable"
+                                items="{ path: '/Books', parameters: { expand: 'genre' } }">
+                                <columns>
+                                    <Column>
+                                        <Text text="{i18n>Book}" />
+                                    </Column>
+                                    <Column>
+                                        <Text text="{i18n>Author}" />
+                                    </Column>
+                                    <Column>
+                                        <Text text="{i18n>Genre}" />
+                                    </Column>
+                                    <Column>
+                                        <Text text="{i18n>Price}" />
+                                    </Column>
+                                    <Column>
+                                        <Text text="{i18n>Stock}" />
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem 
+                                        vAlign="Middle"
+                                        press=".onSelect"
+                                        type="Active">
+                                        <cells>
+                                            <ObjectIdentifier
+                                                title="{title}"/>
+                                            <Text
+                                                text="{author}" />
+                                            <Text
+                                                text="{genre/name}" />
+                                            <ObjectNumber
+                                                number="{price}"
+                                                unit="{currency_code}" />
+                                            <ObjectStatus 
+                                                text="{stock}"
+                                                state="{=
+                                                    ${stock} >= 20
+                                                        ? 'Success'
+                                                    : ${stock} > 0
+                                                        ? 'Warning'
+                                                    : 'Error'}" />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                            <FlexBox direction="Column" class="sapUiMediumMarginTop" id="bookDetails">
+                                <FlexBox 
+                                    alignItems="Center"
+                                    justifyContent="End"
+                                    class="sapUiMediumMarginBottom orderControls">
+                                    <Button
+                                        id="orderBtn"
+                                        text="{i18n>Order}"
+                                        press=".onSubmitOrder"
+                                        enabled="{
+                                            path: 'stock',
+                                            formatter: '.formatter.inputLowerThanStock'
+                                        }" />
+                                    <StepInput 
+                                        id="stepInput"
+                                        min="1"
+                                        max="{stock}"
+                                        textAlign="Center"
+                                        validationMode="LiveChange" />
+                                </FlexBox>
+                                <FlexBox direction="Column" >
+                                    <Title text="{title}" />
+                                    <Text 
+                                        text="{descr}"
+                                        class="sapUiSmallMarginTop" />
+                                </FlexBox>
+                            </FlexBox>
+                        </content>
+                    </Panel>
                 </content>
-            </Panel>
-            </content>
-        </Page>
-    </pages>
-</App>
+            </Page>
+        </pages>
+    </App>
 
 </mvc:View>
