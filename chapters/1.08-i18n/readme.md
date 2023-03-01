@@ -1,10 +1,3 @@
-<style>
-    img[src$="#border"] {
-        border-radius: 15px;
-        border: 1px solid black;
-    }
-</style>
-
 # Chapter 1.08 - Adding i18n Features
 
 At the end of this chapter we will have added internationalization (i18n) features to our UI5 app, so that it can be displayed in German (and other languages you want to add) as well.

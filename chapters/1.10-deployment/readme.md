@@ -1,10 +1,3 @@
-<style>
-    img[src$="#border"] {
-        border-radius: 15px;
-        border: 1px solid black;
-    }
-</style>
-
 # Chapter 1.10 - Deploying the App
 
 Please note: This step is optional and not specific to UI5, but rather covers the basics of how to use the [SAP Approuter](https://www.npmjs.com/package/@sap/approuter), the [Cloud MTA Build Tool](https://sap.github.io/cloud-mta-build-tool/), and the [Cloud Foundry Command Line Interface](https://docs.cloudfoundry.org/cf-cli/). 

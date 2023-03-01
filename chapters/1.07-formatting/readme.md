@@ -1,10 +1,3 @@
-<style>
-    img[src$="#border"] {
-        border-radius: 15px;
-        border: 1px solid black;
-    }
-</style>
-
 # Chapter 1.07 - Adding Expression Binding and Custom Formatting
 
 At the end of this chapter we will have added expression binding to the stock column in our table as well as custom formatting to the order `<Button />`.

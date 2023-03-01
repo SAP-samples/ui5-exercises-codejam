@@ -1,10 +1,3 @@
-<style>
-    img[src$="#border"] {
-        border-radius: 15px;
-        border: 1px solid black;
-    }
-</style>
-
 # Chapter 1.03 - Creating and Consuming the First Model
 
 By the end of this chapter, we will have added a remote bookshop data source to our app and stored the data in a model. We will also have added a table displaying this model data.

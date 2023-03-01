@@ -1,10 +1,3 @@
-<style>
-    img[src$="#border"] {
-        border-radius: 15px;
-        border: 1px solid black;
-    }
-</style>
-
 # Chapter 1.05 - Adding an 'Order' Feature
 
 At the end of this chapter we will have added a new feature to our bookshop that enables users to order books.

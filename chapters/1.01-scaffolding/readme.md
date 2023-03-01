@@ -1,10 +1,3 @@
-<style>
-    img[src$="#border"] {
-        border-radius: 15px;
-        border: 1px solid black;
-    }
-</style>
-
 # Chapter 1.01 - Scaffolding the App
 
 By the end of this chapter, we will have scaffolded an empty UI5 application.

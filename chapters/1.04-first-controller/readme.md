@@ -1,10 +1,3 @@
-<style>
-    img[src$="#border"] {
-        border-radius: 15px;
-        border: 1px solid black;
-    }
-</style>
-
 # Chapter 1.04 - Creating and Extending the First Controller
 
 At the end of this chapter we will have made our UI5 app interactive so that a user can select a book to read more information about it.

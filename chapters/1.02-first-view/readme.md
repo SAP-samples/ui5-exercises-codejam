@@ -1,10 +1,3 @@
-<style>
-    img[src$="#border"] {
-        border-radius: 15px;
-        border: 1px solid black;
-    }
-</style>
-
 # Chapter 1.02 - Creating the First View
 
 By the end of this chapter, we will have added the first view to our UI5 application.
