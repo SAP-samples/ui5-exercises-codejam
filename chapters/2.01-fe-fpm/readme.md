@@ -389,55 +389,6 @@ sap.ui.define([
 
 Similar to what we did in [step 2](#2-extend-the-sapfecoreappcomponent-instead-of-the-sapuicoreuicomponent) we now use the `PageController` provided by SAP Fiori elements instead of the core UI5 controller. This is to make sure our controller code runs within the SAP Fiori elements framework and has access to its [extension APIs](https://ui5.sap.com/#/api/sap.fe.core.PageController%23methods/getExtensionAPI). The `sap/fe/core/PageController` itself extends the `sap/ui/core/mvc/Controller`.
 
-<!-- ### 11. Add OData annotations
-
-➡️ Create the following `cat-service.cds` file:
-
-```cds
-using {CatalogService} from '../srv/cat-service';
-
-annotate CatalogService.Books with @(
-    UI: {
-        LineItem: [
-            {
-                $Type: 'UI.DataField',
-                Label: 'Book',
-                Value: title
-            },
-            {
-                $Type: 'UI.DataField',
-                Label: 'Author',
-                Value: author
-            },
-            {
-                $Type: 'UI.DataField',
-                Label: 'Genre',
-                Value: genre.name
-            },
-            {
-                $Type: 'UI.DataField',
-                Label: 'Price',
-                Value: price
-            },
-            {
-                $Type: 'UI.DataField',
-                Label: 'Stock',
-                Value: stock
-            }
-        ]
-    }
-);
-```
-
-We added CDS based OData annotations to our project, which is one of the superpowers of the SAP Cloud Application Programming Model. It automatically picks up and reads our newly created annotations file and serves the provided information in the service metadata document (`http://localhost:4004/browse/$metadata`). This is the document our SAP Fiori elements application interprets and uses to build the UI. Let's go through our annotations step by step:
-
-- We import our `CatalogService` from the `srv/` directory and annotate its `Books` entity.
-- We use the [UI vocabulary](https://github.com/SAP/odata-vocabularies/blob/main/vocabularies/UI.md) developed by SAP to describe how we want our entity to be displayed in user interfaces. Generally a vocabulary is a collection of terms we can use to describe and give meaning to OData services.
-- We describe a `LineItem`, which is a collection (array) of data fields (think "columns") suitable to be visualized in a table or list.
-- The objects of the `LineItem` array are of type `UI.DataField` and therefore simply represent a piece of data. Each data field (think "column") has a `Label` and a `Value`, the latter comes directly from our Books entity.
-
-You can learn more about the structure of annotations in this [document](https://github.com/SAP-samples/odata-basics-handsonsapdev/blob/annotations/bookshop/README.md). -->
-
 ### 11. Change `ui5.yaml` configuration
 
 Now that we are consuming a different OData service endpoint (V4) and our application does not sit in the default `webapp/` directory, but in `webapp-fpm/`, we need to tweak the UI5 server configuration in the `ui5.yaml` file:
