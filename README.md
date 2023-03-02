@@ -37,7 +37,7 @@ See this example:
 
 ## Material Organization
 
-The material consists of a series of chapters, each in their own directory. The chapters build on top of each other and are meant to be completed in the given order. Each of the [chapters](/chapters/) has its own 'readme' file with explanations, instructions, code samples and screen shots. From a session flow perspective, we are taking a "coordinated" approach:
+The material consists of a series of chapters, each in their own directory. The chapters build on top of each other and are meant to be completed in the given order. Each of the [chapters](#chapters) has its own 'readme' file with explanations, instructions, code samples and screen shots. From a session flow perspective, we are taking a "coordinated" approach:
 
 The instructor will set you off on the first chapter. Do not proceed to the next chapter until the instructor tells you to do so. If you finish a chapter before others, there are some questions at the end of each chapter for you to ponder.
 
@@ -77,7 +77,7 @@ You can find more information about this in the [SAPUI5 Documentation](https://s
 
 If you can spare a couple of minutes at the end of the session, please help the author improve for next time by providing some feedback.
 
-Simply use this [Give Feedback](/issues/new?assignees=&labels=feedback&template=session-feedback-template.md&title=Session%20Feedback) link to create a special "feedback" issue, and follow the instructions in there.
+Simply use this [Give Feedback](https://github.com/SAP-samples/ui5-exercises-codejam/issues/new?assignees=&labels=feedback&template=session-feedback-template.md&title=Session%20Feedback) link to create a special "feedback" issue, and follow the instructions in there.
 
 Thank you!
 
