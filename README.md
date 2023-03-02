@@ -37,7 +37,11 @@ See this example:
 
 ## Material Organization
 
-The material consists of a series of chapters. The chapters build on top of each other and are meant to be completed in the given order. Each of the [chapters](/chapters/) has its own 'readme' file with explanations, instructions, code samples and screen shots.
+The material consists of a series of chapters, each in their own directory. The chapters build on top of each other and are meant to be completed in the given order. Each of the [chapters](/chapters/) has its own 'readme' file with explanations, instructions, code samples and screen shots. From a session flow perspective, we are taking a "coordinated" approach:
+
+The instructor will set you off on the first chapter. Do not proceed to the next chapter until the instructor tells you to do so. If you finish a chapter before others, there are some questions at the end of each chapter for you to ponder.
+
+> The exercises are written in a conversational way - this is so that they have enough context and information to be completed outside the hands-on session itself. To help you navigate and find what you have to actually do next, there are pointers like this ➡️ throughout that indicate the things you have to actually do (as opposed to just read for background information).
 
 ## Chapters
 
@@ -79,7 +83,5 @@ If you wish to contribute code, offer fixes or improvements, please send a pull 
 ## License
 Copyright (c) 2022 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](/LICENSE) file.
 
-
-The instructor will set you off on the first exercise, and that's the only one you should do; if you finish before others, there are some questions at the end of the exercise for you to ponder. Do not proceed to the next exercise until the instructor tells you to do so.
 
 Further reading to link to other content from me
