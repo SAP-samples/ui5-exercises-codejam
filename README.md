@@ -73,6 +73,14 @@ The material in this repository would work with both deliveries, but uses OpenUI
 
 You can find more information about this in the [SAPUI5 Documentation](https://sapui5.hana.ondemand.com/#/topic/5982a9734748474aa8d4af9c3d8f31c0).
 
+## Feedback
+
+If you can spare a couple of minutes at the end of the session, please help the author improve for next time by providing some feedback.
+
+Simply use this [Give Feedback](/issues/new?assignees=&labels=feedback&template=session-feedback-template.md&title=Session%20Feedback) link to create a special "feedback" issue, and follow the instructions in there.
+
+Thank you!
+
 ## Support
 
 Support for the content in this repository is available during SAP CodeJam events, for which this content has been designed. Otherwise, this content is provided 'as-is' with no other support.
