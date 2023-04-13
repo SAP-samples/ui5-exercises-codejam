@@ -16,6 +16,8 @@ To be able to follow the instructions in this repository you need to fulfill ***
 
 - **Option 1:** You have access to an instance of the SAP Business Application Studio with the role collection `Business_Application_Studio_Developer` assigned to you in the SAP Business Technology Platform Cockpit. Create a new dev space of type `Full Stack Cloud Application` to get started.
 
+> If you don't have access to the SAP Business Application Studio yet, check this tutorial on [how to get a free account on SAP BTP trial](https://developers.sap.com/tutorials/hcp-create-trial-account.html), from where you can [subscribe to the SAP Business Application Studio](https://developers.sap.com/tutorials/appstudio-onboarding.html).
+
 - **Option 2:** You can use your local machine and have the following tools installed:
   - [Node.js](https://nodejs.org/en/) (version 14 or higher) including `npm`
   - [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
