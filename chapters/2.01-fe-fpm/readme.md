@@ -266,12 +266,12 @@ This is what our `webapp-fpm/manifest.json` now looks like:
 
 ### 8. Use SAPUI5 instead of OpenUI5
 
-➡️ Replace `openui5` with `sapui5` in the `webapp-fpm/index.html` so the bootstrapping (the script tag) looks like this:
+➡️ Replace `openui5` with `sapui5` in the `webapp-fpm/index.html` and specify a version, so the bootstrapping (the script tag) looks like this:
 
 ```html
 <script
     id="sap-ui-bootstrap"
-    src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+    src="https://sapui5.hana.ondemand.com/1.108/resources/sap-ui-core.js"
     data-sap-ui-theme="sap_horizon"
     data-sap-ui-async="true"
     data-sap-ui-libs="sap.m"
@@ -283,7 +283,8 @@ This is what our `webapp-fpm/manifest.json` now looks like:
 </script>
 ```
 
-We moved from OpenUI5 to SAPUI5, because SAP Fiori elements are not available and not part of OpenUI5. Check the [base readme](/README.md#sapui5-vs-openui5) to learn more about the differences between SAPUI5 and OpenUI5.
+- We moved from OpenUI5 to SAPUI5, because SAP Fiori elements are not available and not part of OpenUI5. Check the [base readme](/README.md#sapui5-vs-openui5) to learn more about the differences between SAPUI5 and OpenUI5.
+- We also specified a [long-term maintenance version](https://sapui5.hana.ondemand.com/versionoverview.html) of SAPUI5. Interestingly, we didn't specify a patch number, which means we will always load the latest patch ([patch-level independent bootstrap](https://blogs.sap.com/2022/04/14/sapui5-patch-level-independent-bootstrap)).
 
 ### 9. Rebuild the `webapp-fpm/view/App.view.xml`
 
