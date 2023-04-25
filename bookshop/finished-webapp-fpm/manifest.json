@@ -7,7 +7,7 @@
             "version": "1.0.0"
         },
         "dataSources": {
-            "capService": {
+            "remoteBookshop": {
                 "uri": "/browse/",
                 "type" : "OData",
                 "settings" : {
@@ -73,7 +73,7 @@
         },
         "models": {
             "": {
-				"dataSource": "capService",
+				"dataSource": "remoteBookshop",
                 "settings": {
                     "synchronizationMode": "None",
 					"operationMode": "Server",
