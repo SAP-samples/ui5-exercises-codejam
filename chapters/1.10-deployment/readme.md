@@ -41,7 +41,7 @@ We want to run our app using the `@sap/approuter` package, which allows us to ha
     "@sap/approuter": "^10"
   },
   "devDependencies": {
-    "@sap/ux-ui5-tooling": "^1.9.0",
+    "@sap/ux-ui5-tooling": "^1",
     "@ui5/cli": "^2"
   },
   "ui5": {
