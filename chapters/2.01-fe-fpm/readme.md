@@ -8,7 +8,7 @@ It is necessary to decide before starting to develop a new application which of 
 
 ![SAP Fiori Tools Application Generator](fiori-tools.png#border)
 
-However, the situation is not exactly black and white, as the [SAP Fiori elements flexible programming model](https://sapui5.hana.ondemand.com/test-resources/sap/fe/core/fpmExplorer/index.html#/overview/introduction) provides building blocks (macros), which are metadata-driven UI controls that can be used in any (freestyle) SAPUI5 application. This flexible programming model is perfect for our use case, as we already have a working freestyle UI5 application and solely want to enhance it - while learning about SAP Fiori elements and OData annotations along the way. The instructions given in this chapter basically align with the [the official documentation](https://sapui5.hana.ondemand.com/test-resources/sap/fe/core/fpmExplorer/index.html#/buildingBlocks/guidance/guidanceCustomApps), but are more detailed and more specific to our use case.
+However, the situation is not exactly black and white, as the [SAP Fiori elements flexible programming model](https://sapui5.hana.ondemand.com/test-resources/sap/fe/core/fpmExplorer/index.html#/overview/introduction) provides building blocks (macros), which are metadata-driven UI controls that can be used in any (freestyle) SAPUI5 application. This flexible programming model is perfect for our use case, as we already have a working freestyle UI5 application and solely want to enhance it - while learning about SAP Fiori elements and OData annotations along the way. The instructions given in this chapter align with the [the official documentation](https://sapui5.hana.ondemand.com/test-resources/sap/fe/core/fpmExplorer/index.html#/buildingBlocks/guidance/guidanceCustomApps), but are more detailed and more specific to our use case.
 
 At the end of this chapter we will have enabled the Fiori elements flexible programming model for our custom UI5 application.
 
@@ -37,7 +37,7 @@ This is what our project's structure now looks like:
 - bookshop/
     + node_modules/
     + webapp/
-    + webapp-fpm
+    + webapp-fpm/
     - manifest.yaml
     - package-lock.json
     - package.json
@@ -322,6 +322,7 @@ We removed almost all the content of our app view and replaced it with a `<macro
 >```cds
 >using {CatalogService} from '../srv/cat-service';
 >
+>// List Report
 >annotate CatalogService.Books with @(
 >    UI: {
 >        LineItem: [
@@ -363,7 +364,7 @@ We removed almost all the content of our app view and replaced it with a `<macro
 >- It describes a `LineItem`, which is a collection (array) of data fields (think "columns") suitable to be visualized in a table or list.
 >- The objects of the `LineItem` array are of type `UI.DataField` and therefore simply represent a piece of data. Each data field (think "column") has a `Label` and a `Value`, the latter comes directly from our Books entity.
 >
->You can learn more about the structure of annotations in this [document](https://github.com/SAP-samples/odata-basics-handsonsapdev/blob/annotations/bookshop/README.md).
+>You can learn more about annotations in this [document](https://github.com/SAP-samples/odata-basics-handsonsapdev/blob/annotations/bookshop/README.md).
 
 </details>
 
