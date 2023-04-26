@@ -64,6 +64,7 @@ The instructor will set you off on the first chapter. Do not proceed to the next
 
 - [2.01 - Enabling the SAP Fiori Elements Flexible Programming Model](/chapters/2.01-fe-fpm/)
 - [2.02 - Adding an Object Page](/chapters/2.02-object-page/)
+- [2.03 - Making the App Visible to the SAP Fiori Tools](/chapters/2.03-fiori-tools/)
 
 ## SAPUI5 vs. OpenUI5
 
