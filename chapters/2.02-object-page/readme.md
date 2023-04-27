@@ -183,3 +183,5 @@ You can learn more about annotations in this [document](https://github.com/SAP-s
 ![result](result.png#border)
 
 We added an object page to our application using an SAP Fiori Elements template, powered by OData annotations.
+
+Continue to [Chapter 2.03 - Using the SAP Fiori Tools](/chapters/2.03-fiori-tools/)
