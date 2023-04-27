@@ -10,7 +10,7 @@ It is necessary to decide before starting to develop a new application which of 
 
 However, the situation is not exactly black and white, as the [SAP Fiori elements flexible programming model](https://sapui5.hana.ondemand.com/test-resources/sap/fe/core/fpmExplorer/index.html#/overview/introduction) provides building blocks (macros), which are metadata-driven UI controls that can be used in any (freestyle) SAPUI5 application. This flexible programming model is perfect for our use case, as we already have a working freestyle UI5 application and solely want to enhance it - while learning about SAP Fiori elements and OData annotations along the way. The instructions given in this chapter align with the [the official documentation](https://sapui5.hana.ondemand.com/test-resources/sap/fe/core/fpmExplorer/index.html#/buildingBlocks/guidance/guidanceCustomApps), but are more detailed and more specific to our use case.
 
-At the end of this chapter we will have enabled the Fiori elements flexible programming model for our custom UI5 application.
+At the end of this chapter we will have essentially turned our application into an SAP Fiori Elements application. In other words, we will have enabled the Fiori elements flexible programming model for our custom UI5 application.
 
 ## Steps
 
