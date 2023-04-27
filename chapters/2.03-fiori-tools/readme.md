@@ -84,7 +84,9 @@ We selected the Flexible Column Layout, and the corresponding code was automatic
 
 Wow, you have made it all the way through this CodeJam content, congratulations! 🎉 
 
-You should feel confident enough to start developing your own UI5 applications now, whether it be freestyle or with the SAP Fiori Elements approach. If not, feel free to ask questions, raise concerns or leave feedback in the form of a GitHub issue in this repository.
+We would really appreciate if you took the time to [leave feedback](https://github.com/SAP-samples/ui5-exercises-codejam/issues/new?assignees=&labels=feedback&template=session-feedback-template.md&title=Session+Feedback) for this session/content, thank you!
+
+You should feel confident enough to start developing your own UI5 applications now, whether it be freestyle or with the SAP Fiori Elements approach. If not, feel free to ask questions or raise concerns via a GitHub issue in this repository.
 
 
 
