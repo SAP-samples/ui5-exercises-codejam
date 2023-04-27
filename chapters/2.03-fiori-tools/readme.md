@@ -74,7 +74,7 @@ We can now test and use the SAP Fiori Tools, more specifically the Page Map.
 
 ![SAP Fiori Tools Page Map](page-map.png)
 
-The SAP Fiori Tools Page Map shows displays the overall structure of our application and allows us to edit it. We selected the Flexible Column Layout, and the corresponding code was automatically added to our the `webapp-fpm/webapp/manifest.json` by the SAP Fiori Tools.
+The SAP Fiori Tools Page Map shows the overall structure of our application and allows us to edit it. We selected the Flexible Column Layout, and the corresponding code was automatically added to our the `webapp-fpm/webapp/manifest.json` by the SAP Fiori Tools.
 
 ### 6. Test the new layout
 
