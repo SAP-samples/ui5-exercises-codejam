@@ -5,8 +5,8 @@ For this version of our bookshop application (using the SAP Fiori elements flexi
 ## Steps
 
 [1. Add routing in the `webapp/manifest.json` file](#1-add-routing-in-the-webappmanifestjson-file)<br>
-[2. Inspect annotations](#2-inspect-annotations)
-[3. Test the app](#3-test-the-app)
+[2. Inspect annotations](#2-inspect-annotations)<br>
+[3. Test the app](#3-test-the-app)<br>
 
 ### 1. Add routing in the `webapp/manifest.json` file
 
@@ -183,3 +183,5 @@ You can learn more about annotations in this [document](https://github.com/SAP-s
 ![result](result.png#border)
 
 We added an object page to our application using an SAP Fiori Elements template, powered by OData annotations.
+
+Continue to [Chapter 2.03 - Using the SAP Fiori Tools](/chapters/2.03-fiori-tools/)

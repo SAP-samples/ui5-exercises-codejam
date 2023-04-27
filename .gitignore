@@ -9,3 +9,4 @@ bookshop/ui5.yaml
 bookshop/xs-app.json
 
 .DS_Store
+.vscode/

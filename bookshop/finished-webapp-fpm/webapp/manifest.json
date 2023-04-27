@@ -1,0 +1,127 @@
+{
+    "sap.app": {
+        "id": "codejam",
+        "type": "application",
+        "title": "CodeJam Bookshop",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "dataSources": {
+            "remoteBookshop": {
+                "uri": "/browse/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "4.0"
+                }
+            }
+        }
+    },
+    "sap.ui5": {
+        "dependencies": {
+            "minUI5Version": "1.60.0",
+            "libs": {
+                "sap.ui.core": {},
+                "sap.m": {},
+                "sap.fe.macros": {},
+                "sap.fe.templates": {},
+                "sap.f": {}
+            }
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "mainPage",
+                    "target": [
+                        "mainPage"
+                    ]
+                },
+                {
+                    "pattern": "/Books({key}):?query:",
+                    "name": "detailPage",
+                    "target": [
+                        "mainPage",
+                        "detailPage"
+                    ]
+                }
+            ],
+            "targets": {
+                "mainPage": {
+                    "type": "Component",
+                    "id": "mainPage",
+                    "name": "sap.fe.core.fpm",
+                    "options": {
+                        "settings": {
+                            "viewName": "sap.codejam.view.App",
+                            "entitySet": "Books",
+                            "navigation": {
+                                "Books": {
+                                    "detail": {
+                                        "route": "detailPage"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "controlAggregation": "beginColumnPages",
+                    "contextPattern": ""
+                },
+                "detailPage": {
+                    "type": "Component",
+                    "id": "detailPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Books",
+                            "navigation": {}
+                        }
+                    },
+                    "controlAggregation": "midColumnPages",
+                    "contextPattern": "/Books({key})"
+                }
+            },
+            "config": {
+                "flexibleColumnLayout": {
+                    "defaultTwoColumnLayoutType": "TwoColumnsBeginExpanded",
+                    "defaultThreeColumnLayoutType": "ThreeColumnsMidExpanded"
+                },
+                "routerClass": "sap.f.routing.Router"
+            }
+        },
+        "models": {
+            "": {
+                "dataSource": "remoteBookshop",
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "sap.codejam.i18n.i18n"
+                }
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "extends": {
+            "extensions": {
+                "sap.ui.controllerExtensions": {}
+            }
+        },
+        "rootView": {
+            "viewName": "sap.fe.templates.RootContainer.view.Fcl",
+            "type": "XML",
+            "async": true,
+            "id": "appRootView"
+        }
+    }
+}
