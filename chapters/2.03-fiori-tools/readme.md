@@ -1,6 +1,6 @@
 # Chapter 2.03 - Using the SAP Fiori Tools
 
-At the end of this chapter you will have made our application visible to the SAP Fiori Tools and have used them. The [SAP Fiori Tools](https://marketplace.visualstudio.com/items?itemName=SAPSE.sap-ux-fiori-tools-extension-pack) are available both vor VS Code and the SAP Business Application Studio, and are the tooling of choice whenever we work with SAP Fiori Elements based applications.
+At the end of this chapter you will have made our application visible to the SAP Fiori Tools and have used them. The [SAP Fiori Tools](https://marketplace.visualstudio.com/items?itemName=SAPSE.sap-ux-fiori-tools-extension-pack) are available both vor VS Code and the SAP Business Application Studio, and are the tooling of choice whenever we work with SAP Fiori elements based applications.
 
 ## Steps
 
@@ -41,7 +41,7 @@ This what our project's structure now looks like:
 
 ### 2. Add `@sap/ux-specification` as dependency
 
-The `@sap/ux-specification` package is required by the SAP Fiori Tools. It provides the necessary SAP Fiori Elements template structure information for the UI5 version we are using. It is important to install the correct version, matching the version [we define in the bootstrapping](/chapters/2.01-fe-fpm/readme.md#8-use-sapui5-instead-of-openui5).
+The `@sap/ux-specification` package is required by the SAP Fiori Tools. It provides the necessary SAP Fiori elements template structure information for the UI5 version we are using. It is important to install the correct version, matching the version [we define in the bootstrapping](/chapters/2.01-fe-fpm/readme.md#8-use-sapui5-instead-of-openui5).
 
 ➡️ Run the following command in the `bookshop/` directory:
 
@@ -86,7 +86,7 @@ Wow, you have made it all the way through this CodeJam content, congratulations!
 
 We would really appreciate if you took the time to [leave feedback](https://github.com/SAP-samples/ui5-exercises-codejam/issues/new?assignees=&labels=feedback&template=session-feedback-template.md&title=Session+Feedback) for this session/content, thank you!
 
-You should feel confident enough to start developing your own UI5 applications now, whether it be freestyle or with the SAP Fiori Elements approach. If not, feel free to ask questions or raise concerns via a GitHub issue in this repository.
+You should feel confident enough to start developing your own UI5 applications now, whether it be freestyle or with the SAP Fiori elements approach. If not, feel free to ask questions or raise concerns via a GitHub issue in this repository.
 
 
 

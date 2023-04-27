@@ -63,7 +63,7 @@ For this version of our bookshop application (using the SAP Fiori elements flexi
 
 We added a new page to our application in the form of a new route and target. Let's dive into the details:
 - The `detailPage` will be reachable via the `/Books({key}):?query:` route, so the primary key of the book we want to see will be part of the URL (plus optional query parameters, as always).
-- The route points to the `detailPage` target, which is a component using the Fiori Elements ObjectPage template (`sap.fe.templates.ObjectPage`)
+- The route points to the `detailPage` target, which is a component using the Fiori elements ObjectPage template (`sap.fe.templates.ObjectPage`)
 - We also addded the `detailPage` to the `navigation` section of the `mainPage` target, which will allow us to get to the `detailPage` by selecting a book on the `mainPage`.
 
 ### 2. Inspect annotations
@@ -182,6 +182,6 @@ You can learn more about annotations in this [document](https://github.com/SAP-s
 
 ![result](result.png#border)
 
-We added an object page to our application using an SAP Fiori Elements template, powered by OData annotations.
+We added an object page to our application using an SAP Fiori elements template, powered by OData annotations.
 
 Continue to [Chapter 2.03 - Using the SAP Fiori Tools](/chapters/2.03-fiori-tools/)

@@ -4,13 +4,13 @@ The following series of chapters (part 2 - starting with this chapter 2.01) intr
 
 The application we built so far in part 1 used a freestyle approach, meaning we built our own custom view with specific controls and controller logic. In contrast to that, SAP Fiori elements provide predefined [floorplans](https://ui5.sap.com/#/topic/797c3239b2a9491fa137e4998fd76aa7.html) (think "application layouts") for common business application use cases. Using this approach, the framework (SAPUI5) generates an application by interpreting metadata that is part of the consumed OData backend services. The specific parts of OData metadata that define the way a backend service is represented in frontend applications are called "annotations" and are mandatory when using SAP Fiori elements.
 
-It is necessary to decide before starting to develop a new application which of the two approaches you want to use to build your application. The [SAP Fiori Tools](https://help.sap.com/docs/SAP_FIORI_tools/17d50220bcd848aa854c9c182d65b699/2d8b1cb11f6541e5ab16f05461c64201.html?locale=en-US) provide guided application generators for both approaches.
+Usually you would decide before starting a new development which of the two approaches you want to use to build your application. The [SAP Fiori Tools](https://help.sap.com/docs/SAP_FIORI_tools/17d50220bcd848aa854c9c182d65b699/2d8b1cb11f6541e5ab16f05461c64201.html?locale=en-US) provide guided application generators for both approaches.
 
 ![SAP Fiori Tools Application Generator](fiori-tools.png#border)
 
 However, the situation is not exactly black and white, as the [SAP Fiori elements flexible programming model](https://sapui5.hana.ondemand.com/test-resources/sap/fe/core/fpmExplorer/index.html#/overview/introduction) provides building blocks (macros), which are metadata-driven UI controls that can be used in any (freestyle) SAPUI5 application. This flexible programming model is perfect for our use case, as we already have a working freestyle UI5 application and solely want to enhance it - while learning about SAP Fiori elements and OData annotations along the way. The instructions given in this chapter align with the [the official documentation](https://sapui5.hana.ondemand.com/test-resources/sap/fe/core/fpmExplorer/index.html#/buildingBlocks/guidance/guidanceCustomApps), but are more detailed and more specific to our use case.
 
-At the end of this chapter we will have essentially turned our application into an SAP Fiori Elements application. In other words, we will have enabled the Fiori elements flexible programming model for our custom UI5 application.
+At the end of this chapter we will have enabled the Fiori elements flexible programming model for our custom UI5 application. Essentially, we will have turned our application into an SAP Fiori elements application.
 
 ## Steps
 
@@ -78,7 +78,7 @@ We now use and extend the `sap/fe/core/AppComponent` instead of the `sap/ui/core
 
 ### 3. Use OData V4
 
-The Fiori Elements Flexible Programming Model is only available for OData V4, meaning it's not compatible with the OData service we are currently consuming, which is version 2 of the protocol. Luckily, our remote backend service provide endpoints for both V2 and V4, so all we have to do is change the data source in our `webapp-fpm/manifest.json`.
+The SAP Fiori elements Flexible Programming Model is only available for OData V4, meaning it's not compatible with the OData service we are currently consuming, which is version 2 of the protocol. Luckily, our remote backend service provide endpoints for both V2 and V4, so all we have to do is change the data source in our `webapp-fpm/manifest.json`.
 
 ➡️ Replace the `sap.app.dataSources` section of the `webapp-fpm/manifest.json` with the following code:
 
@@ -356,7 +356,7 @@ We removed almost all the content of our app view and replaced it with a `<macro
 >);
 >```
 >
->Although annotations are considered backend development and therefore not exactly the scope of this repository, it is important to understand how annotations work and how SAP Fiori Elements is able to interpret them:
+>Although annotations are considered backend development and therefore not exactly the scope of this repository, it is important to understand how annotations work and how SAP Fiori elements is able to interpret them:
 >
 >CDS based OData annotations are one of the superpowers of the SAP Cloud Application Programming Model. It automatically picks up and reads annotation files and serves the provided information in the service [metadata document](https://developer-advocates-free-tier-central-hana-cloud-instan3b540fd6.cfapps.us10.hana.ondemand.com/browse/$metadata). This is the document our SAP Fiori elements application interprets and uses to build the UI. Let's go through the annotations file step by step:
 >
