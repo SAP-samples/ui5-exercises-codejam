@@ -5,14 +5,15 @@ By the end of this chapter, we will have added a remote bookshop data source to 
 ## Steps
 
 [1. Add `@sap/ux-ui5-tooling` as a dependency in the `package.json`](#1-add-sapux-ui5-tooling-as-a-dependency-in-the-packagejson)<br>
-[2. Configure the `fiori-tools-proxy` in the `ui5.yaml`](#2-configure-the-fiori-tools-proxy-in-the-ui5yaml)<br>
-[3. Add a new `dataSource` and `model` to the `webapp/manifest.json`](#3-add-a-new-datasource-and-model-to-the-webappmanifestjson)<br>
-[4. Add a new `<Table />` to the `webapp/view/App.view.xml`](#4-add-a-new-table--to-the-webappviewappviewxml)<br>
-[5. Inspect the app in the browser](#5-inspect-the-app-in-the-browser)<br>
+[2. Install dependencies](#2-install-dependencies)<br>
+[3. Configure the `fiori-tools-proxy` in the `ui5.yaml`](#3-configure-the-fiori-tools-proxy-in-the-ui5yaml)<br>
+[4. Add a new `dataSource` and `model` to the `webapp/manifest.json`](#4-add-a-new-datasource-and-model-to-the-webappmanifestjson)<br>
+[5. Add a new `<Table />` to the `webapp/view/App.view.xml`](#5-add-a-new-table--to-the-webappviewappviewxml)<br>
+[6. Inspect the app in the browser](#6-inspect-the-app-in-the-browser)<br>
 
 ### 1. Add `@sap/ux-ui5-tooling` as a dependency in the `package.json`
 
-We want to consume a remote data source []() for our bookshop. Unfortunately, we cannot call the remote source directly from our UI5 app, as this would lead to CORS issues. We need a middleware that handles the API call for us on the server side. For that, we need to add another Node.js based package as a dependency and install it later on.
+We want to consume a remote data source []() for our bookshop. Unfortunately, we cannot call the remote source directly from our UI5 app, as this would lead to [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) issues. We need a middleware that handles the API call for us on the server side. For that, we need to add another Node.js based package as a dependency and install it later on.
 
 ➡️ Replace the current content of the `package.json` file with the following code:
 
@@ -37,7 +38,19 @@ We want to consume a remote data source []() for our bookshop. Unfortunately, we
 
 We added the [@sap/ux-ui5-tooling](https://www.npmjs.com/package/@sap/ux-ui5-tooling?activeTab=readme) package as a development dependency and also added it to the `ui5.dependencies` section, which will make sure the UI5 Tooling finds it. This package is part of the SAP Fiori Tools and seamlessly integrates with the UI5 Tooling. It contains a selection of custom middlewares that can be used for UI5 development.
 
-### 2. Configure the `fiori-tools-proxy` in the `ui5.yaml`
+### 2. Install dependencies
+
+In order to use the newly added dependency, we have to install it.
+
+➡️ Run the following command in the `bookshop/` directory:
+
+```bash
+npm install
+```
+
+We successfully installed all our dependencies.
+
+### 3. Configure the `fiori-tools-proxy` in the `ui5.yaml`
 
 We can now configure the custom middleware in our `ui5.yaml`.
 
@@ -60,7 +73,7 @@ server:
 
 We configured a custom middleware using the `fiori-tools-proxy`. This middleware will handle all calls that our UI5 app initiates to the `v2/browse/` path and will proxy (think "forward") them to `https://developer-advocates-free-tier-central-hana-cloud-instan3b540fd6.cfapps.us10.hana.ondemand.com`. We can now add the `v2/browse/` path as the data source to our UI5 application.
 
-### 3. Add a new `dataSource` and `model` to the `webapp/manifest.json`
+### 4. Add a new `dataSource` and `model` to the `webapp/manifest.json`
 
 Models are a major part of UI5 development. We use models to store data in our app ("data layer"). Models are not bound to or represented by a specific file, but are dynamic objects that can be consumed and modified by different parts of the app. They can be created via the `manifest.json` file or via a controller.
 
@@ -102,7 +115,7 @@ Models are a major part of UI5 development. We use models to store data in our a
 
 We defined a new model with an empty string as its name, which makes it the default model of the app. The `dataSource` for the model is the `remoteBookshop`, which is a new `dataSource` we created that calls the `/v2/browse/` path and therefore gets proxied by the middleware (see [step 2](#2-configure-the-fiori-tools-proxy-in-the-ui5yaml) of this chapter). The model we created is of type [OData](https://www.odata.org/getting-started/) V2, which is a [RESTful](https://www.youtube.com/watch?v=bhn-Dl87SDE) protocol that heavily used within the SAP ecosphere. We will learn more about OData and its strengths in the upcoming chapters.
 
-### 4. Add a new `<Table />` to the `webapp/view/App.view.xml`
+### 5. Add a new `<Table />` to the `webapp/view/App.view.xml`
 
 We can now go ahead an consume the newly created model in our `webapp/view/App.view.xml`.
 
@@ -166,7 +179,7 @@ This is what our view now looks like (`<Table />` collapsed in the screen shot):
 
 ![App.view.xml](App.view.png#border)
 
-### 5. Inspect the app in the browser
+### 6. Inspect the app in the browser
 
 ➡️ Move over to the browser and refresh the page to see the table:
 
