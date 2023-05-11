@@ -7,9 +7,10 @@ At the end of this chapter you will have made our application visible to the SAP
 [1. Move app content into `webapp-fpm/webapp/` directory](#1-move-app-content-into-webapp-fpmwebapp-directory)<br>
 [2. Add `@sap/ux-specification` as dependency](#2-add-sapux-specification-as-dependency)<br>
 [3. Add `sapux` to `package.json`](#3-add-sapux-to-packagejson)<br>
-[4. Install the SAP Fiori Tools](#4-install-the-sap-fiori-tools)<br>
-[5. Work with the SAP Fiori Tools Page Map](#5-work-with-the-sap-fiori-tools-page-map)<br>
-[6. Test the new layout](#6-test-the-new-layout)<br>
+[4. Adapt the path to the webapp in `ui5.yaml`](#4-adapt-the-path-to-the-webapp-in-ui5yaml)
+[5. Install the SAP Fiori Tools](#5-install-the-sap-fiori-tools)<br>
+[6. Work with the SAP Fiori Tools Page Map](#6-work-with-the-sap-fiori-tools-page-map)<br>
+[7. Test the new layout](#7-test-the-new-layout)<br>
 
 ### 1. Move app content into `webapp-fpm/webapp/` directory
 
@@ -60,13 +61,28 @@ As our `webapp/` directory doesn't sit in the root of the `bookshop/`, we have t
 "sapux": [ "webapp-fpm" ]
 ```
 
-### 4. Install the SAP Fiori Tools
+### 4. Adapt the path to the webapp in `ui5.yaml`
+
+We also have to adapt the configuration path pointing to our webapp in the `ui5.yaml`:
+
+➡️ Replace the `resources` section of the `ui5.yaml` with the following code:
+
+```yaml
+resources:
+  configuration:
+    paths:
+      webapp: webapp-fpm/webapp
+```
+
+We adapted the configuration path pointing to our webapp, so that the UI5 Tooling knows where the new root of the webapp is located.
+
+### 5. Install the SAP Fiori Tools
 
 If you are working in the SAP Business Application Studio, you already have the SAP Fiori Tools, but if you are working in VS Code, you have to install them manually.
 
 ➡️ Go to the extension marketplace, search for `sap fiori tools extension pack` and install the first extension that comes up.
 
-### 5. Work with the SAP Fiori Tools Page Map
+### 6. Work with the SAP Fiori Tools Page Map
 
 We can now test and use the SAP Fiori Tools, more specifically the Page Map.
 
@@ -76,7 +92,7 @@ We can now test and use the SAP Fiori Tools, more specifically the Page Map.
 
 The SAP Fiori Tools Page Map shows the overall structure of our application and allows us to edit it. We selected the Flexible Column Layout, and the corresponding code was automatically added to our the `webapp-fpm/webapp/manifest.json` by the SAP Fiori Tools.
 
-### 6. Test the new layout
+### 7. Test the new layout
 
 ➡️ Refresh the application in the browser and select a book. The app should app have the Flexible Column Layout:
 
