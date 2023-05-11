@@ -126,8 +126,11 @@ sap.ui.define([
     "sap/ui/model/FilterOperator",
     "../model/formatter"
 ], function (Controller, MessageToast, Dialog, Button, Text, Filter, FilterOperator, formatter) {
-    formatter: formatter,
-    // content of the function stays here
+    "use strict"
+    return Controller.extend("sap.codejam.controller.App", {
+        formatter: formatter,
+        // content of the function stays here
+    })
 })  
 ```
 
