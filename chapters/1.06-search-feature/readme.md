@@ -44,6 +44,38 @@ onSearch: function (oEvent) {
 
 We added a new `onSearch` method, which is being passed an event. The method gets the query string from that event, sets an empty filter array, and if a query string exists, adds a new filter to the array that filters for the book title. It then gets the `booksTable` and its binding, to then execute the filter method. This will update the UI accordingly - only showing the books that match the filter.
 
+<details>
+<summary>Are you curious how we could filter for multiple columns such as `title` and/or `author` or how case sensitivity can be handled? 💬</summary>
+
+<br>
+
+```javascript
+onSearch: function (oEvent) {
+    const sQuery = oEvent.getParameter("newValue")
+    const aFilter = []
+    if (sQuery) {
+        aFilter.push(new Filter({
+            filters: [
+                new Filter({path: 'title',
+                caseSensitive: false,
+                operator: FilterOperator.Contains,
+                value1: sQuery}),
+                new Filter({path: 'author',
+                caseSensitive: false,
+                operator: FilterOperator.Contains,
+                value1: sQuery}),
+            ],
+            and: false                    
+        }))
+    }
+    const oList = this.byId("booksTable")
+    const oBinding = oList.getBinding("items")
+    oBinding.filter(aFilter)
+}
+```
+
+</details>
+
 ### 3. Import `Filter` and `FilterOperator` in the `webapp/controller/App.controller.js`
 
 The new `.onSearch` method uses the `Filter` and `FilterOperator` from the library. Make sure to import them from the library and pass the to the main function of the `webapp/controller/App.controller.js`.

@@ -6,7 +6,7 @@ At the end of this chapter we will have added a new feature to our bookshop that
 
 [1. Add input field and button to the `webapp/view/App.view.xml`](#1-add-input-field-and-button-to-the-webappviewappviewxml)<br>
 [2. Add a new `onSubmitOrder` method to the `webapp/controller/App.controller.js`](#2-add-a-new-onsubmitorder-method-to-the-webappcontrollerappcontrollerjs)<br>
-[3. Add new imports to `webapp/controller/App.controller.js`](#3-add-new-imports-to-webappcontrollerappcontrollerjs)
+[3. Add new imports to `webapp/controller/App.controller.js`](#3-add-new-imports-to-webappcontrollerappcontrollerjs)<br>
 [4. Test the new feature](#4-test-the-new-feature)<br>
 
 ### 1. Add input field and button to the `webapp/view/App.view.xml`
