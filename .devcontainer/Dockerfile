@@ -9,8 +9,8 @@ RUN wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.k
 RUN echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
 
 # Update local package index and run installs
-RUN sudo apt-get update
-RUN sudo apt-get install cf7-cli sqlite3
+RUN apt-get update
+RUN apt-get install cf7-cli sqlite3
 
 # Install global node modules for SAP CAP and frontend development
 RUN su node -c "npm install -g @ui5/cli @sap/cds-dk yo mbt"
