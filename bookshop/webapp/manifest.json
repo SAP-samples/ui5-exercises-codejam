@@ -18,7 +18,7 @@
     },
     "sap.ui5": {
         "dependencies": {
-            "minUI5Version": "1.60.0",
+            "minUI5Version": "1.108.0",
             "libs": {
                 "sap.ui.core": {},
                 "sap.m": {},
@@ -73,7 +73,21 @@
                     "options": {
                         "settings": {
                             "entitySet": "Books",
-                            "navigation": {}
+                            "navigation": {},
+                            "content": {
+                                "body": {
+                                    "sections": {
+										"myCustomSection": {
+											"template": "sap.codejam.ext.Order",
+											"title": "{i18n>OrderNoun}",
+											"position": {
+												"placement": "After",
+												"anchor": "GeneratedFacet1"
+											}
+										}
+                                    }
+                                }
+                            }
                         }
                     },
                     "controlAggregation": "midColumnPages",

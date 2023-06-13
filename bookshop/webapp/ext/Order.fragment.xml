@@ -1,0 +1,28 @@
+<core:FragmentDefinition
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m">
+	<FlexBox 
+		alignItems="Center"
+		justifyContent="End"
+		class="sapUiTinyMarginTop orderControls"
+		core:require="{
+			handler: 'sap/codejam/ext/Order',
+			formatter: 'sap/codejam/model/formatter'
+		}">
+		<Button
+			id="orderBtn"
+			text="{i18n>Order}"
+			press="handler.submitOrder"
+			enabled="{
+				path: 'stock',
+				targetType: 'any',
+				formatter: 'formatter.inputLowerThanStock'
+			}" />
+		<StepInput 
+			id="stepInput"
+			min="1"
+			max="{stock}"
+			textAlign="Center"
+			validationMode="LiveChange" />
+	</FlexBox>
+</core:FragmentDefinition>
