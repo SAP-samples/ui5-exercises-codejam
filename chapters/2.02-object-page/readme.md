@@ -68,7 +68,7 @@ We added a new page to our application in the form of a new route and target. Le
 
 ### 2. Inspect annotations
 
-You might be wondering how the application knows what to display on the new object page. This information is provided via annotations in the metadata of the backend service (built with the SAP Cloud Application Programming model). The service doesn't only contain the annotations we already used in the [previous step](/chapters/2.01-fe-fpm#9-rebuild-the-webapp-fpmviewappviewxml), but also some more annotations that the object page interprets.
+You might be wondering how the application knows what to display on the new object page. This information is provided via annotations in the metadata of the backend service (built with the SAP Cloud Application Programming model). The service doesn't only contain the annotations we already used in the [previous step](/chapters/2.01-fe-fpm#9-rebuild-the-webappviewappviewxml), but also some more annotations that the object page interprets.
 
 ➡️ Inspect the annotation file that was used to create the metadata annotation in the backend:
 

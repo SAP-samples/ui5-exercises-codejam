@@ -18,26 +18,26 @@ At the end of this chapter we will have enabled the Fiori elements flexible prog
 [2. Extend the `sap/fe/core/AppComponent` instead of the `sap/ui/core/UIComponent`](#2-extend-the-sapfecoreappcomponent-instead-of-the-sapuicoreuicomponent)<br>
 [3. Use OData V4](#3-use-odata-v4)<br>
 [4. Add OData V4 model settings](#4-add-odata-v4-model-settings)<br>
-[5. Add routing to the `webapp-fpm/manifest.json`](#5-add-routing-to-the-webapp-fpmmanifestjson)<br>
-[6. Remove the `rootView` from the `webapp-fpm/manifest.json`](#6-remove-the-rootview-from-the-webapp-fpmmanifestjson)<br>
-[7. Add dependencies to the `webapp-fpm/manifest.json`](#7-add-dependencies-to-the-webapp-fpmmanifestjson)<br>
+[5. Add routing to the `webapp/manifest.json`](#5-add-routing-to-the-webappmanifestjson)<br>
+[6. Remove the `rootView` from the `webapp/manifest.json`](#6-remove-the-rootview-from-the-webappmanifestjson)<br>
+[7. Add dependencies to the `webapp/manifest.json`](#7-add-dependencies-to-the-webappmanifestjson)<br>
 [8. Use SAPUI5 instead of OpenUI5](#8-use-sapui5-instead-of-openui5)<br>
-[9. Rebuild the `webapp-fpm/view/App.view.xml`](#9-rebuild-the-webapp-fpmviewappviewxml)<br>
+[9. Rebuild the `webapp/view/App.view.xml`](#9-rebuild-the-webappviewappviewxml)<br>
 [10. Use the `sap/fe/core/PageController` instead of the `sap/ui/core/mvc/Controller`](#10-use-the-sapfecorepagecontroller-instead-of-the-sapuicoremvccontroller)<br>
 [11. Change `ui5.yaml` configuration](#11-change-ui5yaml-configuration)<br>
 [12. Test the new app](#12-test-the-new-app)<br>
 
 ### 1. Duplicate the existing application
 
-➡️ Duplicate your existing UI5 application living in `webapp/` into a new `webapp-fpm/` directory.
+➡️ Duplicate your existing UI5 application living in `webapp/`. Then rename the copy to `freestyle-webapp/`.
 
 This is what our project's structure now looks like:
 
 ```text
 - bookshop/
     + node_modules/
+    + freestyle-webapp/
     + webapp/
-    + webapp-fpm/
     - manifest.yaml
     - package-lock.json
     - package.json
@@ -45,11 +45,11 @@ This is what our project's structure now looks like:
     - xs-app.json
 ```
 
-We duplicated our existing application to preserve the progress we made in the previous chapters. The structural changes we are about to make to our application require us to delete parts of the application (and thus the progress we made).
+We duplicated our existing application to preserve the progress we made in the previous chapters (`freestyle-webapp/`). The structural changes we are about to make to our application require us to delete parts of the application (and thus the progress we made).
 
 ### 2. Extend the `sap/fe/core/AppComponent` instead of the `sap/ui/core/UIComponent`
 
-➡️ Replace the content of the existing `webapp-fpm/Component.js` with the following code:
+➡️ Replace the content of the existing `webapp/Component.js` with the following code:
 
 ```javascript
 sap.ui.define([
@@ -78,9 +78,9 @@ We now use and extend the `sap/fe/core/AppComponent` instead of the `sap/ui/core
 
 ### 3. Use OData V4
 
-The SAP Fiori elements Flexible Programming Model is only available for OData V4, meaning it's not compatible with the OData service we are currently consuming, which is version 2 of the protocol. Luckily, our remote backend service provide endpoints for both V2 and V4, so all we have to do is change the data source in our `webapp-fpm/manifest.json`.
+The SAP Fiori elements Flexible Programming Model is only available for OData V4, meaning it's not compatible with the OData service we are currently consuming, which is version 2 of the protocol. Luckily, our remote backend service provide endpoints for both V2 and V4, so all we have to do is change the data source in our `webapp/manifest.json`.
 
-➡️ Replace the `sap.app.dataSources` section of the `webapp-fpm/manifest.json` with the following code:
+➡️ Replace the `sap.app.dataSources` section of the `webapp/manifest.json` with the following code:
 
 ```json
 ,
@@ -99,7 +99,7 @@ We changed the OData uri (different endpoint of the remote bookshop service) and
 
 ### 4. Add OData V4 model settings
 
-➡️ Replace the default model in the `sap.ui5.models` section of the `webapp-fpm/manifest.json` with the following code:
+➡️ Replace the default model in the `sap.ui5.models` section of the `webapp/manifest.json` with the following code:
 
 ```json
 "": {
@@ -119,9 +119,9 @@ We added a few settings to our default model that are specific to OData V4. Let'
 - `"autoExpandSelect": true` makes sure the `$expand` and `$select` OData query parameters are automatically being used, which we need for nested entities like `Genre` (https://developer-advocates-free-tier-central-hana-cloud-instan3b540fd6.cfapps.us10.hana.ondemand.com/browse/Books?$expand=genre).
 - `"earlyRequests": true` makes sure the OData service metadata is called as early as possible.
 
-### 5. Add routing to the `webapp-fpm/manifest.json`
+### 5. Add routing to the `webapp/manifest.json`
 
-➡️ Add the following code to the `sap.ui5` section of the `webapp-fpm/manifest.json`:
+➡️ Add the following code to the `sap.ui5` section of the `webapp/manifest.json`:
 
 ```json
 ,
@@ -157,15 +157,15 @@ We added a new `sap.ui5.routing` section to our application descriptor file in w
 - The `targets` section is where we provide content information for the pages of our app. If we where to follow a freestyle UI5 approach, we could directly point to an xml file at this point, but within the SAP Fiori elements framework we specify the type as `Component` and use `sap.fe` templates for the pages.
 - For our `mainPage` we use the `sap.fe.core.fpm` template component, which allows us to point to our own `sap.codejam.view.App` xml view, but have it run inside the SAP Fiori elements flexible programming model. We define the main `entitySet` (coming from the backend OData service) we want to use on the page. We leave the `navigation` section empty for now, as we currently only have one route.
 
-### 6. Remove the `rootView` from the `webapp-fpm/manifest.json`
+### 6. Remove the `rootView` from the `webapp/manifest.json`
 
-➡️ Remove the entire `rootView` section (inside `sap.ui5`) from the `webapp-fpm/manifest.json` file.
+➡️ Remove the entire `rootView` section (inside `sap.ui5`) from the `webapp/manifest.json` file.
 
 It was mandatory to remove the `rootView` from our application descriptor as we now have a dedicated `sap.ui5.routing` section and want the SAP Fiori elements framework to handle the routing, including embedding our views.
 
-### 7. Add dependencies to the `webapp-fpm/manifest.json`
+### 7. Add dependencies to the `webapp/manifest.json`
 
-➡️ Add the following code to the `sap.ui5` section of the `webapp-fpm/manifest.json`:
+➡️ Add the following code at the beginning of the `sap.ui5` section of the `webapp/manifest.json`:
 
 ```json
 ,
@@ -182,7 +182,7 @@ It was mandatory to remove the `rootView` from our application descriptor as we 
 
 We added SAP Fiori elements related libraries to our dependencies to make sure they are preloaded by the SAPUI5 (performance optimizations) and are available at runtime.
 
-This is what our `webapp-fpm/manifest.json` now looks like:
+This is what our `webapp/manifest.json` now looks like:
 
 ```json
 {
@@ -266,7 +266,7 @@ This is what our `webapp-fpm/manifest.json` now looks like:
 
 ### 8. Use SAPUI5 instead of OpenUI5
 
-➡️ Replace `openui5` with `sapui5` in the `webapp-fpm/index.html` and specify a version, so the bootstrapping (the script tag) looks like this:
+➡️ Replace `openui5` with `sapui5` in the `webapp/index.html` and specify a version, so the bootstrapping (the script tag) looks like this:
 
 ```html
 <script
@@ -286,9 +286,9 @@ This is what our `webapp-fpm/manifest.json` now looks like:
 - We moved from OpenUI5 to SAPUI5, because SAP Fiori elements are not available and not part of OpenUI5. Check the [base readme](/README.md#sapui5-vs-openui5) to learn more about the differences between SAPUI5 and OpenUI5.
 - We also specified a [long-term maintenance version](https://sapui5.hana.ondemand.com/versionoverview.html) of SAPUI5. Interestingly, we didn't specify a patch number, which means we will always load the latest patch ([patch-level independent bootstrap](https://blogs.sap.com/2022/04/14/sapui5-patch-level-independent-bootstrap)).
 
-### 9. Rebuild the `webapp-fpm/view/App.view.xml`
+### 9. Rebuild the `webapp/view/App.view.xml`
 
-➡️ Replace the content of the `webapp-fpm/view/App.view.xml` with the following code:
+➡️ Replace the content of the `webapp/view/App.view.xml` with the following code:
 
 ```xml
 <mvc:View
@@ -371,7 +371,7 @@ We removed almost all the content of our app view and replaced it with a `<macro
 
 ### 10. Use the `sap/fe/core/PageController` instead of the `sap/ui/core/mvc/Controller`
 
-➡️ Replace the content of the `webapp-fpm/controller/App.controller.js` with the following code:
+➡️ Replace the content of the `webapp/controller/App.controller.js` with the following code:
 
 ```javascript
 sap.ui.define([
@@ -386,7 +386,7 @@ Similar to what we did in [step 2](#2-extend-the-sapfecoreappcomponent-instead-o
 
 ### 11. Change `ui5.yaml` configuration
 
-Now that we are consuming a different OData service endpoint (V4) and our application does not sit in the default `webapp/` directory, but in `webapp-fpm/`, we need to tweak the UI5 server configuration in the `ui5.yaml` file:
+Now that we are consuming a different OData service endpoint (V4), we need to tweak the UI5 server configuration in the `ui5.yaml` file:
 
 ➡️ Replace the current content of the `ui5.yaml` file with the following code:
 
@@ -403,13 +403,9 @@ server:
         backend:
           - path: /browse
             url: https://developer-advocates-free-tier-central-hana-cloud-instan3b540fd6.cfapps.us10.hana.ondemand.com
-resources:
-  configuration:
-    paths:
-      webapp: webapp-fpm/
 ```
 
-We changed the path to the backend service (via the `fiori-tools-proxy`) to `/browse`, as we are now consuming a different OData service endpoint (V4). This configuration has to match our `webapp-fpm/manifest.json` file. We also specified `webapp-fpm/` as the new path to serve our webapp from.
+We changed the path to the backend service (via the `fiori-tools-proxy`) to `/browse`, as we are now consuming a different OData service endpoint (V4). This configuration has to match our `webapp/manifest.json` file.
 
 ### 12. Test the new app
 
