@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: ui5-exercises-codejam
-Upstream-Contact: Nicolai Geburek <nicolai.geburek@sap.com>
+Upstream-Contact: Nico Schoenteich <nicolai.schoenteich@sap.com>
 Source: <https://github.com/sap-samples/ui5-exercises-codejam>
 Disclaimer: The code in this project may include calls to APIs ("API Calls") of
  SAP or third-party products or services developed outside of this project
