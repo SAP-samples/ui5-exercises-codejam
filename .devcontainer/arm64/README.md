@@ -8,4 +8,4 @@ Based on the original Dockerfile from this repo, this one will create a base ima
 
 Opening the running app via https://localhost:8080 may fail.
 
-To solve this, one needs to add `--accept-remote-connecints` to `ui5 serve`.
+To solve this, one needs to add `--accept-remote-connections` to `ui5 serve`.
