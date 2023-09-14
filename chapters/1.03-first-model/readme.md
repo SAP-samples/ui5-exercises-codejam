@@ -91,11 +91,11 @@ Models are a major part of UI5 development. We use models to store data in our a
         "dataSources": {
             "remoteBookshop": {
                 "uri": "/v2/browse/",
-                "type" : "OData",
-                "settings" : {
-                    "odataVersion" : "2.0"
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0"
                 }
-            } 
+            }
         }
     },
     "sap.ui5": {
@@ -106,7 +106,7 @@ Models are a major part of UI5 development. We use models to store data in our a
         },
         "models": {
             "": {
-				"dataSource": "remoteBookshop"
+                "dataSource": "remoteBookshop"
             }
         }
     }
