@@ -19,7 +19,7 @@ To be able to follow the instructions in this repository you need to fulfill ***
 > If you don't have access to the SAP Business Application Studio yet, check this tutorial on [how to get a free account on SAP BTP trial](https://developers.sap.com/tutorials/hcp-create-trial-account.html), from where you can [subscribe to the SAP Business Application Studio](https://developers.sap.com/tutorials/appstudio-onboarding.html).
 
 - **Option 2:** You can use your local machine and have the following tools installed:
-  - [Node.js](https://nodejs.org/en/) (version 14 or higher) including `npm`
+  - [Node.js](https://nodejs.org/en/) (version 18 or higher) including `npm`
   - [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
   - Your favorite code editor (e.g. [Visual Studio Code](https://code.visualstudio.com/download))
   - You need privileges to install npm packages from the [npm registry](https://www.npmjs.com/)
