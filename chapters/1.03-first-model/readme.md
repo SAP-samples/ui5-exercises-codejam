@@ -25,8 +25,8 @@ We want to consume a remote data source []() for our bookshop. Unfortunately, we
     "dev": "ui5 serve --open \"index.html\""
   },
   "devDependencies": {
-    "@sap/ux-ui5-tooling": "^1.9.0",
-    "@ui5/cli": "^2"
+    "@ui5/cli": "^3",
+    "@sap/ux-ui5-tooling": "^1"
   },
   "ui5": {
     "dependencies": [
