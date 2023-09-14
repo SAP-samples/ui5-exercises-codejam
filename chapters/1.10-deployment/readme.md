@@ -38,11 +38,11 @@ We want to run our app using the `@sap/approuter` package, which allows us to ha
     "build": "ui5 build"
   },
   "dependencies": {
-    "@sap/approuter": "^10"
+    "@sap/approuter": "^14"
   },
   "devDependencies": {
-    "@sap/ux-ui5-tooling": "^1",
-    "@ui5/cli": "^2"
+    "@ui5/cli": "^3",
+    "@sap/ux-ui5-tooling": "^1"
   },
   "ui5": {
     "dependencies": [
