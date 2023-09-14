@@ -12,7 +12,7 @@ RUN curl -L "https://packages.cloudfoundry.org/stable?release=linux64-binary&ver
     chmod +x /usr/local/bin/cf
 
 # Final build stage
-ARG VARIANT="16-buster-slim"
+ARG VARIANT="18-buster-slim"
 FROM arm64v8/node:${VARIANT}
 
 COPY --from=foundry /usr/local/bin/cf /usr/local/bin/cf
