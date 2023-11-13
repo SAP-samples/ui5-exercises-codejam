@@ -76,7 +76,7 @@ You can find more information about this in the [SAPUI5 Documentation](https://s
 
 ## Feedback
 
-If you can spare a couple of minutes at the end of the session, please help the author improve for next time by providing some feedback.
+If you can spare a couple of minutes at the end of the session, please help the [author](https://github.com/nicoschoenteich) improve for next time by providing some feedback.
 
 Simply use this [template](https://github.com/SAP-samples/ui5-exercises-codejam/issues/new?assignees=&labels=feedback&template=session-feedback-template.md&title=Session%20Feedback) link to create a special "feedback" issue, and follow the instructions in there.
 
@@ -91,6 +91,3 @@ If you wish to contribute code, offer fixes or improvements, please send a pull 
 
 ## License
 Copyright (c) 2022 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](/LICENSE) file.
-
-
-Further reading to link to other content from me
