@@ -1,6 +1,6 @@
 # Appendix 01 - Enabling the SAP Fiori Elements Flexible Programming Model
 
-**If you want to learn more about the SAP Fiori elements flexible programming model, checkout this other [SAP CodeJam repository](https://github.com/SAP-samples/fiori-elements-fpm-exercises-codejam)**
+**If you want to learn more about the SAP Fiori elements flexible programming model, checkout this other [SAP CodeJam repository](https://github.com/SAP-samples/fiori-elements-fpm-exercises-codejam).**
 
 The following series of chapters (in the appendix) introduces the **SAP Fiori elements flexible programming model**, which bridges the gap between freestyle UI5 development and [SAP Fiori elements](https://ui5.sap.com/#/topic/03265b0408e2432c9571d6b3feb6b1fd).
 
