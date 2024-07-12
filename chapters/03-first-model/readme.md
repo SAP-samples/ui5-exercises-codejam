@@ -1,4 +1,4 @@
-# Chapter 1.03 - Creating and Consuming the First Model
+# Chapter 03 - Creating and Consuming the First Model
 
 By the end of this chapter, we will have added a remote bookshop data source to our app and stored the data in a model. We will also have added a table displaying this model data.
 
@@ -185,4 +185,4 @@ This is what our view now looks like (`<Table />` collapsed in the screen shot):
 
 ![result](result.png#border)
 
-Continue to - [Chapter 1.04 - Creating and Extending the First Controller](/chapters/1.04-first-controller/)
+Continue to - [Chapter 04 - Creating and Extending the First Controller](/chapters/04-first-controller/)

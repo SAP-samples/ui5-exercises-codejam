@@ -1,4 +1,4 @@
-# Chapter 1.10 - Deploying the App
+# Chapter 10 - Deploying the App
 
 Please note: This step is optional and not specific to UI5, but rather covers the basics of how to use the [SAP Approuter](https://www.npmjs.com/package/@sap/approuter), the [Cloud MTA Build Tool](https://sap.github.io/cloud-mta-build-tool/), and the [Cloud Foundry Command Line Interface](https://docs.cloudfoundry.org/cf-cli/). 
 
@@ -163,4 +163,4 @@ If the build was successful and finished with no errors, we can test our booksho
 
 We successfully deployed our UI5 app to the Cloud Foundry Environment. It consumes a remote service as the data source when running in the cloud via the destination environment variable.
 
-Continue to [Chapter 1.11 - Further Improvements and Learning Material](/chapters/1.11-further-improvements/)
+Continue to [Chapter 11 - Further Improvements and Learning Material](/chapters/11-further-improvements/)

@@ -1,4 +1,4 @@
-# Chapter 1.02 - Creating the First View
+# Chapter 02 - Creating the First View
 
 By the end of this chapter, we will have added the first view to our UI5 application.
 
@@ -9,7 +9,7 @@ By the end of this chapter, we will have added the first view to our UI5 applica
 
 ### 1. Create a `webapp/view/App.view.xml` file
 
-As of now, our project is more an empty shell than a real application, so let's now enrich it with some "real" content that is visible to the user - a so called "view". We already referenced our root XML view in our `webapp/manifest.json` in the [previous chapter](/chapters/1.01-scaffolding/readme.md#5-create-a-webappmanifestjson-file). Let's create this file now.
+As of now, our project is more an empty shell than a real application, so let's now enrich it with some "real" content that is visible to the user - a so called "view". We already referenced our root XML view in our `webapp/manifest.json` in the [previous chapter](/chapters/01-scaffolding/readme.md#5-create-a-webappmanifestjson-file). Let's create this file now.
 
 ➡️ Create a new `webapp/view/App.view.xml` file and paste the following code into it:
 
@@ -43,7 +43,7 @@ You might be wondering how you as a developer can find out which UI5 controls to
 
 <br>
 
-> - The [`<View />`](https://sapui5.hana.ondemand.com/#/api/sap.ui.core.mvc.View) control is our base class for the view. At the top of the file you can see that it is part of the `sap.ui.core.mvc` library. We assign this library to an xml namespace (abbreviated `xmlns`) that we call `mvc` (we will cover what `mvc` stands for in [chapter 1.04](/chapters/1.04-first-controller/readme.md#5-add-a-new-flexbox--to-the-appwebappviewappviewxml)). We always use controls by prefixing its namespace (the library it is from) followed by a colon (e.g. `<mcv:View />`). Each view can have one default namespace, that can be omitted. In our case we assigned the `sap.m` library to the default namespace.
+> - The [`<View />`](https://sapui5.hana.ondemand.com/#/api/sap.ui.core.mvc.View) control is our base class for the view. At the top of the file you can see that it is part of the `sap.ui.core.mvc` library. We assign this library to an xml namespace (abbreviated `xmlns`) that we call `mvc` (we will cover what `mvc` stands for in [chapter 04](/chapters/04-first-controller/readme.md#5-add-a-new-flexbox--to-the-appwebappviewappviewxml)). We always use controls by prefixing its namespace (the library it is from) followed by a colon (e.g. `<mcv:View />`). Each view can have one default namespace, that can be omitted. In our case we assigned the `sap.m` library to the default namespace.
 > - The [`<App />`](https://sapui5.hana.ondemand.com/#/api/sap.m.App) control is the root element of a UI5 app. In the documentation we can see that its [default aggregation](https://sapui5.hana.ondemand.com/#/api/sap.m.App%23aggregations) is `<pages />`. This means that these are the expected children of the `<App />` control. Aggregations are always lowercase.
 > - The [`<Page />`](https://sapui5.hana.ondemand.com/#/api/sap.m.Page) control is a container that holds one whole screen of an app. In its documentation we can see that it can have a `title` text that appears in the page header bar. We can also see that its [default aggregation](https://sapui5.hana.ondemand.com/#/api/sap.m.Page%23aggregations) is `<content />`.
 > - The [`<Panel />`](https://sapui5.hana.ondemand.com/#/api/sap.m.Panel%23overview) control is a container for grouping and displaying information. In its documentation we can see that we can define a `headerText` that will be displayed at the top of it. We can also see that its [default aggregation](https://sapui5.hana.ondemand.com/#/api/sap.m.Panel%23aggregations) is `<content />`.
@@ -75,4 +75,4 @@ This is what the application now looks like:
 
 ![result](result.png#border)
 
-Continue to [Chapter 1.03 - Creating and Consuming the First Model](/chapters/1.03-first-model/)
+Continue to [Chapter 03 - Creating and Consuming the First Model](/chapters/03-first-model/)

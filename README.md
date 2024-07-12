@@ -45,26 +45,18 @@ The instructor will set you off on the first chapter. Do not proceed to the next
 
 ## Chapters
 
-### Part 1 - Freestyle UI5
-
-- [1.00 - Preparing the Development Environment](/chapters/1.00-prep-dev-environment/)
-- [1.01 - Scaffolding the App](/chapters/1.01-scaffolding/)
-- [1.02 - Creating the First View](/chapters/1.02-first-view/)
-- [1.03 - Creating and Consuming the First Model](/chapters/1.03-first-model/)
-- [1.04 - Creating and Extending the First Controller](/chapters/1.04-first-controller/)
-- [1.05 - Adding an 'Order' Feature](/chapters/1.05-order-feature/)
-- [1.06 - Adding a 'Search' Feature](/chapters/1.06-search-feature/)
-- [1.07 - Adding Expression Binding and Custom Formatting](/chapters/1.07-formatting/)
-- [1.08 - Adding i18n Features](/chapters/1.08-i18n/)
-- [1.09 - Adding Custom CSS](/chapters/1.09-custom-css/)
-- [1.10 - Deploying the App](/chapters/1.10-deployment/) (Optional)
-- [1.11 - Further Improvements and Learning Material](/chapters/1.11-further-improvements/)
-
-### Part 2 - SAP Fiori Elements Flexible Programming Model
-
-- [2.01 - Enabling the SAP Fiori Elements Flexible Programming Model](/chapters/2.01-fe-fpm/)
-- [2.02 - Adding an Object Page](/chapters/2.02-object-page/)
-- [2.03 - Using the SAP Fiori Tools](/chapters/2.03-fiori-tools/)
+- [00 - Preparing the Development Environment](/chapters/00-prep-dev-environment/)
+- [01 - Scaffolding the App](/chapters/01-scaffolding/)
+- [02 - Creating the First View](/chapters/02-first-view/)
+- [03 - Creating and Consuming the First Model](/chapters/03-first-model/)
+- [04 - Creating and Extending the First Controller](/chapters/04-first-controller/)
+- [05 - Adding an 'Order' Feature](/chapters/05-order-feature/)
+- [06 - Adding a 'Search' Feature](/chapters/06-search-feature/)
+- [07 - Adding Expression Binding and Custom Formatting](/chapters/07-formatting/)
+- [08 - Adding i18n Features](/chapters/08-i18n/)
+- [09 - Adding Custom CSS](/chapters/09-custom-css/)
+- [10 - Deploying the App](/chapters/10-deployment/) (Optional)
+- [11 - Further Improvements and Learning Material](/chapters/11-further-improvements/)
 
 ## SAPUI5 vs. OpenUI5
 

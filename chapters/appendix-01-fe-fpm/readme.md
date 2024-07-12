@@ -1,6 +1,6 @@
-# Chapter 2.01 - Enabling the SAP Fiori Elements Flexible Programming Model
+# Appendix 01 - Enabling the SAP Fiori Elements Flexible Programming Model
 
-The following series of chapters (part 2 - starting with this chapter 2.01) introduces the **SAP Fiori elements flexible programming model**, which bridges the gap between freestyle UI5 development and [SAP Fiori elements](https://ui5.sap.com/#/topic/03265b0408e2432c9571d6b3feb6b1fd).
+The following series of chapters (in the appendix) introduces the **SAP Fiori elements flexible programming model**, which bridges the gap between freestyle UI5 development and [SAP Fiori elements](https://ui5.sap.com/#/topic/03265b0408e2432c9571d6b3feb6b1fd).
 
 The application we built so far in part 1 used a freestyle approach, meaning we built our own custom view with specific controls and controller logic. In contrast to that, SAP Fiori elements provide predefined [floorplans](https://ui5.sap.com/#/topic/797c3239b2a9491fa137e4998fd76aa7.html) (think "application layouts") for common business application use cases. Using this approach, the framework (SAPUI5) generates an application by interpreting metadata that is part of the consumed OData backend services. The specific parts of OData metadata that define the way a backend service is represented in frontend applications are called "annotations" and are mandatory when using SAP Fiori elements.
 
@@ -11,6 +11,8 @@ Usually you would decide before starting a new development which of the two appr
 However, the situation is not exactly black and white, as the [SAP Fiori elements flexible programming model](https://sapui5.hana.ondemand.com/test-resources/sap/fe/core/fpmExplorer/index.html#/overview/introduction) provides building blocks (macros), which are metadata-driven UI controls that can be used in any (freestyle) SAPUI5 application. This flexible programming model is perfect for our use case, as we already have a working freestyle UI5 application and solely want to enhance it - while learning about SAP Fiori elements and OData annotations along the way. The instructions given in this chapter align with the [the official documentation](https://sapui5.hana.ondemand.com/test-resources/sap/fe/core/fpmExplorer/index.html#/buildingBlocks/guidance/guidanceCustomApps), but are more detailed and more specific to our use case.
 
 At the end of this chapter we will have enabled the Fiori elements flexible programming model for our custom UI5 application. Essentially, we will have turned our application into an SAP Fiori elements application.
+
+> If you want to learn more about the SAP Fiori elements flexible programming model, checkout this other [SAP CodeJam repository](https://github.com/SAP-samples/fiori-elements-fpm-exercises-codejam).
 
 ## Steps
 
@@ -415,4 +417,4 @@ We changed the path to the backend service (via the `fiori-tools-proxy`) to `/br
 
 We enabled the SAP Fiori elements flexible programming model for our custom SAPUI5 application and used the Table building block, powered by OData annotations. You might have to resize your browser window to see all the columns of the Table. We will continue to fine tune and work on our application in the following chapters.
 
-Continue to [Chapter 2.02 - Adding an Object Page](/chapters/2.02-object-page/)
+Continue to [Appendix 02 - Adding an Object Page](/chapters/appendix-02-object-page/)

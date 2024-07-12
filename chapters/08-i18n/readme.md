@@ -1,4 +1,4 @@
-# Chapter 1.08 - Adding i18n Features
+# Chapter 08 - Adding i18n Features
 
 At the end of this chapter we will have added internationalization (i18n) features to our UI5 app, so that it can be displayed in German (and other languages you want to add) as well.
 
@@ -170,4 +170,4 @@ Feel free to try other language codes in case you provided translation files for
 
 ![result](result.png#border)
 
-Continue to [Chapter 1.09 - Adding Custom CSS](/chapters/1.09-custom-css/)
+Continue to [Chapter 09 - Adding Custom CSS](/chapters/09-custom-css/)

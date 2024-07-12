@@ -1,4 +1,4 @@
-# Chapter 2.02 - Adding an Object Page
+# Appendix 02 - Adding an Object Page
 
 For this version of our bookshop application (using the SAP Fiori elements flexible programming model) we will implement a separate object (detail) page to display more information about a selected book instead of using a custom section under the `booksTable`. This design is known as [List Report Object Page](https://sapui5.hana.ondemand.com/sdk/#/topic/c0eec49db81a441e878f528c8f3d28de.html).
 
@@ -68,7 +68,7 @@ We added a new page to our application in the form of a new route and target. Le
 
 ### 2. Inspect annotations
 
-You might be wondering how the application knows what to display on the new object page. This information is provided via annotations in the metadata of the backend service (built with the SAP Cloud Application Programming model). The service doesn't only contain the annotations we already used in the [previous step](/chapters/2.01-fe-fpm#9-rebuild-the-webappviewappviewxml), but also some more annotations that the object page interprets.
+You might be wondering how the application knows what to display on the new object page. This information is provided via annotations in the metadata of the backend service (built with the SAP Cloud Application Programming model). The service doesn't only contain the annotations we already used in the [previous step](/chapters/appendix-01-fe-fpm#9-rebuild-the-webappviewappviewxml), but also some more annotations that the object page interprets.
 
 ➡️ Inspect the annotation file that was used to create the metadata annotation in the backend:
 
@@ -184,4 +184,4 @@ You can learn more about annotations in this [document](https://github.com/SAP-s
 
 We added an object page to our application using an SAP Fiori elements template, powered by OData annotations.
 
-Continue to [Chapter 2.03 - Using the SAP Fiori Tools](/chapters/2.03-fiori-tools/)
+Continue to [Chapter 03 - Using the SAP Fiori Tools](/chapters/appendix-03-fiori-tools/)

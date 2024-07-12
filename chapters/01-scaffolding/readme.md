@@ -1,4 +1,4 @@
-# Chapter 1.01 - Scaffolding the App
+# Chapter 01 - Scaffolding the App
 
 By the end of this chapter, we will have scaffolded an empty UI5 application.
 
@@ -85,7 +85,7 @@ We loaded the UI5 framework into our project and configured a few attributes suc
 > - We specify an `id` for the `<script />` element, which is used by the framework to find out where it was initialized from.
 > - The `src` attribute defines where the JavaScript code for the script tag lives. This JavaScript code is the UI5 framework. As you can see, we are loading OpenUI5. You can visit [https://openui5.hana.ondemand.com/resources/sap-ui-core.js](https://openui5.hana.ondemand.com/resources/sap-ui-core.js) and see the code that makes up the framework.
 > - With the `data-sap-ui-theme` attribute we specify which UI5 theme we want to use. This is the  parameter we can modify to change the looks of our app. You can read more about Theming in the [SAPUI5 Documentation](https://sapui5.hana.ondemand.com/sdk/#/topic/497c27a8ee26426faacd2b8a1751794a).
-> - With the `data-sap-ui-libs` attribute, which is technically optional, but should always be used, we specify which UI5 library we want to preload before our app is initialized. This drastically improves the performance of our app. We can always load other libraries into our views and controllers on demand (see examples in [chapter 1.02](/chapters/1.02-first-view/readme.md#1-create-a-webappviewappviewxml-file) of the current chapter).
+> - With the `data-sap-ui-libs` attribute, which is technically optional, but should always be used, we specify which UI5 library we want to preload before our app is initialized. This drastically improves the performance of our app. We can always load other libraries into our views and controllers on demand (see examples in [chapter 02](/chapters/02-first-view/readme.md#1-create-a-webappviewappviewxml-file) of the current chapter).
 > - With the `data-sap-ui-compatVersion` attribute we specify which version of certain UI5 features we want to use in case of incompatibilities. Since this concept has been abandoned the [SAPUI5 Documentation](https://sapui5.hana.ondemand.com/sdk/#/topic/9feb96da02c2429bb1afcf6534d77c79.html) suggests to set this value to `edge`.
 > - With the `data-sap-ui-resourceroots` attribute we define a namespace for a certain location in our project. In our case we gave the root of our project (`./`) the namespace `sap.codejam`. We will use this namespace to reference our project root in other places of our code (e.g. in [step 5](#5-create-a-webappmanifestjson-file) of this chapter).
 
@@ -294,4 +294,4 @@ This is what our application currently looks like:
 
 ![result](result.png#border)
 
-Continue to [Chapter 1.02 - Creating the First View](/chapters/1.02-first-view/)
+Continue to [Chapter 02 - Creating the First View](/chapters/02-first-view/)

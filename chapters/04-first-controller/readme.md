@@ -1,4 +1,4 @@
-# Chapter 1.04 - Creating and Extending the First Controller
+# Chapter 04 - Creating and Extending the First Controller
 
 At the end of this chapter we will have made our UI5 app interactive so that a user can select a book to read more information about it.
 
@@ -135,4 +135,4 @@ We added two `<FlexBox />` controls to display the "bookDetails". A `<FlexBox />
 
 ![result](result.png#border)
 
-Continue to - [Chapter 1.05 - Adding an 'Order' Feature](/chapters/1.05-order-feature/)
+Continue to - [Chapter 05 - Adding an 'Order' Feature](/chapters/05-order-feature/)

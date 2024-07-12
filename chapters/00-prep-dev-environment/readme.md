@@ -1,4 +1,4 @@
-# Chapter 1.00 - Preparing the Development Environment
+# Chapter 00 - Preparing the Development Environment
 
 By the end of this chapter we will have prepared our development environment so that we can start developing our bookshop app.
 
@@ -56,4 +56,4 @@ cd ui5-exercises-codejam/bookshop
 
 ➡️ Open the directory in the code editor of your choice, depending on the option you chose in [step 1](#1-prerequisites).
 
-Continue to [Chapter 1.01 - Scaffolding the App](/chapters/1.01-scaffolding/)
+Continue to [Chapter 01 - Scaffolding the App](/chapters//01-scaffolding/)

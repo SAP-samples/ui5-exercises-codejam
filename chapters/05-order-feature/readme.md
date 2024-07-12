@@ -1,4 +1,4 @@
-# Chapter 1.05 - Adding an 'Order' Feature
+# Chapter 05 - Adding an 'Order' Feature
 
 At the end of this chapter we will have added a new feature to our bookshop that enables users to order books.
 
@@ -87,7 +87,7 @@ onSubmitOrder: function (oEvent) {
 }
 ```
 
-We added a new `onSubmitOrder` method to our controller, which we already bound to the order button's press event in [step 1](/chapters/1.05-order-feature/readme.md#2-add-a-new-onsubmitorder-method-to-our-webappcontrollerappcontrollerjs) of this chapter. First, the method gets the binding context from the `bookDetails` wrapper control. It then gets the book's ID and title from that context as well as the order quantity from the step input. It then get the view's default model (> no parameter when calling `.getModel()`) and calls the `/submitOrder` function on this model. This function was implemented a part of the OData backend service. So, at this point the application sends a `POST` request to the backend service, which handles the processing of the order and calculates the new stock. The promise of the call gets either resolved or rejected, so only one of the following two callback functions gets called:
+We added a new `onSubmitOrder` method to our controller, which we already bound to the order button's press event in [step 1](/chapters/05-order-feature/readme.md#2-add-a-new-onsubmitorder-method-to-our-webappcontrollerappcontrollerjs) of this chapter. First, the method gets the binding context from the `bookDetails` wrapper control. It then gets the book's ID and title from that context as well as the order quantity from the step input. It then get the view's default model (> no parameter when calling `.getModel()`) and calls the `/submitOrder` function on this model. This function was implemented a part of the OData backend service. So, at this point the application sends a `POST` request to the backend service, which handles the processing of the order and calculates the new stock. The promise of the call gets either resolved or rejected, so only one of the following two callback functions gets called:
 1. **success** : The request is successful and we can refresh the data in our data model. This is to make sure the stock gets updated in our table accordingly. We can then display a message toast informing the user about the successful order and its details.
 1. **error** : The request was unsuccessful and we get passed and error object. We instantiate a new dialog control (a pop-up window basically) and display the error message inside that dialog. We also add a button to the dialog so it can be closed by the user.
 
@@ -121,4 +121,4 @@ We can now test our new feature and order one or more books.
 
 ![result](result.png#border)
 
-Continue to [Chapter 1.06 - Adding a 'Search' Feature](/chapters/1.06-search-feature/)
+Continue to [Chapter 06 - Adding a 'Search' Feature](/chapters/06-search-feature/)

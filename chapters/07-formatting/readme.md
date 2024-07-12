@@ -1,4 +1,4 @@
-# Chapter 1.07 - Adding Expression Binding and Custom Formatting
+# Chapter 07 - Adding Expression Binding and Custom Formatting
 
 At the end of this chapter we will have added expression binding to the stock column in our table as well as custom formatting to the order `<Button />`.
 
@@ -165,4 +165,4 @@ You will notice that the `stock` is color coded based on the thresholds we defin
 
 ![result](result.png#border)
 
-Continue to [Chapter 1.08 - Adding i18n Features](/chapters/1.08-i18n/)
+Continue to [Chapter 08 - Adding i18n Features](/chapters/08-i18n/)

@@ -1,4 +1,4 @@
-# Chapter 1.06 - Adding a 'Search' Feature
+# Chapter 06 - Adding a 'Search' Feature
 
 At the end of this chapter we will have added a new feature to our bookshop that enables users to search for books.
 
@@ -108,4 +108,4 @@ You'll notice how the search is instantly triggered after a keystroke is submitt
 
 ![result](result.png#border)
 
-Continue to [Chapter 1.07 - Adding Expression Binding and Custom Formatting](/chapters/1.07-formatting/)
+Continue to [Chapter 07 - Adding Expression Binding and Custom Formatting](/chapters/07-formatting/)
