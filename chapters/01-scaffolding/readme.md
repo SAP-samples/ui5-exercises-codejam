@@ -259,7 +259,7 @@ The UI5 Tooling is a Node.js based package, so we have to turn our project into 
     "dev": "ui5 serve --open \"index.html\""
   },
   "devDependencies": {
-    "@ui5/cli": "^3"
+    "@ui5/cli": "^4"
   }
 }
 ```
