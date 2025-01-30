@@ -1,8 +1,8 @@
 sap.ui.define([
-    "sap/fe/core/AppComponent",
-], function (AppComponent) {
+    "sap/ui/core/UIComponent"
+], function (UIComponent) {
     "use strict"
-    return AppComponent.extend(
+    return UIComponent.extend(
         "sap.codejam.Component", {
             metadata : {
                 "interfaces": [
@@ -11,10 +11,11 @@ sap.ui.define([
                     manifest: "json"
             },
             init : function () {
-                AppComponent.prototype.init.apply(
+                UIComponent.prototype.init.apply(
                     this,
                     arguments
                     )
             }
-    })
-})
+        })
+    }
+)
