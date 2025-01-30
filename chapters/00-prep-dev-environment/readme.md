@@ -56,4 +56,4 @@ cd ui5-exercises-codejam/bookshop
 
 ➡️ Open the directory in the code editor of your choice, depending on the option you chose in [step 1](#1-prerequisites).
 
-Continue to [Chapter 01 - Scaffolding the App](/chapters//01-scaffolding/)
+Continue to [Chapter 01 - Scaffolding the App](/chapters/01-scaffolding/)

@@ -4,7 +4,7 @@
 
 This repository contains the material for SAP CodeJam events on UI5.
 
-Please check the [prerequisites](/chapters/1.00-prep-dev-environment/readme.md#1-prerequisites) before the event an make sure you meet them.
+Please check the [prerequisites](/chapters/00-prep-dev-environment/readme.md#1-prerequisites) before the event an make sure you meet them.
 
 ## Overview
 
