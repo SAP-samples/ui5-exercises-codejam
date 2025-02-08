@@ -1,0 +1,19 @@
+{
+    "sap.app": {
+        "id": "codejam",
+        "type": "application",
+        "title": "CodeJam Bookshop",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "dataSources": {}
+    },
+    "sap.ui5": {
+        "rootView": {
+            "viewName": "sap.codejam.view.App",
+            "type": "XML",
+            "id": "app"
+        },
+        "models": {}
+    }
+}
