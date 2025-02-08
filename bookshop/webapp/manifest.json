@@ -6,7 +6,15 @@
         "applicationVersion": {
             "version": "1.0.0"
         },
-        "dataSources": {}
+        "dataSources": {
+            "remoteBookshop": {
+                "uri": "/v2/browse/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0"
+                }
+            }
+        }
     },
     "sap.ui5": {
         "rootView": {
@@ -14,6 +22,10 @@
             "type": "XML",
             "id": "app"
         },
-        "models": {}
+        "models": {
+            "": {
+                "dataSource": "remoteBookshop"
+            }
+        }
     }
 }
