@@ -1,0 +1,16 @@
+<mvc:View
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+>
+    <App>
+        <pages>
+            <Page title="Bookshop">
+                <content>
+                    <Panel headerText="Hello, Dev! 👋">
+                        <content />
+                    </Panel>
+                </content>
+            </Page>
+        </pages>
+    </App>
+</mvc:View>
