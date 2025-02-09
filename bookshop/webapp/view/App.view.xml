@@ -1,6 +1,7 @@
 <mvc:View
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
+    controllerName="sap.codejam.controller.App"
 >
     <App>
         <pages>
@@ -8,7 +9,7 @@
                 <content>
                     <Panel headerText="Hello, Dev! 👋">
                         <content>
-                            <Table 
+                            <Table
                                 items="{ path: '/Books', parameters: { expand: 'genre' } }"
                             >
                                 <columns>
@@ -31,6 +32,7 @@
                                 <items>
                                     <ColumnListItem
                                         vAlign="Middle"
+                                        press=".onSelect"
                                         type="Active"
                                     >
                                         <cells>
@@ -46,6 +48,19 @@
                                     </ColumnListItem>
                                 </items>
                             </Table>
+                            <FlexBox
+                                direction="Column"
+                                class="sapUiMediumMarginTop"
+                                id="bookDetails"
+                            >
+                                <FlexBox direction="Column">
+                                    <Title text="{title}" />
+                                    <Text
+                                        text="{descr}"
+                                        class="sapUiSmallMarginTop"
+                                    />
+                                </FlexBox>
+                            </FlexBox>
                         </content>
                     </Panel>
                 </content>
