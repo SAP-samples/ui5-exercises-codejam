@@ -52,7 +52,30 @@
                                 direction="Column"
                                 class="sapUiMediumMarginTop"
                                 id="bookDetails"
+                                modelContextChange=".resetOrderAmount"
                             >
+                                <FlexBox
+                                    direction="Row"
+                                    alignItems="Center"
+                                    justifyContent="End"
+                                    class="sapUiMediumMarginBottom"
+                                >
+                                    <Text
+                                        text="Please choose amount you want to order: "
+                                        class="sapUiSmallMargin"
+                                    />
+                                    <Button
+                                        id="orderBtn"
+                                        text="Order"
+                                        press=".onSubmitOrder"
+                                    />
+                                    <StepInput
+                                        id="stepInput"
+                                        min="1"
+                                        textAlign="Center"
+                                        validationMode="LiveChange"
+                                    />
+                                </FlexBox>
                                 <FlexBox direction="Column">
                                     <Title text="{title}" />
                                     <Text
