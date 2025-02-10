@@ -3,10 +3,15 @@ sap.ui.define([
     "sap/m/MessageToast",
     "sap/m/Dialog",
     "sap/m/Button",
-    "sap/m/Text"
-], function (Controller, MessageToast, Dialog, Button, Text) {
+    "sap/m/Text",
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator",
+    "../model/formatter"
+], function (Controller, MessageToast, Dialog, Button, Text, Filter, FilterOperator, formatter) {
     "use strict"
     return Controller.extend("sap.codejam.controller.App", {
+
+        formatter: formatter,
 
         onSelect: function (oEvent) {
             const oSource = oEvent.getSource()
@@ -59,6 +64,21 @@ sap.ui.define([
 
         resetOrderAmount: function () {
             this.getView().byId("stepInput").setValue(1);
+        },
+
+        onSearch: function (oEvent) {
+            const sQuery = oEvent.getParameter("newValue");
+            const aFilter = [];
+            if (sQuery) {
+                aFilter.push(new Filter("title", FilterOperator.Contains, sQuery));
+            }
+            const oList = this.byId("booksTable");
+            const oBinding = oList.getBinding("items");
+            oBinding.filter(aFilter);
+        },
+
+        onAfterRendering: function () {
+            this.getView().byId("orderBtn").setEnabled(false);
         }
 
     })

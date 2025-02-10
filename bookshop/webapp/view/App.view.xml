@@ -9,8 +9,10 @@
                 <content>
                     <Panel headerText="Hello, Dev! 👋">
                         <content>
+                            <SearchField liveChange=".onSearch" />
                             <Table
                                 items="{ path: '/Books', parameters: { expand: 'genre' } }"
+                                id="booksTable"
                             >
                                 <columns>
                                     <Column>
@@ -43,7 +45,14 @@
                                                 number="{price}"
                                                 unit="{currency_code}"
                                             />
-                                            <Text text="{stock}" />
+                                            <ObjectStatus
+                                                text="{stock}"
+                                                state="{= ${stock} >= 20
+                                                            ? 'Success'
+                                                        : ${stock} > 0
+                                                            ? 'Warning'
+                                                        : 'Error'}"
+                                            />
                                         </cells>
                                     </ColumnListItem>
                                 </items>
@@ -68,10 +77,13 @@
                                         id="orderBtn"
                                         text="Order"
                                         press=".onSubmitOrder"
+                                        enabled="{ path: 'stock',
+                                                   formatter: '.formatter.inputLowerThanStock' }"
                                     />
                                     <StepInput
                                         id="stepInput"
                                         min="1"
+                                        max="{stock}"
                                         textAlign="Center"
                                         validationMode="LiveChange"
                                     />
