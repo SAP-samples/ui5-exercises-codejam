@@ -5,9 +5,9 @@
 >
     <App>
         <pages>
-            <Page title="Bookshop">
+            <Page title="{i18n>Bookshop}">
                 <content>
-                    <Panel headerText="Hello, Dev! 👋">
+                    <Panel headerText="{i18n>HelloDev}">
                         <content>
                             <SearchField liveChange=".onSearch" />
                             <Table
@@ -16,19 +16,19 @@
                             >
                                 <columns>
                                     <Column>
-                                        <Text text="Book" />
+                                        <Text text="{i18n>Book}" />
                                     </Column>
                                     <Column>
-                                        <Text text="Author" />
+                                        <Text text="{i18n>Author}" />
                                     </Column>
                                     <Column>
-                                        <Text text="Genre" />
+                                        <Text text="{i18n>Genre}" />
                                     </Column>
                                     <Column>
-                                        <Text text="Price" />
+                                        <Text text="{i18n>Price}" />
                                     </Column>
                                     <Column>
-                                        <Text text="Stock" />
+                                        <Text text="{i18n>Stock}" />
                                     </Column>
                                 </columns>
                                 <items>
@@ -70,12 +70,12 @@
                                     class="sapUiMediumMarginBottom"
                                 >
                                     <Text
-                                        text="Please choose amount you want to order: "
+                                        text="{i18n>ChooseAmount}" 
                                         class="sapUiSmallMargin"
                                     />
                                     <Button
                                         id="orderBtn"
-                                        text="Order"
+                                        text="{i18n>Order}"
                                         press=".onSubmitOrder"
                                         enabled="{ path: 'stock',
                                                    formatter: '.formatter.inputLowerThanStock' }"

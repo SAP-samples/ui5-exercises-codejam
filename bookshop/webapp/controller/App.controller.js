@@ -27,7 +27,8 @@ sap.ui.define([
             const selectedBookTitle = oBindingContext.getProperty("title");
             const chosenQuantity = this.getView().byId("stepInput").getValue();
 
-            const oModel = this.getView().getModel()
+            const oModel = this.getView().getModel();
+            const i18nModel = this.getView().getModel("i18n");
 
             oModel.callFunction("/submitOrder", {
                 method: "POST",
@@ -37,7 +38,7 @@ sap.ui.define([
                 },
                 success: function (oData, oResponse) {
                     oModel.refresh()
-                    const oText = `Order successful (${selectedBookTitle}, ${chosenQuantity} pcs.)`
+                    const oText = `${i18nModel.getProperty("orderSuccessful")} (${selectedBookTitle}, ${chosenQuantity} ${i18nModel.getProperty("pieces")})`
                     MessageToast.show(oText)
                 },
                 error: function (oError) {
@@ -46,12 +47,12 @@ sap.ui.define([
                     }
                     this.oErrorMessageDialog = new Dialog({
                         type: "Standard",
-                        title: "Error",
+                        title: i18nModel.getProperty("Error"),
                         state: "Error",
                         content: new Text({ text: oError.message })
                             .addStyleClass("sapUiTinyMargin"),
                         beginButton: new Button({
-                            text: "Close",
+                            text: i18nModel.getProperty("Close"),
                             press: function () {
                                 this.oErrorMessageDialog.close()
                             }.bind(this)
@@ -77,9 +78,9 @@ sap.ui.define([
             oBinding.filter(aFilter);
         },
 
-        onAfterRendering: function () {
-            this.getView().byId("orderBtn").setEnabled(false);
-        }
+        // onAfterRendering: function () {
+        //     this.getView().byId("orderBtn").setEnabled(false);
+        // }
 
     })
 })
