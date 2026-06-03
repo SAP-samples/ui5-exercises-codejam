@@ -2,6 +2,8 @@
 
 At the end of this chapter we will have added custom CSS to our UI5 app that applies styling to the `<FlexBox />` containing the order `<Button />` and `<StepInput />`.
 
+> It is generally advised to use as little custom CSS in UI5 applications as possible, and let the framework handle the styling (and theming). Specifically the example we chose for this chapter is implemented natively via the `gap` property of the UI5 [`<FlexBox />`](https://ui5.sap.com/#/api/sap.m.FlexBox%23controlProperties) and shouldn't be handled using custom CSS. We chose the example for demonstration purposes only.
+
 ## Steps
 
 [1. Add new `resource` to our `webapp/manifest.json`](#1-add-new-resource-to-our-webappmanifestjson)<br>
